@@ -1,0 +1,120 @@
+/**
+ * Generales
+ */
+body {
+    background: #fc930a;
+    font-size: 14px;
+    color: #666666;
+}
+header {
+    background: #fc930a;
+    height: 100px!important;
+}
+header h1 {
+    position: absolute;
+    margin-top: -51px;
+    margin-left: 30px;
+    z-index: 99999;
+}
+.wrap-content {
+    background: #FFF;
+    padding-top: 2em;
+}
+.container {
+    float: none;
+    margin: 0 auto!important;
+}
+.navbar-default {
+    background: #454545;
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+}
+nav {
+    padding: 1em;
+    padding-top: 2.5em;
+    width: 100%;
+}
+nav ul {
+    text-align: right;
+}
+nav ul li {
+    border-right: 1px solid #d2d2d2;
+    display: inline-block;
+    padding: 0 1.5em;
+}
+nav ul li:last-child {
+    border: none;
+}
+nav ul li a {
+    border: none;
+    font-size: 1.1em;
+}
+.titulo_seccion {
+    color: #DB5A3C;
+    font-size: 1.4em;
+    margin: 0 auto;
+}
+ul {
+    list-style: none;
+}
+hr {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+footer {
+    background: #454545;
+    color: #FFFFFF;
+    margin-top: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    width: 100%;
+}
+footer span {
+    color: #fc930a;
+}
+footer ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+/**
+ * Fin Generales
+ */
+#slider img {
+    max-height: 370px!important;
+    min-height: 125px!important;
+}
+.ultimas_novedades div:nth-child(even) {
+    /*border-left: 1px solid #d2d2d2;
+    border-right: 1px solid #d2d2d2;
+    border-spacing: 1em;*/
+}
+.ultimas_novedades div figure {
+    text-align: center;
+}
+.ultimas_novedades div figure figcaption {
+    color: #DB5A3C;
+    font-size: 1.2em;
+    text-align: left;
+}
+.ultimas_novedades div figure img {
+    margin: 0.3em 0 0.5em 0;
+}
+.ultimas_novedades div figure p {
+    text-align: justify;
+}
+.colaboradores {
+    background: red;
+}
+.colaboradores img {
+    max-height: 80px;
+}
+.newsletter {
+    background: #f27032;
+}
+
+
+
+
+

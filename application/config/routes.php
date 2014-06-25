@@ -41,6 +41,8 @@
 $route['default_controller'] = "inicio";
 $route['fundacion'] = "inicio/fundacion";
 $route['noticias'] = "inicio/noticias";
+$route['administrador/login'] = "administrador/auth/login";
+$route['administrador/autenticar'] = "administrador/auth/autenticar";
 $route['404_override'] = '';
 
 

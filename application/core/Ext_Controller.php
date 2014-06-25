@@ -26,10 +26,10 @@ Class Ext_Controller extends CI_Controller {
 			//, 'vcMenu' => menu_ul($this->_menu)
 			, 'main_content' => $this->_content
 		);
-		$this->load->view(config_item('ext_theme_folder').'template', $data);
+		$this->load->view('template', $data);
 	}
 	protected function _init() {
-		//$this->load->library('Form_validation');
+		$this->load->library('Form_validation');
 		//$this->load->library('messages');
 		$this->_SiteInfo = array_merge($this->_SiteInfo, $this->config->item('ext_site_info'));
 	}
@@ -96,17 +96,8 @@ Class Ext_AutController extends Ext_Controller {
 		parent::__construct();
 	}
 	function index() {
-		/*$UsrView = $this->load->view('lib_autenticacion/usr-view'
-			, array(
-				'vcUsuarioActual' => $this->lib_autenticacion->nombreUsuario()
-				//, 'vcUbicacionActual' => $this->lib_ubicacion->descripcion()
-				,'vcUbicacionActual' => ''
-			)
-			,true);*/
 		$data = array('PanelInfo'=> $this->_panelInfo()
 			, 'vcIncludesGlobales' => $this->_getCssIncs(). $this->_getJsIncs()
-			//, 'vcHeaderLoginView' => $UsrView
-			//, 'vcMenu' => $this->_obtenerMenu()
 			, 'main_content' => $this->_content
 		);
 		$this->load->view('admin/template',$data);
@@ -115,9 +106,9 @@ Class Ext_AutController extends Ext_Controller {
 	protected function _init() {
 		parent::_init($opciones=array());
 		$this->load->library('Form_validation');
-		//$this->load->library('hits/autenticacion', null, 'autenticacion');
-		//$this->_PanelInfo = array_merge($this->_PanelInfo, $this->config->item('ext_base_panel'));
-		//$this->autenticacion->estaLogueado();
+		$this->load->library('hits/autenticacion', null, 'autenticacion');
+		$this->_PanelInfo = array_merge($this->_PanelInfo, $this->config->item('ext_base_panel'));
+		$this->autenticacion->logged();
 		//$this->load->model($this->db->dbdriver.'/configuracion/excepciones_model');
 		//$this->load->model('hits/excepciones_model');
 		/*if($this->lib_autenticacion->verificarPermisoUri()==FALSE) {

@@ -17,11 +17,11 @@ Class Autenticacion {
 		$this->opciones = array();
 		$keys = $this->ci->config->item('ext_autenticacion');
 		foreach($keys as $key) {
-			$this->opciones[$key] = $this->ci->config->item('lib_autenticacion_'.$key);
+			$this->opciones[$key] = $this->ci->config->item('ext_autenticacion_'.$key);
 		}
-		if(!((bool)$this->opciones['enable_multiple_users'])) {
+		/*if(!((bool)$this->opciones['enable_multiple_users'])) {
 			$this->clearSessIdenticas();
-		}
+		}*/
 	}
 	protected function _setSession($data, $keys = array('idAgente','idUsuario','idRol','idPersona', 'dniPersona','nombreUsuario','ultimoLoginUsuario','nombrePersona', 'apellidoPersona')) {
 		//print_r($data);
@@ -32,7 +32,7 @@ Class Autenticacion {
 		
 		// agregar a la sesion solo los datos del usuario, hasta el momento
 		$usuario = array(
-			'Lib_Aut_Usuario' => $dataUsr
+			'auth' => $dataUsr
 			, 'Lib_Aut_boLogueado' => TRUE
 		);
 		//$this->ci->lib_ubicacion->
@@ -44,7 +44,7 @@ Class Autenticacion {
 		
 		// agregar a la sesion solo los datos del usuario, hasta el momento
 		$usuario = array(
-			'Lib_Aut_Usuario' => null
+			'auth' => null
 			, 'Lib_Aut_boLogueado' => null
 		);
 		$this->ci->session->unset_userdata($usuario);
@@ -144,7 +144,7 @@ Class Autenticacion {
 	
 	protected function _getSessData($vcKey)
 	{
-		$rg = $this->ci->session->userdata('Lib_Aut_Usuario');
+		$rg = $this->ci->session->userdata('auth');
 		if(!$rg)
 			return false;
 		
@@ -215,15 +215,10 @@ EOT;
 		return $this->ci->session->userdata('Lib_Aut_Usuario');
 	}
 	
-	public function estaLogueado($boRedirect=true)
-	{
-		$boLoguedIn = $this->ci->session->userdata('Lib_Aut_boLogueado');
-		
-		if(!$boLoguedIn)
-		{
+	public function logged($boRedirect=true) {
+		$logged = $this->ci->session->userdata('auth');
+		if(!$logged) {
 			if($boRedirect && base_url().$this->opciones['login_uri'] != base_url(). $this->ci->uri->uri_string()){
-				// Redirect to login
-				//redirect(base_url().$this->opciones['login_uri'], 'location');
                 $baseurl = base_url();
                 $autlogin = $this->opciones['login_uri'];
                 echo <<<EOT
@@ -236,15 +231,15 @@ EOT;
                 die();
 			}
 		}
-		return $boLoguedIn;
+		return $logged;
 	}
 	
 	public function login($login, $password) {
 		$Result = FALSE;
-		if($this->opciones['cli_pass_is_md5']===FALSE){
+		if($this->opciones['pass_is_md5']===FALSE){
 			$password = $this->_crypt($password);
 		}
-		$rsResult = $this->ci->usuarios_model->autenticar($login, $password, $this->ci->input->ip_address());
+		$rsResult = $this->ci->usuarios->autenticar($login, $password, $this->ci->input->ip_address());
 		try {
 			if(!$rsResult) {
 				$this->_vcMensajeError = $this->opciones['error_def_msg'];
@@ -252,9 +247,6 @@ EOT;
 			else {
 				$rsResult = $rsResult;
 				if(!empty($rsResult['idUsuario'])) {
-					//$agente = $this->ci->agentes->obtenerAgentePersona($rsResult['idPersona']);
-					//$designacion = $this->ci->designaciones->obtenerDesignacionAgente($agente['idAgente']);
-					//$designaciones = $this->ci->lib_ubicacion->_setSessionDesignacion($designacion, $this->ci->lib_ubicacion->_keysDesignacion);
 					$this->unsetSession();			    
 					$this->_setSession($rsResult, $this->_keys);
 					$Result = true;

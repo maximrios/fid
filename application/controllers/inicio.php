@@ -5,17 +5,17 @@ Class Inicio extends Ext_Controller {
 	}
 	public function index() {
 		$data = array();
-		$this->_content = $this->load->view($this->config->item('ext_theme_folder').'inicio', $data, true);
+		$this->_content = $this->load->view('inicio', $data, true);
 		parent::index();
 	}
 	public function fundacion() {
 		$data = array();
-		$this->_content = $this->load->view($this->config->item('ext_theme_folder').'fundacion', $data, true);
+		$this->_content = $this->load->view('fundacion', $data, true);
 		parent::index();
 	}
 	public function noticias() {
 		$data = array();
-		$this->_content = $this->load->view($this->config->item('ext_theme_folder').'noticias', $data, true);
+		$this->_content = $this->load->view('noticias', $data, true);
 		parent::index();
 	}
 }

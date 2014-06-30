@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'antibot');
+$autoload['helper'] = array('url', 'antibot', 'navigation');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('url', 'antibot');
 |
 */
 
-$autoload['config'] = array('config.site', 'ext_config');
+$autoload['config'] = array('config.site', 'ext_config', 'navigation');
 
 
 /*

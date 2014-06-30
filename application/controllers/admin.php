@@ -6,9 +6,13 @@ class Admin extends Ext_AutController {
 	}
 	public function index() {
 		$aData = array();
-		$this->_SiteInfo['title'] .= ' - Dashboard';
-		$this->_content = $this->load->view('admin/template',$aData,true);
-		//parent::index();
+		$this->_content = $this->load->view('admin/dashboard',$aData,true);
+		$this->_menu = menu_ul('inicio');
+		parent::index();
+	}
+	public function test() {
+		print_r($_POST);
+		print_r($_FILES);
 	}
 }
 ?>

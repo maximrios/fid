@@ -8,7 +8,7 @@ class Admin extends Ext_AutController {
 		$aData = array();
 		$this->_SiteInfo['title'] .= ' - Dashboard';
 		$this->_content = $this->load->view('admin/template',$aData,true);
-		//parent::index();
+		parent::index();
 	}
 }
 ?>

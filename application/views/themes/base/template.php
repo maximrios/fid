@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="http://localhost/fid/assets/themes/base/css/fid.css">
 	<link rel="stylesheet" type="text/css" href="http://localhost/fid/assets/themes/base/css/nivo-slider.css">
 	<link rel="stylesheet" type="text/css" href="http://localhost/fid/assets/themes/base/css/default.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost/fid/assets/themes/base/css/jquery.simplyScroll.css">
 	<link rel="stylesheet" type="text/css" href="http://localhost/fid/assets/themes/base/css/responsive-calendar.css">
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.js"></script>
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/responsive-calendar.js"></script>
@@ -19,35 +20,32 @@
 <body>
 	<div class="navbar navbar-default">
 		<div class="container col-lg-9">
-
-			&nbsp;&nbsp;<a href="#" class="btn btn-primary pull-right">Donar ahora</a>&nbsp;&nbsp;
-			<img class="pull-right" src="assets/themes/base/img/facebook_hover.png" width="30">&nbsp;&nbsp;
+			<a href="#" class="btn btn-primary pull-right">Donar ahora</a>
 		</div>
-		
 	</div>
 	<header>
-		<div class="container col-lg-10">
+		<div class="container col-lg-9">
 			<h1><a href="http://fundacionfidsalta.org" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales" title="Fundación para la Integración y el Desarollo de Comunidades Rurales"><img src="./assets/images/logo_header.png" title="Fundación para la Integración y el Desarollo de Comunidades Rurales" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales"></a></h1>	
 			<nav class="nav navbar-nav">
 				<ul class="container col-lg-10 pull-right">
-					<li><a href="" title="">Inicio</a></li>
-					<li><a href="" title="">Quienes Somos</a></li>
-					<li><a href="" title="">Programas</a></li>
-					<li><a href="" title="">Noticias</a></li>
-					<li><a href="" title="">Galeria</a></li>
-					<li><a href="" title="">Contacto</a></li>
+					<li><a href="inicio" title="">Inicio</a></li>
+					<li><a href="fundacion" title="">Quienes Somos</a></li>
+					<li><a href="programas" title="">Programas</a></li>
+					<li><a href="noticias" title="">Noticias</a></li>
+					<li><a href="galeria" title="">Galeria</a></li>
+					<li><a href="contacto" title="">Contacto</a></li>
 				</ul>
 			</nav>
 		</div>
 
 	</header>
 	
-	<section class="wrap-content container col-lg-10">
+	<section class="wrap-content container col-xs-12 col-lg-9">
 		<?=$main_content?>
 	</section>
 	
 	<footer>
-		<div class="container col-lg-10">
+		<div class="container col-lg-9">
 			<div class="col-lg-2">
 				<h5>Menú</h5>
 				<ul>
@@ -56,7 +54,7 @@
 					<li><a href="" title="">Programas</a></li>
 					<li><a href="noticias" title="">Noticias</a></li>
 					<li><a href="" title="">Galeria</a></li>
-					<li><a href="" title="">Contacto</a></li>
+					<li><a href="contacto" title="">Contacto</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-4">
@@ -68,13 +66,17 @@
 					<li><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Salta - Argentina</li>
 				</ul>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 				<h5>Suscribite a nuestro Newsletter</h5>
 				<form>
+					<input type="text" id="newsletter" name="newsletter" placeholder="Ingresa tu nombre" class="form-control">
+					<br>
 					<input type="text" id="newsletter" name="newsletter" placeholder="Ingresa tu email" class="form-control">
+					<br>
+					<button class="btn btn-primary pull-right">Enviar</button>
 				</form>
 			</div>
-			<div class="col-lg-2" style="text-align:right;">
+			<div class="col-lg-3" style="text-align:right;">
 				<img src="assets/images/fiscal.png" width="100">
 			</div>
 		</div>

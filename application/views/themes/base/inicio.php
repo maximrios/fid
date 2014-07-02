@@ -10,18 +10,23 @@
     		</div>
     	</div>
 	</div>
-
-	<div class="col-lg-4">
-		<span></span>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+	<div class="col-lg-12 staff">
+		<div class="col-lg-4">
+			<span><img src="assets/images/staff/persona1.jpg"></span>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+		</div>
+		<div class="col-lg-4">
+			<span><img src="assets/images/staff/persona1.jpg"></span>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+		</div>
+		<div class="col-lg-4">
+			<span><img src="assets/images/staff/persona1.jpg"></span>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+			</div>
+		
 	</div>
-	<div class="col-lg-4">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-	</div>
-	<div class="col-lg-4">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-	</div>
+	
 	<div class="col-lg-9 ultimas_novedades">
 		<h4 class="titulo_seccion">Ultimas novedades</h4>
 		<hr>
@@ -88,7 +93,6 @@
 			</ul>
 		</div>
 	</div>
-<link rel="stylesheet" type="text/css" href="assets/<?=$this->config->item('ext_theme_folder')?>css/jquery.simplyScroll.css">
 <script type="text/javascript">
 	$('#slider').nivoSlider();
 	$(".responsive-calendar").responsiveCalendar({

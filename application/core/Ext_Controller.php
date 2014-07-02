@@ -88,6 +88,7 @@ Class Ext_Controller extends CI_Controller {
 }
 Class Ext_AutController extends Ext_Controller {
 	protected $_content = '';
+	protected $_menu = '';
 	protected $_PanelInfo = array(
 		'titulo' => ''
 		, 'cliente' => ''

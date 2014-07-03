@@ -9,10 +9,13 @@ class Admin extends Ext_AutController {
 		$this->_content = $this->load->view('admin/dashboard',$aData,true);
 		$this->_menu = menu_ul('inicio');
 		parent::index();
+<<<<<<< HEAD
+=======
 	}
 	public function test() {
 		print_r($_POST);
 		print_r($_FILES);
+>>>>>>> 7a10b1a57ca79b334595bb3fadd68ad463404e6a
 	}
 }
 ?>

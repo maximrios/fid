@@ -99,6 +99,7 @@ Class Ext_AutController extends Ext_Controller {
 	function index() {
 		$data = array('PanelInfo'=> $this->_panelInfo()
 			, 'vcIncludesGlobales' => $this->_getCssIncs(). $this->_getJsIncs()
+			, 'menu' => $this->_menu
 			, 'main_content' => $this->_content
 		);
 		$this->load->view('admin/template',$data);

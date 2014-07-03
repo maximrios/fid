@@ -4,6 +4,7 @@
 	$config['ext_theme_folder'] = $config['ext_base_url'].'/assets/themes/'.$config['ext_theme_name'].'/';
 	$config['ext_base_panel']['titulo'] = 'Panel de Administración';
 	$config['ext_base_panel']['cliente'] = 'Fundacion FID';
+	$config['ext_base_panel']['web'] = $config['ext_base_url'];
 	$config['ext_base_assets_images'] = 'assets/images/';
 	$config['ext_base_assets_theme'] = 'assets/'.$config['ext_theme_folder'];
 	$config['ext_base_favicon'] = $config['ext_base_assets_images'].'favicon.ico';

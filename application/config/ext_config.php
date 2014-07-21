@@ -1,5 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	$config['ext_base_url'] = 'http://localhost/fid';
+	$config['ext_site_url'] = 'http://fundacionfidsalta.org';
 	$config['ext_theme_name'] = 'base';
 	$config['ext_theme_folder'] = $config['ext_base_url'].'/assets/themes/'.$config['ext_theme_name'].'/';
 	$config['ext_base_panel']['titulo'] = 'Panel de Administración';

@@ -1,5 +1,7 @@
-.navbar-fixed-top {
-
+a:hover, a:active, a:focus {
+    list-style-type: none;
+    outline: 0;
+    text-decoration: none;
 }
 nav {
 
@@ -148,6 +150,9 @@ nav {
   margin-left: 20px;
   line-height: 65px;
   display: inline-block;
+}
+.botones {
+    text-align: right;
 }
 
 @media (max-width:767px) {

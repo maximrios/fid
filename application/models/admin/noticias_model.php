@@ -3,18 +3,18 @@ class Noticias_model extends CI_Model {
     function __constructor() {
     }
     public function obtener($vcBuscar = '', $limit = 0, $offset = 9999999) {
-        $sql = 'SELECT *, IF(publicadoNoticia=1,"Publicado","Sin Publicar") as estadoNoticia
+        $sql = 'SELECT *, IF(estadoNoticia=1,"Publicado","Sin Publicar") as estadoNoticia
             FROM hits_noticias
             WHERE tituloNoticia LIKE ? 
-            ORDER BY inicioNoticia DESC  
+            ORDER BY fechaDesdeNoticia DESC  
             limit ? offset ? ;';
         return $this->db->query($sql, array('%' . strtolower((string) $vcBuscar) . '%', (double) $offset, (double) $limit))->result_array();
     }
     public function obtenerNoticias($limit = 0, $offset = 9999999) {
         $sql = 'SELECT *
             FROM hits_noticias
-            WHERE publicadoNoticia = 1
-            ORDER BY inicioNoticia DESC  
+            WHERE estadoNoticia = 1
+            ORDER BY fechaDesdeNoticia DESC  
             limit ? offset ? ;';
         return $this->db->query($sql, array((double) $offset, (double) $limit))->result_array();
     }
@@ -33,18 +33,16 @@ class Noticias_model extends CI_Model {
                     (tituloNoticia
                     , epigrafeNoticia
                     , descripcionNoticia
-                    , inicioNoticia
-                    , vencimientoNoticia
+                    , fechaDesdeNoticia
                     , uriNoticia
-                    , publicadoNoticia) 
+                    , estadoNoticia) 
                     VALUES
                     ("'.$aParms[1].'"
                     , "'.$aParms[2].'"
                     , "'.$aParms[3].'"
                     , "'.$aParms[4].'"
                     , "'.$aParms[5].'"
-                    , "'.$aParms[6].'"
-                    , '.$aParms[7].');';
+                    , '.$aParms[6].');';
             $type = 1;
         }
         else {
@@ -52,10 +50,9 @@ class Noticias_model extends CI_Model {
                     tituloNoticia = "'.$aParms[1].'"
                     , epigrafeNoticia = "'.$aParms[2].'"
                     , descripcionNoticia = "'.$aParms[3].'"
-                    , inicioNoticia = "'.$aParms[4].'"
-                    , vencimientoNoticia = "'.$aParms[5].'"
-                    , uriNoticia = "'.$aParms[6].'"
-                    , publicadoNoticia = '.$aParms[7].'
+                    , fechaDesdeNoticia = "'.$aParms[4].'"
+                    , uriNoticia = "'.$aParms[5].'"
+                    , estadoNoticia = '.$aParms[6].'
                     WHERE idNoticia = '.$aParms[0].';';
             $type = 2;
         }
@@ -98,7 +95,7 @@ class Noticias_model extends CI_Model {
     }
 
     public function cambiarEstado($aParms) {
-        $sql = 'UPDATE hits_noticias SET publicadoNoticia = ? WHERE idNoticia = ?;';
+        $sql = 'UPDATE hits_noticias SET estadoNoticia = ? WHERE idNoticia = ?;';
         $result = $this->db->query($sql, $aParms);
         return TRUE;   
     }

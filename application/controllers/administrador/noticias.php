@@ -84,7 +84,7 @@ class Noticias extends Ext_crud_controller {
         $this->gridview->addColumn('estadoNoticia', 'Estado', 'text');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
         $publicar = '<a href="#" name="pedon" value="12" ic-post-to="noticias/publicacion/{idNoticia}" title="Cambiar estado de {tituloNoticia}" ic-target="#main_content" rel="{\'idNoticia\': {idNoticia}}">&nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;</a>';
-        $editar = '<a href="#" name="pedo" ic-verb="post" ic-post-to="noticias/formulario/{idNoticia}" title="Modificar la noticia {tituloNoticia}"  ic-target="#main_content" rel="micosis:2">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
+        $editar = '<a href="#" name="pen" ic-attr-src="rel" ic-post-to="noticias/formulario/{idNoticia}" title="Modificar la noticia {tituloNoticia}"  ic-target="#main_content" rel="main:2">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
         $eliminar = '<a href="#" ic-post-to="noticias/eliminar/{idNoticia}" title="Eliminar noticia {tituloNoticia}" ic-target="#main_content" rel="{\'idNoticia\': {idNoticia}}">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
         $controles = $publicar.$editar.$eliminar;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
@@ -97,10 +97,16 @@ class Noticias extends Ext_crud_controller {
             )
         );
     }
-    public function formulario() {
-        $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));
+    public function formulario($noticia=FALSE) {
+        if($noticia) {
+            $aData['Reg'] = $this->noticias->obtenerUno($noticia);
+        }
+        else {
+            $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));    
+        }
         $aData['formAction'] = 'noticias/guardar';
-        $aData['mensajeServer'] = $this->_aEstadoOper['message'];
+        //$aData['mensajeServer'] = $this->_aEstadoOper['message'];
+        $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
         $this->load->view('admin/noticias/formulario', $aData);
     }
     public function consulta() {
@@ -151,6 +157,7 @@ class Noticias extends Ext_crud_controller {
             $this->_aEstadoOper['status'] = 0;
             $this->_aEstadoOper['message'] = validation_errors();
         }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'alert'));
         if ($this->_aEstadoOper['status'] > 0) {
             $this->listado();
         } 

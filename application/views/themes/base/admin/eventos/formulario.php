@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Agregar Evento</div>
 	<div class="panel-body">
-        <?=$mensajeServer?>
+        <?= $vcMsjSrv; ?>
 		<form ic-post-to="eventos/guardar" ic-target="#main_content">
 			<div class="form-group col-lg-8">
             	<label for="nombreEvento">Nombre</label>

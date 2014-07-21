@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 	<div class="panel-heading">Agregar Noticia</div>
 	<div class="panel-body">
-        <?=$mensajeServer?>
+        <?= $vcMsjSrv; ?>
 		<form ic-post-to="<?=$formAction?>" ic-target="#main_content">
 			<div class="form-group col-lg-12">
             	<label for="tituloNoticia">Titulo</label>

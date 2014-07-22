@@ -2,6 +2,7 @@
 <div class="panel-heading">Listado de Noticias</div>
     <div id="panel-body" class="panel-body">
         <?= $vcMsjSrv; ?>
+        <a href="#" class="btn btn-primary pull-right" ic-trigger-on="click" ic-verb="POST" ic-src="noticias/formulario" ic-target="#main_content">Clickeame</a>
         <?= $vcGridView; ?>
     </div>
 </div>

@@ -157,7 +157,7 @@ class Noticias extends Ext_crud_controller {
             $this->_aEstadoOper['status'] = 0;
             $this->_aEstadoOper['message'] = validation_errors();
         }
-        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'alert'));
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
         if ($this->_aEstadoOper['status'] > 0) {
             $this->listado();
         } 

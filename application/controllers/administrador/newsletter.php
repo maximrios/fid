@@ -1,10 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Eventos extends Ext_crud_Controller {
+class Newsletter extends Ext_crud_Controller {
 	function __construct() {
 		parent::__construct();
         $this->load->library('hits/gridview');
-        //$this->load->library('hits/messages', '', 'messages');
-		$this->load->model('admin/eventos_model', 'eventos');
+		$this->load->model('admin/newsletter_model', 'newsletter');
 		$this->_aReglas = array(
 			array(
 	            'field'   => 'idEvento',
@@ -82,37 +81,33 @@ class Eventos extends Ext_crud_Controller {
     }
 	function index() {
 		$aData = array();
-		$this->_content = $this->load->view('admin/eventos/principal', $aData, true);
-		$this->_menu = menu_ul('eventos');
+		$this->_content = $this->load->view('admin/newsletter/principal', $aData, true);
+		$this->_menu = menu_ul('newsletter');
 		parent::index();
 	}
 	public function listado() {
         $vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
         $this->gridview->initialize(
                 array(
-                    'sResponseUrl' => 'administrator/eventos/listado'
-                    , 'iTotalRegs' => $this->eventos->numRegs($vcBuscar)
+                    'sResponseUrl' => 'administrator/newsletter/listado'
+                    , 'iTotalRegs' => $this->newsletter->numRegs($vcBuscar)
                     , 'iPerPage' => ($this->input->post('per_page')==FALSE)? 10: $this->input->post('per_page')
                     , 'border' => FALSE
                     , 'sFootProperties' => 'class="paginador"'
-                    , 'titulo' => 'Listado de Eventos'
-                    , 'identificador' => 'idEvento'
+                    , 'titulo' => 'Listado de Suscriptores'
+                    , 'identificador' => 'idPersona'
                 )
         );
-        $this->gridview->addColumn('idEvento', '#', 'int');
-        $this->gridview->addColumn('nombreEvento', 'Evento', 'text');
-        $this->gridview->addColumn('domicilioEvento', 'Domiclio', 'text');
-        $this->gridview->addColumn('telefonoEvento', 'Teléfono', 'text');
-        $this->gridview->addColumn('emailEvento', 'Email', 'text');
-        $this->gridview->addColumn('fechaDesdeEvento', 'Fecha', 'date');
+        $this->gridview->addColumn('idPersona', '#', 'int');
+        $this->gridview->addColumn('completoPersona', 'Suscriptor', 'text');
+        $this->gridview->addColumn('emailPersona', 'Email', 'text');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
-        $ver = '<a href="administrator/contactos/formulario/{idEvento}" title="Mostrar mensaje de {nombreEvento}" class="btn-accion" rel="{\'idEvento\': {idEvento}}">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</a>';
-        $editar = '<a href="#" ic-post-to="eventos/formulario/{idEvento}" title="Modificar el evento {nombreEvento}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
-        $eliminar = '<a href="#" ic-post-to="eventos/eliminar/{idEvento}" title="Eliminar evento {nombreEvento}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
-        $controles = $ver.$editar.$eliminar;
+        $editar = '<a href="#" ic-post-to="newsletter/formulario/{idPersona}" title="Modificar suscriptor {completoPersona}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
+        $eliminar = '<a href="#" ic-post-to="newsletter/eliminar/{idPersona}" title="Eliminar suscriptor {completoPersona}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
+        $controles = $editar.$eliminar;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
-        $this->_rsRegs = $this->eventos->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
-        $this->load->view('admin/eventos/listado'
+        $this->_rsRegs = $this->newsletter->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
+        $this->load->view('admin/newsletter/listado'
             , array(
                 'vcGridView' => $this->gridview->doXHtml($this->_rsRegs)
                 , 'vcMsjSrv' => $this->_aEstadoOper['message']
@@ -163,19 +158,19 @@ class Eventos extends Ext_crud_Controller {
             $this->formulario();
         }
 	}
-	public function eliminar($evento) {
-        $evento = $this->eventos->obtenerUno($evento);
-        if($evento) {
-            $this->_aEstadoOper['status'] = $this->eventos->eliminar($evento['idEvento']);
+	public function eliminar($suscriptor) {
+        $suscriptor = $this->newsletter->obtenerUno($suscriptor);
+        if($suscriptor) {
+            $this->_aEstadoOper['status'] = $this->newsletter->eliminar($suscriptor['idPersona']);
             if ($this->_aEstadoOper['status'] > 0) {
-                $this->_aEstadoOper['message'] = 'Se eliminó el evento correctamente.';
+                $this->_aEstadoOper['message'] = 'Se eliminó el suscriptor del newsletter correctamente.';
             } 
             else {
                 $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
             }
         }
         else {
-            $this->_aEstadoOper['message'] = 'Ocurrió un error al eliminar el evento. Consulte con el administrador del sistema.';
+            $this->_aEstadoOper['message'] = 'Ocurrió un error al eliminar el suscriptor. Consulte con el administrador del sistema.';
         }
         $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
         $this->listado();

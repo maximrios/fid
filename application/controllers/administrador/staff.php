@@ -2,8 +2,8 @@
 class Staff extends Ext_crud_Controller {
 	function __construct() {
 		parent::__construct();
+        $this->load->library('hits/gridview');
 		$this->load->model('admin/staff_model', 'staff');
-        $this->load->library('hits/messages');
 		$this->_aReglas = array(
 			array(
 	            'field'   => 'idPersona',
@@ -86,38 +86,34 @@ class Staff extends Ext_crud_Controller {
 		parent::index();
 	}
 	public function listado() {
-        /*$vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
+        $vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
         $this->gridview->initialize(
                 array(
-                    'sResponseUrl' => 'administrator/contactos/listado'
-                    , 'iTotalRegs' => $this->contactos->numRegs($vcBuscar)
+                    'sResponseUrl' => 'administrator/staff/listado'
+                    , 'iTotalRegs' => $this->staff->numRegs($vcBuscar)
                     , 'iPerPage' => ($this->input->post('per_page')==FALSE)? 10: $this->input->post('per_page')
                     , 'border' => FALSE
                     , 'sFootProperties' => 'class="paginador"'
-                    , 'titulo' => 'Listado de Contactos'
-                    , 'identificador' => 'idContacto'
+                    , 'titulo' => 'Staff'
+                    , 'identificador' => 'idPersona'
                 )
         );
-        $this->gridview->addColumn('idContacto', '#', 'int');
-        $this->gridview->addColumn('nombreContacto', 'Nombre', 'text');
-        $this->gridview->addColumn('telefonoContacto', 'Telefono', 'text');
-        $this->gridview->addColumn('emailContacto', 'Email', 'text');
-        $this->gridview->addColumn('mensajeContacto', 'Mensaje', 'tinyText');
-        $this->gridview->addColumn('fechaContacto', 'Fecha', 'datetime');
+        $this->gridview->addColumn('idPersona', '#', 'int');
+        $this->gridview->addColumn('completoPersona', 'Suscriptor', 'text');
+        $this->gridview->addColumn('emailPersona', 'Email', 'text');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
-        $ver = '<a href="administrator/contactos/formulario/{idContacto}" title="Mostrar mensaje de {nombreContacto}" class="btn-accion" rel="{\'idContacto\': {idContacto}}">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</a>';
-        $eliminar = '<a href="administrator/contactos/eliminar/{idContacto}" title="Eliminar mensaje de {nombreContacto}" class="btn-accion" rel="{\'idContacto\': {idContacto}}">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
-        $controles = $ver.$eliminar;
+        $editar = '<a href="#" ic-post-to="newsletter/formulario/{idPersona}" title="Modificar suscriptor {completoPersona}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
+        $eliminar = '<a href="#" ic-post-to="newsletter/eliminar/{idPersona}" title="Eliminar suscriptor {completoPersona}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
+        $controles = $editar.$eliminar;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
-        $this->_rsRegs = $this->contactos->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
-        $this->load->view('administrator/sabandijas/contactos/listado'
+        $this->_rsRegs = $this->staff->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
+        $this->load->view('admin/staff/listado'
             , array(
                 'vcGridView' => $this->gridview->doXHtml($this->_rsRegs)
                 , 'vcMsjSrv' => $this->_aEstadoOper['message']
                 , 'txtvcBuscar' => $vcBuscar
             )
-        );*/
-		echo "aca el litado";
+        );
     }
 	function formulario() {
 		$aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));

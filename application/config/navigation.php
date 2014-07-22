@@ -18,10 +18,10 @@ $config['navigation'] = array(
                 'link'   => 'administrator/programas',
                 'icon'   => 'file'
             ),
-            'galeria' => array(
-                'id'     => 'galeria',
+            'galerias' => array(
+                'id'     => 'galerias',
                 'title'  => 'Galeria',
-                'link'   => 'administrator/galeria',
+                'link'   => 'administrador/galerias',
                 'icon'   => 'picture'
             ),
             'noticias' => array(
@@ -39,8 +39,14 @@ $config['navigation'] = array(
             'contactos' => array(
                 'id'     => 'contactos',
                 'title'  => 'Contactos',
-                'link'   => 'administrator/contactos',
+                'link'   => 'administrador/contactos',
                 'icon'   => 'bookmark'
+            ),
+            'newsletter' => array(
+                'id'     => 'newsletter',
+                'title'  => 'Newsletter',
+                'link'   => 'administrador/newsletter',
+                'icon'   => 'th-list'
             ),
             'logout' => array(
                 'id'     => 'logout',

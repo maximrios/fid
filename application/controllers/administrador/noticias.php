@@ -191,6 +191,7 @@ class Noticias extends Ext_crud_controller {
     public function eliminar($noticia) {
         $noticia = $this->noticias->obtenerUno($noticia);
         if($noticia) {
+            $this->_aEstadoOper['status'] = $this->noticias->eliminar($noticia['idNoticia']);
             if ($this->_aEstadoOper['status'] > 0) {
                 $this->_aEstadoOper['message'] = 'Se eliminó la noticia correctamente.';
             } 
@@ -201,22 +202,8 @@ class Noticias extends Ext_crud_controller {
         else {
             $this->_aEstadoOper['message'] = 'Ocurrió un error al eliminar la noticia. Consulte con el administrador del sistema.';
         }
-        die();
-        $this->_aEstadoOper['status'] = $this->noticias->cambiarEstado(
-            array(
-                $estado
-                , $noticia['idNoticia']
-            )
-        );
-        
-
-        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'alert'));
-
-        if ($this->_aEstadoOper['status'] > 0) {
-            $this->listado();
-        } else {
-            $this->formulario();
-        }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
+        $this->listado();
     }
 }
 

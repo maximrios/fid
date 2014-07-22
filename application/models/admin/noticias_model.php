@@ -101,9 +101,9 @@ class Noticias_model extends CI_Model {
     }
 
     public function eliminar($id) {
-        $sql = 'SELECT ufn30tsisprovinciasborrar(?) AS result;';
-        $result = $this->db->query($sql, array($id))->result_array();
-        return $result[0]['result'];
+        $sql = 'DELETE FROM hits_noticias WHERE idNoticia = ?;';
+        $result = $this->db->query($sql, array($id));
+        return TRUE;
     }
 
     public function dropdownNoticiasTipos() {

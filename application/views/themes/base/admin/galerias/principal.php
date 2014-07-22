@@ -3,6 +3,6 @@
 ?>
 	<script type="text/javascript">
         $(document).on('ready', function(){
-            $('#main_content').load('staff/listado');
+            $('#main_content').load('galerias/listado');
         });
 	</script>

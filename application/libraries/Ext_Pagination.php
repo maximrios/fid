@@ -388,36 +388,30 @@ $output .= $this->empty_first_element;
 
 // Render the pages
 
-
-if ($this->display_pages !== FALSE)
-{
-// Write the digit links
-for ($loop = $start ; $loop <= $end; $loop++)
-{
-$i = $loop ;
-if ($i >= 0)
-{
-if ($page_selected == $loop)
-{
-$output .= $this->cur_tag_open.$loop.$this->cur_tag_close; // Current page
-}
-else
-{
-$n = ($i == 0) ? '' : $i;
-
-if ($n == '' && $this->first_url != '')
-{
-$output .= $this->num_tag_open.'<a '.$this->anchor_class.'href="'.$this->first_url.'">'.$loop.'</a>'.$this->num_tag_close;
-}
-else
-{
-$n = ($n == '') ? '' : $this->prefix.$n.$this->suffix;
-
-$output .= $this->num_tag_open.'<a '.$this->anchor_class.'href="'.$this->base_url.$n.'">'.$loop.'</a>'.$this->num_tag_close;
-}
-}
-}
-}
+$this->num_tag_open = '<li>';
+$this->num_tag_close = '</li>';
+$this->full_tag_open = '<ul class="pagination">';
+$this->full_tag_close = '</ul>';
+if ($this->display_pages !== FALSE) {
+    // Write the digit links
+    for ($loop = $start ; $loop <= $end; $loop++) {
+        $i = $loop ;
+        if ($i >= 0) {
+            if ($page_selected == $loop) {
+                $output .= $this->cur_tag_open.$loop.$this->cur_tag_close; // Current page
+            }
+            else {
+                $n = ($i == 0) ? '' : $i;
+                if ($n == '' && $this->first_url != '') {
+                    $output .= $this->num_tag_open.'<a '.$this->anchor_class.'href="'.$this->first_url.'">'.$loop.'</a>'.$this->num_tag_close;
+                }
+                else {
+                    $n = ($n == '') ? '' : $this->prefix.$n.$this->suffix;
+                    $output .= $this->num_tag_open.'<a '.$this->anchor_class.'href="'.$this->base_url.$n.'">'.$loop.'</a>'.$this->num_tag_close;
+                }
+            }
+        }
+    }
 }
 
 // Render the "next" link

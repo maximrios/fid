@@ -28,7 +28,8 @@ class Eventos_model extends CI_Model {
                     , fechaHastaEvento
                     , domicilioEvento
                     , telefonoEvento
-                    , emailEvento) 
+                    , emailEvento
+                    , uriEvento) 
                     VALUES
                     ("'.$aParms[1].'"
                     , "'.$aParms[2].'"
@@ -36,19 +37,21 @@ class Eventos_model extends CI_Model {
                     , "'.$aParms[4].'"
                     , "'.$aParms[5].'"
                     , "'.$aParms[6].'"
-                    , "'.$aParms[7].'");';
+                    , "'.$aParms[7].'"
+                    , "'.$aParms[8].'");';
             $type = 1;
         }
         else {
-            $sql = 'UPDATE hits_noticias SET 
-                    tituloNoticia = "'.$aParms[1].'"
-                    , epigrafeNoticia = "'.$aParms[2].'"
-                    , descripcionNoticia = "'.$aParms[3].'"
-                    , inicioNoticia = "'.$aParms[4].'"
-                    , vencimientoNoticia = "'.$aParms[5].'"
-                    , uriNoticia = "'.$aParms[6].'"
-                    , publicadoNoticia = '.$aParms[7].'
-                    WHERE idNoticia = '.$aParms[0].';';
+            $sql = 'UPDATE hits_eventos SET 
+                    nombreEvento = "'.$aParms[1].'"
+                    , descripcionEvento = "'.$aParms[2].'"
+                    , fechaDesdeEvento = "'.$aParms[3].'"
+                    , fechaHastaEvento = "'.$aParms[4].'"
+                    , domicilioEvento = "'.$aParms[5].'"
+                    , telefonoEvento = "'.$aParms[6].'"
+                    , emailEvento = "'.$aParms[7].'"
+                    , uriEvento = "'.$aParms[8].'"
+                    WHERE idEvento = '.$aParms[0].';';
             $type = 2;
         }
         $result = $this->db->query($sql);
@@ -96,9 +99,9 @@ class Eventos_model extends CI_Model {
     }
 
     public function eliminar($id) {
-        $sql = 'SELECT ufn30tsisprovinciasborrar(?) AS result;';
-        $result = $this->db->query($sql, array($id))->result_array();
-        return $result[0]['result'];
+        $sql = 'DELETE FROM hits_eventos WHERE idEvento = ?;';
+        $result = $this->db->query($sql, array($id));
+        return TRUE;
     }
 
     public function dropdownNoticiasTipos() {

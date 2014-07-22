@@ -1,8 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Eventos extends Ext_crud_Controller {
+class Galerias extends Ext_crud_Controller {
 	function __construct() {
 		parent::__construct();
-		$this->load->model('admin/eventos_model', 'eventos');
+        $this->load->library('hits/gridview');
+		$this->load->model('admin/galerias_model', 'galerias');
 		$this->_aReglas = array(
 			array(
 	            'field'   => 'idEvento',
@@ -80,50 +81,45 @@ class Eventos extends Ext_crud_Controller {
     }
 	function index() {
 		$aData = array();
-		$this->_content = $this->load->view('admin/eventos/principal', $aData, true);
-		$this->_menu = menu_ul('eventos');
+		$this->_content = $this->load->view('admin/galerias/principal', $aData, true);
+		$this->_menu = menu_ul('galerias');
 		parent::index();
 	}
 	public function listado() {
-        /*$vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
+        $vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
         $this->gridview->initialize(
                 array(
-                    'sResponseUrl' => 'administrator/contactos/listado'
-                    , 'iTotalRegs' => $this->contactos->numRegs($vcBuscar)
+                    'sResponseUrl' => 'administrator/galerias/listado'
+                    , 'iTotalRegs' => $this->galerias->numRegs($vcBuscar)
                     , 'iPerPage' => ($this->input->post('per_page')==FALSE)? 10: $this->input->post('per_page')
                     , 'border' => FALSE
                     , 'sFootProperties' => 'class="paginador"'
-                    , 'titulo' => 'Listado de Contactos'
-                    , 'identificador' => 'idContacto'
+                    , 'titulo' => 'Listado de Mensajes'
+                    , 'identificador' => 'idGaleria'
                 )
         );
-        $this->gridview->addColumn('idContacto', '#', 'int');
-        $this->gridview->addColumn('nombreContacto', 'Nombre', 'text');
-        $this->gridview->addColumn('telefonoContacto', 'Telefono', 'text');
-        $this->gridview->addColumn('emailContacto', 'Email', 'text');
-        $this->gridview->addColumn('mensajeContacto', 'Mensaje', 'tinyText');
-        $this->gridview->addColumn('fechaContacto', 'Fecha', 'datetime');
+        $this->gridview->addColumn('idGaleria', '#', 'int');
+        $this->gridview->addColumn('nombreGaleria', 'Nombre', 'text');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
-        $ver = '<a href="administrator/contactos/formulario/{idContacto}" title="Mostrar mensaje de {nombreContacto}" class="btn-accion" rel="{\'idContacto\': {idContacto}}">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</a>';
-        $eliminar = '<a href="administrator/contactos/eliminar/{idContacto}" title="Eliminar mensaje de {nombreContacto}" class="btn-accion" rel="{\'idContacto\': {idContacto}}">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
+        $ver = '<a href="#" ic-post-to="contactos/formulario/{idGaleria}" title="Ver mensaje de {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</a>';
+        $eliminar = '<a href="#" ic-post-to="contactos/eliminar/{idGaleria}" title="Eliminar mensaje de {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
         $controles = $ver.$eliminar;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
-        $this->_rsRegs = $this->contactos->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
-        $this->load->view('administrator/sabandijas/contactos/listado'
+        $this->_rsRegs = $this->galerias->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
+        $this->load->view('admin/galerias/listado'
             , array(
                 'vcGridView' => $this->gridview->doXHtml($this->_rsRegs)
                 , 'vcMsjSrv' => $this->_aEstadoOper['message']
                 , 'txtvcBuscar' => $vcBuscar
             )
-        );*/
-		echo "aca el litado";
+        );
     }
 	function formulario() {
 		/*$aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));
         $aData['vcFrmAction'] = 'administrator/contactos/guardar';*/
         $aData['mensajeServer'] = $this->_aEstadoOper['message'];
         /*$aData['vcAccion'] = ($this->_reg['idContacto'] > 0) ? 'Modificar' : 'Agregar';*/
-        $this->load->view('admin/eventos/formulario', $aData);
+        $this->load->view('admin/galerias/formulario', $aData);
 	}
 	function guardar() {
 		antibotCompararLlave($this->input->post('vcForm'));

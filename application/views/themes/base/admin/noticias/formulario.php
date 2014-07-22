@@ -17,7 +17,7 @@
             </div>
         	<div class="form-group col-lg-2">
             	<label for="fechaDesdeNoticia">Fecha de Publicación</label>
-            	<input type="text" class="form-control fecha" id="fechaDesdeNoticia" name="fechaDesdeNoticia" placeholder="dd/mm/yyyy">
+            	<input type="text" class="form-control fecha" id="fechaDesdeNoticia" name="fechaDesdeNoticia" placeholder="dd/mm/yyyy" value="<?=$Reg['fechaDesdeNoticia']?>">
         	</div>
         	<div class="botones col-lg-12">
         		<button type="button" ic-post-to="noticias/listado" ic-target="#main_content" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Cancelar</button>

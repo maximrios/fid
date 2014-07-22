@@ -107,8 +107,9 @@ class Eventos extends Ext_crud_Controller {
         $this->gridview->addColumn('fechaDesdeEvento', 'Fecha', 'date');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
         $ver = '<a href="administrator/contactos/formulario/{idEvento}" title="Mostrar mensaje de {nombreEvento}" class="btn-accion" rel="{\'idEvento\': {idEvento}}">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</a>';
+        $editar = '<a href="#" name="pen" ic-attr-src="rel" ic-post-to="eventos/formulario/{idEvento}" title="Modificar el evento {nombreEvento}"  ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
         $eliminar = '<a href="administrator/contactos/eliminar/{idEvento}" title="Eliminar mensaje de {nombreEvento}" class="btn-accion" rel="{\'idEvento\': {idEvento}}">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
-        $controles = $ver.$eliminar;
+        $controles = $ver.$editar.$eliminar;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
         $this->_rsRegs = $this->eventos->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
         $this->load->view('admin/eventos/listado'
@@ -119,11 +120,17 @@ class Eventos extends Ext_crud_Controller {
             )
         );
     }
-	function formulario() {
-		/*$aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));
-        $aData['vcFrmAction'] = 'administrator/contactos/guardar';*/
-        $aData['mensajeServer'] = $this->_aEstadoOper['message'];
-        /*$aData['vcAccion'] = ($this->_reg['idContacto'] > 0) ? 'Modificar' : 'Agregar';*/
+	function formulario($evento=FALSE) {
+        if($evento) {
+            $aData['Reg'] = $this->eventos->obtenerUno($evento);
+            $aData['Reg']['fechaDesdeEvento'] = GetDateFromISO($aData['Reg']['fechaDesdeEvento']);
+            $aData['Reg']['fechaHastaEvento'] = GetDateFromISO($aData['Reg']['fechaHastaEvento']);
+        }
+        else {
+            $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));    
+        }
+        $aData['formAction'] = 'eventos/guardar';
+        $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
         $this->load->view('admin/eventos/formulario', $aData);
 	}
 	function guardar() {

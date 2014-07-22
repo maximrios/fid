@@ -100,12 +100,12 @@ class Noticias extends Ext_crud_controller {
     public function formulario($noticia=FALSE) {
         if($noticia) {
             $aData['Reg'] = $this->noticias->obtenerUno($noticia);
+            $aData['Reg']['fechaDesdeNoticia'] = GetDateFromISO($aData['Reg']['fechaDesdeNoticia']);
         }
         else {
             $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));    
         }
         $aData['formAction'] = 'noticias/guardar';
-        //$aData['mensajeServer'] = $this->_aEstadoOper['message'];
         $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
         $this->load->view('admin/noticias/formulario', $aData);
     }

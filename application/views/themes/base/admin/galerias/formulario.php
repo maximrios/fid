@@ -41,6 +41,8 @@
 	$("div#myId").dropzone({ 
 		headers: { "My-Awesome-Header": "header valpedosss" },
 		url: "galerias/upload" ,
-		
+		'sending': function(file, xhr, formData) {
+			formData.append("idGaleria", $('#idGaleria').val());
+		}	
 	});
 </script>

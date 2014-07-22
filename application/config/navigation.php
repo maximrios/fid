@@ -20,7 +20,7 @@ $config['navigation'] = array(
             ),
             'galerias' => array(
                 'id'     => 'galerias',
-                'title'  => 'Galeria',
+                'title'  => 'Galerias',
                 'link'   => 'administrador/galerias',
                 'icon'   => 'picture'
             ),

@@ -115,10 +115,10 @@ class Galerias extends Ext_crud_Controller {
         );
     }
 	function formulario() {
-		/*$aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));
-        $aData['vcFrmAction'] = 'administrator/contactos/guardar';*/
-        $aData['mensajeServer'] = $this->_aEstadoOper['message'];
-        /*$aData['vcAccion'] = ($this->_reg['idContacto'] > 0) ? 'Modificar' : 'Agregar';*/
+		$aData['formAction'] = 'eventos/guardar';
+        $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
+        $aData['video_icon'] = 'ok';
+        $aData['video_legend'] = 'Check video';
         $this->load->view('admin/galerias/formulario', $aData);
 	}
 	function guardar() {
@@ -162,4 +162,11 @@ class Galerias extends Ext_crud_Controller {
 		$this->_aEstadoOper['message'] = $this->messages->do_message(array('message'=>$this->_aEstadoOper['message'],'type'=> ($this->_aEstadoOper['status'] > 0)?'success':'alert'));		
        	$this->listado();
 	}
+    public function check_youtube() {
+        echo "aca estamos";
+        die();
+    }
+    public function upload() {
+        print_r($_POST);
+    }
 }

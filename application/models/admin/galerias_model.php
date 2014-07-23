@@ -19,20 +19,27 @@ class Galerias_model extends CI_Model {
         $sql = 'SELECT * FROM hits_galerias WHERE idGaleria = ?;';
         return array_shift($this->db->query($sql, array($id))->result_array());
     }
+    public function obtenerUnoNombre($nombre) {
+        $sql = 'SELECT * FROM hits_galerias WHERE nombreGaleria = ?;';
+        return array_shift($this->db->query($sql, array($nombre))->result_array());
+    }
     public function guardar($aParms) {
         if($aParms[0] == 'NULL' || $aParms[0] == 0) {
             $sql = 'INSERT INTO hits_galerias
                     (nombreGaleria
-                    , uriGaleria) 
+                    , uriGaleria
+                    , pathGaleria) 
                     VALUES
                     ("'.$aParms[1].'"
-                    , "'.$aParms[2].'");';
+                    , "'.$aParms[2].'"
+                    , "'.$aParms[3].'");';
             $type = 1;
         }
         else {
             $sql = 'UPDATE hits_galerias SET 
                     nombreGaleria = "'.$aParms[1].'"
                     , uriGaleria = "'.$aParms[2].'"
+                    , pathGaleria = "'.$aParms[3].'"
                     WHERE idGaleria = '.$aParms[0].';';
             $type = 2;
         }

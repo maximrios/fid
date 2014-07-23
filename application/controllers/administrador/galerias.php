@@ -13,7 +13,7 @@ class Galerias extends Ext_crud_Controller {
 	        ,array(
 	            'field'   => 'nombreGaleria',
 	            'label'   => 'Nombre de la galeria',
-	            'rules'   => 'trim|xss_clean|required'
+	            'rules'   => 'trim|xss_clean|required|callback__nombre_unico'
 	        )
 	        ,array(
 	            'field'   => 'uriGaleria',
@@ -26,8 +26,7 @@ class Galerias extends Ext_crud_Controller {
         $this->_reg = array(
             'idGaleria' => null
             , 'nombreGaleria' => null
-            , 'uriGaleria' => ''
-        );
+            , 'uriGaleria' => null        );
         $inId = ($this->input->post('idGaleria') !== false) ? $this->input->post('idGaleria') : 0;
         if ($inId != 0 && !$boIsPostBack) {
             $this->_reg = $this->noticias->obtenerUno($inId);
@@ -35,8 +34,8 @@ class Galerias extends Ext_crud_Controller {
         else {
             $this->_reg = array(
                 'idGaleria' => $inId
-                , 'nombreGaleria' => $this->input->post('nombreGaleria')
-                , 'uriGaleria' => set_value('uriGaleria')
+                , 'nombreGaleria' => set_value('nombreGaleria')
+                , 'uriGaleria' => set_value('nombreGaleria')
             );
         }
         return $this->_reg;
@@ -112,10 +111,12 @@ class Galerias extends Ext_crud_Controller {
                     $this->_reg['idGaleria']
                     , $this->_reg['nombreGaleria']
                     , url_title(strtolower($this->_reg['uriGaleria']))
+                    , 'assets/images/galerias/'.url_title(strtolower($this->_reg['uriGaleria'])).'/'
                 )
             );
             if ($this->_aEstadoOper['status'] > 0) {
                 $this->_aEstadoOper['message'] = 'El registro fue guardado correctamente.';
+                mkdir('assets/images/galerias/'.url_title(strtolower($this->_reg['uriGaleria'])), 0777);
             } 
             else {
                 $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
@@ -149,7 +150,35 @@ class Galerias extends Ext_crud_Controller {
         echo "aca estamos";
         die();
     }
+    public function _nombre_unico($nombre) {
+        $galeria = $this->galerias->obtenerUnoNombre($nombre);
+        if($galeria) {
+            $this->form_validation->set_message('_nombre_unico', 'El %s ya esta en uso.');
+            return FALSE;
+        }
+        else {
+            return TRUE;
+        }
+    }
     public function upload() {
-        print_r($_POST);
+        $galeria = $this->galerias->obtenerUno($this->input->post('idGaleria'));
+        if($galeria) {
+            $config = array(
+                'cantidad_imagenes' => 1
+                , 'upload_path' => $galeria['pathGaleria']
+                , 'allowed_types' => 'jpg|png'
+                , 'max_size' => 5000
+                , 'create_thumb' => true
+                , 'thumbs' => array(
+                    array('thumb_marker' => '_thumb', 'width' => 200)
+                )
+            );
+            $this->load->library('hits/uploads', array(), 'uploads');
+            $data = $this->uploads->do_upload($config);    
+        }
+        else {
+
+        }
+        
     }
 }

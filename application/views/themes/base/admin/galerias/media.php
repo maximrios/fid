@@ -4,7 +4,7 @@
     }
 </style>
 <div class="panel panel-default">
-    <div class="panel-heading">Agregar Imagenes para la galeria <?=$galeria['nombreGaleria']?></div>
+    <div class="panel-heading">Agregar Imagenes a la galeria <?=$galeria['nombreGaleria']?></div>
     <div class="panel-body" id="myId">
         <?= $vcMsjSrv; ?>
         <link href="../assets/themes/base/dropzone/css/dropzone.css" type="text/css" rel="stylesheet" />
@@ -47,6 +47,7 @@
 <script type="text/javascript">
 	$("div#myId").dropzone({ 
 		headers: { "My-Awesome-Header": "header valpedosss" },
+        paramName: 'userfile',
 		url: "galerias/upload" ,
 		'sending': function(file, xhr, formData) {
 			formData.append("idGaleria", $('#idGaleria').val());

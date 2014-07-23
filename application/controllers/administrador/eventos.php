@@ -106,10 +106,9 @@ class Eventos extends Ext_crud_Controller {
         $this->gridview->addColumn('emailEvento', 'Email', 'text');
         $this->gridview->addColumn('fechaDesdeEvento', 'Fecha', 'date');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
-        $ver = '<a href="administrator/contactos/formulario/{idEvento}" title="Mostrar mensaje de {nombreEvento}" class="btn-accion" rel="{\'idEvento\': {idEvento}}">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</a>';
         $editar = '<a href="#" ic-post-to="eventos/formulario/{idEvento}" title="Modificar el evento {nombreEvento}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
         $eliminar = '<a href="#" ic-post-to="eventos/eliminar/{idEvento}" title="Eliminar evento {nombreEvento}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
-        $controles = $ver.$editar.$eliminar;
+        $controles = $editar.$eliminar;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
         $this->_rsRegs = $this->eventos->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
         $this->load->view('admin/eventos/listado'
@@ -162,6 +161,7 @@ class Eventos extends Ext_crud_Controller {
         	$this->_aEstadoOper['status'] = 0;
             $this->_aEstadoOper['message'] = validation_errors();
         }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
         if ($this->_aEstadoOper['status'] > 0) {
             $this->listado();
         }

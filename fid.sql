@@ -1,314 +1,228 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.0.51b-community-nt-log - MySQL Community Edition (GPL)
--- Server OS:                    Win32
--- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-06-24 22:48:42
+-- Versión del servidor:         5.6.16 - MySQL Community Server (GPL)
+-- SO del servidor:              Win32
+-- HeidiSQL Versión:             8.3.0.4694
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for fid
+-- Volcando estructura de base de datos para fid
 DROP DATABASE IF EXISTS `fid`;
-CREATE DATABASE IF NOT EXISTS `fid` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `fid` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `fid`;
 
 
--- Dumping structure for table fid.hist_pass
-DROP TABLE IF EXISTS `hist_pass`;
-CREATE TABLE IF NOT EXISTS `hist_pass` (
-  `id_pass` int(4) NOT NULL auto_increment,
-  `id_usu` int(4) NOT NULL default '0',
-  `old_pass` varchar(64) NOT NULL default '',
-  `fecha` bigint(10) NOT NULL default '0',
-  PRIMARY KEY  (`id_pass`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
--- Dumping data for table fid.hist_pass: 3 rows
-/*!40000 ALTER TABLE `hist_pass` DISABLE KEYS */;
-INSERT INTO `hist_pass` (`id_pass`, `id_usu`, `old_pass`, `fecha`) VALUES
-	(1, 5, '41fcba09f2bdcdf315ba4119dc7978dd', 1077018136),
-	(2, 5, '670da91be64127c92faac35c8300e814', 1077018162),
-	(3, 6, '41fcba09f2bdcdf315ba4119dc7978dd', 1077018433);
-/*!40000 ALTER TABLE `hist_pass` ENABLE KEYS */;
-
-
--- Dumping structure for table fid.hits_contactos
+-- Volcando estructura para tabla fid.hits_contactos
 DROP TABLE IF EXISTS `hits_contactos`;
 CREATE TABLE IF NOT EXISTS `hits_contactos` (
-  `idContacto` int(10) NOT NULL auto_increment,
-  `nombreContacto` varchar(255) default '0',
-  `telefonoContacto` bigint(20) default '0',
-  `emailContacto` varchar(255) default '0',
+  `idContacto` int(10) NOT NULL AUTO_INCREMENT,
+  `nombreContacto` varchar(255) DEFAULT '0',
+  `telefonoContacto` bigint(20) DEFAULT '0',
+  `emailContacto` varchar(255) DEFAULT '0',
   `mensajeContacto` text,
-  `fechaContacto` datetime default NULL,
-  `estadoContacto` tinyint(4) default NULL,
-  PRIMARY KEY  (`idContacto`)
+  `fechaContacto` datetime DEFAULT NULL,
+  `estadoContacto` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`idContacto`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_contactos: 5 rows
+-- Volcando datos para la tabla fid.hits_contactos: 1 rows
 /*!40000 ALTER TABLE `hits_contactos` DISABLE KEYS */;
 INSERT INTO `hits_contactos` (`idContacto`, `nombreContacto`, `telefonoContacto`, `emailContacto`, `mensajeContacto`, `fechaContacto`, `estadoContacto`) VALUES
-	(1, 'Maximiliano', 234234234, 'em-rios@hotmail.com', 'sdfsdf sd fsdf sd fsd fsdfsdfsdfsdfsdfsdfsdf', '2014-05-25 22:41:54', 1),
-	(2, 'Maximiliano', 234234234, 'em-rios@hotmail.com', 'sdfsdf sd fsdf sd fsd fsdfsdfsdfsdfsdfsdfsdf', '2014-05-25 22:54:30', 1),
-	(3, 'Maximiliano', 234234234, 'em-rios@hotmail.com', 'sdfsdf sd fsdf sd fsd fsdfsdfsdfsdfsdfsdfsdf', '2014-05-25 22:56:33', 0),
-	(4, 'Maximiliano Ezequiel Reyes', 3874290011, 'maximrios@gmail.com', 'sadaksdj hasdhalksdj hasdlkasd haksdj hasdkjhas dkjasdh kasjd haskdj hasdkjhas dkjas hdkajsd hkasjd haklsdh askdh askdj haskdlj ahsdkj hasdklj hasdkljhas dklja sdkalsh d', '2014-06-14 12:02:47', 1),
-	(5, 'Maximiliano Ezequiel Reyes', 3874290011, 'maximrios@gmail.com', 'sadaksdj hasdhalksdj hasdlkasd haksdj hasdkjhas dkjasdh kasjd haskdj hasdkjhas dkjas hdkajsd hkasjd haklsdh askdh askdj haskdlj ahsdkj hasdklj hasdkljhas dklja sdkalsh d', '2014-06-14 12:09:16', 1);
+	(5, 'Maximiliano Ezequiel Rivas', 3874290011, 'tony__77m@hotmail.com', 'asdasda sdasduays gduasydg ausdyga sudyagsd uaysgd uasydgausydg uasydg', '2014-06-16 11:23:46', 1);
 /*!40000 ALTER TABLE `hits_contactos` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_excepciones
+-- Volcando estructura para tabla fid.hits_eventos
+DROP TABLE IF EXISTS `hits_eventos`;
+CREATE TABLE IF NOT EXISTS `hits_eventos` (
+  `idEvento` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreEvento` varchar(100) NOT NULL DEFAULT '0',
+  `descripcionEvento` varchar(255) NOT NULL DEFAULT '0',
+  `fechaDesdeEvento` date NOT NULL DEFAULT '0000-00-00',
+  `fechaHastaEvento` date NOT NULL DEFAULT '0000-00-00',
+  `domicilioEvento` varchar(100) DEFAULT NULL,
+  `telefonoEvento` bigint(20) DEFAULT NULL,
+  `emailEvento` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`idEvento`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla fid.hits_eventos: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `hits_eventos` DISABLE KEYS */;
+INSERT INTO `hits_eventos` (`idEvento`, `nombreEvento`, `descripcionEvento`, `fechaDesdeEvento`, `fechaHastaEvento`, `domicilioEvento`, `telefonoEvento`, `emailEvento`) VALUES
+	(1, 'Evento 1', 'aca va a ir una breve descripcion del evento', '2014-07-14', '2014-07-14', 'av siempre viva', 4290011, 'maximrios@gmail.com'),
+	(2, 'Evento 2', 'breve descripcion', '2014-07-14', '2014-07-14', 'av siempre viva 234', 4952563, 'em-rios@hotmail.com'),
+	(4, 'Evento 3', 'asdasdas dasdlka jsdalsd hasdkjas halksdj ahsdlkj asdhkalsdj haskdljh asdkljasd hkajsd haskldj haskdj haskdljas dhkajd haskdjl hasdjkha sdkjhasd lalskd hasdlkj ashdkljhsd lkasjhaskdj ashdk jadhalksdj hasdkjh asd', '2014-07-17', '2014-07-17', 'ahskdjh sadlkasd hasldjk hasd', 31654621, 'maximrios@gmail.com'),
+	(5, 'nombre nuevo', 'Loremp ipsum', '2014-07-20', '2014-07-17', '', 0, '');
+/*!40000 ALTER TABLE `hits_eventos` ENABLE KEYS */;
+
+
+-- Volcando estructura para tabla fid.hits_excepciones
 DROP TABLE IF EXISTS `hits_excepciones`;
 CREATE TABLE IF NOT EXISTS `hits_excepciones` (
-  `idExcepcion` int(10) NOT NULL default '0',
-  `codigoExcepcion` int(10) NOT NULL default '0',
-  `mensajeExcepcion` varchar(255) NOT NULL default '0',
-  PRIMARY KEY  (`idExcepcion`)
+  `idExcepcion` int(10) NOT NULL DEFAULT '0',
+  `codigoExcepcion` int(10) NOT NULL DEFAULT '0',
+  `mensajeExcepcion` varchar(255) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idExcepcion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_excepciones: 1 rows
+-- Volcando datos para la tabla fid.hits_excepciones: 1 rows
 /*!40000 ALTER TABLE `hits_excepciones` DISABLE KEYS */;
 INSERT INTO `hits_excepciones` (`idExcepcion`, `codigoExcepcion`, `mensajeExcepcion`) VALUES
 	(1, 1, 'Se cargo el re');
 /*!40000 ALTER TABLE `hits_excepciones` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_galeria
-DROP TABLE IF EXISTS `hits_galeria`;
-CREATE TABLE IF NOT EXISTS `hits_galeria` (
-  `idGaleria` int(10) NOT NULL auto_increment,
-  `nombreGaleria` varchar(255) default '0',
-  `pathGaleria` varchar(255) default '0',
-  `thumbGaleria` varchar(255) default '0',
-  `descripcionGaleria` text,
-  `publicadoGaleria` tinyint(4) default '0',
-  PRIMARY KEY  (`idGaleria`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- Dumping data for table fid.hits_galeria: 1 rows
-/*!40000 ALTER TABLE `hits_galeria` DISABLE KEYS */;
-INSERT INTO `hits_galeria` (`idGaleria`, `nombreGaleria`, `pathGaleria`, `thumbGaleria`, `descripcionGaleria`, `publicadoGaleria`) VALUES
-	(1, 'Titulo de nuevow', 'assets/images/galeria/imagen21.jpg', 'assets/images/galeria/imagen21_thumb.jpg', 'asdk ajsdhalksdjasdh lkajsd haskdj hasdlkaj sdhkalsjd haksdj haskldj hasdklja sdklajsd kalsjd haklsdj haksdj ahskd had', 1);
-/*!40000 ALTER TABLE `hits_galeria` ENABLE KEYS */;
-
-
--- Dumping structure for table fid.hits_noticias
-DROP TABLE IF EXISTS `hits_noticias`;
-CREATE TABLE IF NOT EXISTS `hits_noticias` (
-  `idNoticia` int(10) NOT NULL auto_increment,
-  `tituloNoticia` varchar(255) default '0',
-  `epigrafeNoticia` varchar(255) default NULL,
-  `descripcionNoticia` text,
-  `inicioNoticia` date default NULL,
-  `vencimientoNoticia` date default NULL,
-  `publicadoNoticia` tinyint(4) default '0',
-  `uriNoticia` varchar(255) default '0',
-  `thumbImagenNoticia` varchar(255) default '0',
-  `detailImagenNoticia` varchar(255) default '0',
-  `idUsuario` int(11) default NULL,
-  `fechaNoticia` datetime default NULL,
-  PRIMARY KEY  (`idNoticia`)
+-- Volcando estructura para tabla fid.hits_galerias
+DROP TABLE IF EXISTS `hits_galerias`;
+CREATE TABLE IF NOT EXISTS `hits_galerias` (
+  `idGaleria` int(10) NOT NULL AUTO_INCREMENT,
+  `nombreGaleria` varchar(255) DEFAULT '0',
+  `uriGaleria` varchar(255) DEFAULT '0',
+  `pathGaleria` varchar(255) DEFAULT '0',
+  PRIMARY KEY (`idGaleria`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_noticias: 5 rows
+-- Volcando datos para la tabla fid.hits_galerias: 4 rows
+/*!40000 ALTER TABLE `hits_galerias` DISABLE KEYS */;
+INSERT INTO `hits_galerias` (`idGaleria`, `nombreGaleria`, `uriGaleria`, `pathGaleria`) VALUES
+	(3, 'Nueva imagen de gales', '', '0'),
+	(4, 'Nueva imagen de galses', '', '0'),
+	(5, 'Piquirendá', 'piquirenda', 'assets/images/galerias/piquirenda/'),
+	(6, 'Antofagasta', 'antofagasta', 'assets/images/galerias/antofagasta/');
+/*!40000 ALTER TABLE `hits_galerias` ENABLE KEYS */;
+
+
+-- Volcando estructura para tabla fid.hits_galerias_media
+DROP TABLE IF EXISTS `hits_galerias_media`;
+CREATE TABLE IF NOT EXISTS `hits_galerias_media` (
+  `idGaleriaMedia` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreGaleriaMedia` varchar(255) NOT NULL DEFAULT '0',
+  `pathGaleriaMedia` varchar(255) NOT NULL DEFAULT '0',
+  `thumbGaleriaMedia` varchar(255) NOT NULL DEFAULT '0',
+  `embedGaleriaMedia` varchar(255) NOT NULL DEFAULT '0',
+  `tipoGaleriaMedia` tinyint(4) NOT NULL DEFAULT '0',
+  `idGaleria` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idGaleriaMedia`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla fid.hits_galerias_media: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `hits_galerias_media` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hits_galerias_media` ENABLE KEYS */;
+
+
+-- Volcando estructura para tabla fid.hits_noticias
+DROP TABLE IF EXISTS `hits_noticias`;
+CREATE TABLE IF NOT EXISTS `hits_noticias` (
+  `idNoticia` int(11) NOT NULL AUTO_INCREMENT,
+  `tituloNoticia` varchar(150) DEFAULT NULL,
+  `epigrafeNoticia` varchar(255) DEFAULT NULL,
+  `descripcionNoticia` text,
+  `uriNoticia` varchar(255) DEFAULT NULL,
+  `fechaDesdeNoticia` date DEFAULT NULL,
+  `estadoNoticia` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`idNoticia`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla fid.hits_noticias: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `hits_noticias` DISABLE KEYS */;
-INSERT INTO `hits_noticias` (`idNoticia`, `tituloNoticia`, `epigrafeNoticia`, `descripcionNoticia`, `inicioNoticia`, `vencimientoNoticia`, `publicadoNoticia`, `uriNoticia`, `thumbImagenNoticia`, `detailImagenNoticia`, `idUsuario`, `fechaNoticia`) VALUES
-	(1, 'Empezando con sabandijas', 'Este es el epigrafe para la noticia que va a aparecer en alguna parte que no me acuerdo adonde', '&lt;p&gt;Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&amp;#39;s what you see at a toy store. And you must think you&amp;#39;re in a toy store, because you&amp;#39;re here shopping for an infant named Jeb.&lt;/p&gt;', '2014-05-03', '2014-05-03', 0, 'empezando-con-sabandijas', 'assets/images/noticias/imagen13_thumb.jpg', 'assets/images/noticias/imagen13_detail.jpg', NULL, NULL),
-	(2, 'El comienzo del fin en Sabandijas', 'Coloreando al mejor estilo sabandijas.', 'Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&#39;s what you see at a toy store. And you must think you&#39;re in a toy store, because you&#39;re here shopping for an infant named Jeb.', '2014-05-03', '2014-05-03', 0, 'el-comienzo-del-fin-en-sabandijas', 'assets/images/noticias/imagen6_thumb.jpg', 'assets/images/noticias/imagen6_detail.jpg', NULL, NULL),
-	(3, 'Nueva noticia desde Sabandijas Rodados', 'Esta tarde tenemos promociones para todas las personas que viven en CABA', 'Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&#39;s what you see at a toy store. And you must think you&#39;re in a toy store, because you&#39;re here shopping for an infant named Jeb.\r\nDo you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&#39;s what you see at a toy store. And you must think you&#39;re in a toy store, because you&#39;re here shopping for an infant named Jeb.\r\nDo you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&#39;s what you see at a toy store. And you must think you&#39;re in a toy store, because you&#39;re here shopping for an infant named Jeb.', '2014-05-03', '2014-05-03', 0, 'nueva-noticia-desde-sabandijas-rodados', 'assets/images/noticias/imagen5_thumb.jpg', 'assets/images/noticias/imagen5_detail.jpg', NULL, NULL),
-	(4, 'Ultimo momento', 'En sabandijas subastamos todos lo que tenemos', '&lt;p&gt;Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&amp;#39;s what you see at a toy store. And you must think you&amp;#39;re in a toy store, because you&amp;#39;re here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&amp;#39;s what you see at a toy store. And you must think you&amp;#39;re in a toy store, because you&amp;#39;re here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&amp;#39;s what you see at a toy store. And you must think you&amp;#39;re in a toy store, because you&amp;#39;re here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&amp;#39;s what you see at a toy store. And you must think you&amp;#39;re in a toy store, because you&amp;#39;re here shopping for an infant named Jeb. Do you see any Teletubbies in here? Do you see a slender plastic tag clipped to my shirt with my name printed on it? Do you see a little Asian child with a blank expression on his face sitting outside on a mechanical helicopter that shakes when you put quarters in it? No? Well, that&amp;#39;s what you see at a toy store. And you must think you&amp;#39;re in a toy store, because you&amp;#39;re here shopping for an infant named Jeb.&lt;/p&gt;', '2014-05-03', '2014-05-03', 1, 'ultimo-momento', 'assets/images/noticias/10369126_238675829662869_7846964804023052506_n_thumb_thumb.jpg', 'assets/images/noticias/10369126_238675829662869_7846964804023052506_n_thumb_detail.jpg', NULL, NULL),
-	(6, 'Integracion de ckeditor en sabandijas', 'Coloreando al mejor estilo sabandijas.s', '&lt;p&gt;&amp;nbsp;gkjhg kjh gkj hgkj hgkj hg asdasdasdasd ssssssssaaaaaaaaawwwwww&lt;/p&gt;', '2014-04-02', '2014-05-10', 1, 'integracion-de-ckeditor-en-sabandijas', '', '', NULL, NULL);
+INSERT INTO `hits_noticias` (`idNoticia`, `tituloNoticia`, `epigrafeNoticia`, `descripcionNoticia`, `uriNoticia`, `fechaDesdeNoticia`, `estadoNoticia`) VALUES
+	(1, 'nueva noticia 3', 'asdkjasd hasdlkashd aslkdjha sdlkjasd haklsjd hasl', 'asdasd asd a sdasdadla kdja sdlñaksd jalñsdka jdñalksd jalñdk ajldñk ajdlñkajdlñakdj alñdk jalsdk jqlwdkjwqldk jdlñvcksdckjsdncsñkdcjnwecnwieubniufbw fbwybf uwifb wuoebefouw fbuwfb', 'nueva-noticia-3', '2014-07-21', 0);
 /*!40000 ALTER TABLE `hits_noticias` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_personas
+-- Volcando estructura para tabla fid.hits_personas
 DROP TABLE IF EXISTS `hits_personas`;
 CREATE TABLE IF NOT EXISTS `hits_personas` (
-  `idPersona` int(10) NOT NULL auto_increment,
-  `dniPersona` int(10) default '0',
-  `idTipoDni` int(10) default '0',
-  `apellidoPersona` varchar(255) default '0',
-  `nombrePersona` varchar(255) default '0',
-  `cuilPersona` bigint(20) default '0',
-  `cuitPersona` bigint(20) default '0',
-  `nacimientoPersona` date default NULL,
-  `idSexo` int(11) default NULL,
-  `idEcivil` int(11) default NULL,
-  `domicilioPersona` varchar(255) default NULL,
-  `telefonoPersona` bigint(20) default NULL,
-  `celularPersona` bigint(20) default NULL,
-  `laboralPersona` bigint(20) unsigned default NULL,
-  `internoPersona` int(10) unsigned default NULL,
-  `emailPersona` varchar(100) default NULL,
-  `nacionalidadPersona` varchar(255) default NULL,
-  `idLocalidad` int(255) default NULL,
-  `idDepartamento` int(255) default NULL,
-  `idProvinicia` int(11) default NULL,
-  `idPais` int(11) default NULL,
-  PRIMARY KEY  (`idPersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8;
+  `idPersona` int(10) NOT NULL AUTO_INCREMENT,
+  `dniPersona` int(10) DEFAULT '0',
+  `idTipoDni` int(10) DEFAULT '0',
+  `apellidoPersona` varchar(255) DEFAULT '0',
+  `nombrePersona` varchar(255) DEFAULT '0',
+  `cuilPersona` bigint(20) DEFAULT '0',
+  `cuitPersona` bigint(20) DEFAULT '0',
+  `nacimientoPersona` date DEFAULT NULL,
+  `idSexo` int(11) DEFAULT NULL,
+  `idEcivil` int(11) DEFAULT NULL,
+  `domicilioPersona` varchar(255) DEFAULT NULL,
+  `telefonoPersona` bigint(20) DEFAULT NULL,
+  `celularPersona` bigint(20) DEFAULT NULL,
+  `laboralPersona` bigint(20) unsigned DEFAULT NULL,
+  `internoPersona` int(10) unsigned DEFAULT NULL,
+  `emailPersona` varchar(100) DEFAULT NULL,
+  `nacionalidadPersona` varchar(255) DEFAULT NULL,
+  `idLocalidad` int(255) DEFAULT NULL,
+  `idDepartamento` int(255) DEFAULT NULL,
+  `idProvinicia` int(11) DEFAULT NULL,
+  `idPais` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idPersona`)
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_personas: ~111 rows (approximately)
+-- Volcando datos para la tabla fid.hits_personas: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `hits_personas` DISABLE KEYS */;
 INSERT INTO `hits_personas` (`idPersona`, `dniPersona`, `idTipoDni`, `apellidoPersona`, `nombrePersona`, `cuilPersona`, `cuitPersona`, `nacimientoPersona`, `idSexo`, `idEcivil`, `domicilioPersona`, `telefonoPersona`, `celularPersona`, `laboralPersona`, `internoPersona`, `emailPersona`, `nacionalidadPersona`, `idLocalidad`, `idDepartamento`, `idProvinicia`, `idPais`) VALUES
-	(1, 14708738, 1, 'ALFARO NUÑEZ', 'MARTA ESTELA', 12345678901, 0, '2013-10-18', 2, 1, 'av siempre viva 3454', 4290011, 155701465, 421812491, NULL, 'maximrios@gmail.com', '	Argentina	', NULL, NULL, NULL, NULL),
-	(2, 1, 12712168, '2013-08-06', '20127121681', 0, 0, NULL, 2, 0, '	Avda. Reyes Católicos 1.617 Piso 6 Depto. "A"	Barrio Tres Cerritos	', 4394303, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(3, 13703799, 1, 'ALVAREZ', 'MARCOS ANTONIO', 2147483647, 0, '2013-10-18', 1, 1, '20 de Febrero Nº 146', 0, 0, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(4, 17056011, 1, 'ALZUETA', 'NELBA NOEMI', 2147483647, 0, '2013-09-24', 1, 1, 'J. B.Alberdi Nº 2525 Villa San Lorenzo', 4922061, 0, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(5, 13835597, 1, 'AMADO', 'SUSANA ANTONIA DEL VALLE', 2147483647, 0, '2013-10-21', 2, 1, 'Enrique Arana Nº 1867 Barrio El Periodista', 4242116, 0, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(6, 12959638, 1, 'ARE', 'YANET MONICA', 2147483647, 0, '2013-10-22', 2, 1, 'Junín Nº 32', 4320053, 0, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(7, 28260753, 1, 'ARZELAN', 'LUIS FERNANDO', 2147483647, 0, '2013-10-22', 1, 1, 'Corina Lona Nº 686 Portezuelo Sur', 4319448, 154810077, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(8, 20214369, 1, 'BARRIONUEVO', 'SANDRA MARISA', 2147483647, 0, '2013-10-22', 2, 1, 'Las Araucarias Nº 72 Barrio Tres Cerritos', 4391304, 0, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(9, 20858473, 1, 'BERMUDEZ', 'ARIEL HORACIO', 2147483647, 0, '2013-10-22', 1, 1, 'Juramento Nº 1240 Barrio Tres Cerritos', 0, 154526509, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(10, 25411314, 1, 'BERTINI DAUD', 'MARIA', 2147483647, 0, '2013-10-28', 2, 1, 'Gimenez Zapiola 1149 esq. Almafuerte Barrio Grand Bourg', 4360865, 154089985, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(11, 13054802, 1, 'BITTERLY', 'PATRICIA ARGENTINA', 2147483647, 0, '2013-10-22', 2, 1, 'Destructor Brown Nº 38 Rosario de Lerma', 4931376, 154592368, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(12, 17131064, 1, '	CAGGIANO	', '	LAURA	', 23171310644, 0, NULL, NULL, 1, '	Gral. Güemes Nº 832		', 4211751, 154138484, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(13, 14553609, 1, '	CALDERON	', '	ANTONIO LUIS	', 20145536090, 0, NULL, NULL, 2, '	Avda. Uruguay Nº 944		', 4210498, 154102492, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(14, 14488455, 1, '	CANAVES	', '	LEONOR PATRICIA	', 27144884553, 0, NULL, NULL, 2, '	Caseros 1217		', 4227352, 154141856, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(15, 17354322, 1, '	CARO OUTES	', '	MARIA DEL MILAGRO	', 27173543226, 0, NULL, NULL, 1, '	Rivadavia Nº 3355	Barrio Grand Bourg	', 4360556, 156053333, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(16, 12220036, 1, '	CARPIO DOMINI	', '	MARCELO	', 20122200362, 0, NULL, NULL, 2, '	Corrientes Nº 156		', 4233662, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(17, 16517318, 1, '	CARRASCO	', '	GERARDO HUMBERTO	', 20165173180, 0, NULL, NULL, 2, '	Rivadavia Nº 1277		', 4223014, 154440819, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(18, 14865157, 1, '	CASAS SARAVIA	', '	SONIA BEATRIZ	', 23148651574, 0, NULL, NULL, 2, '	M. Moreno Nº 1889	Barrio San José	', 4236404, 154122257, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(19, 16308394, 1, '	CATACATA	', '	GERMAN GABRIEL	', 23163083949, 0, NULL, NULL, 2, '	Block 27 - Piso 1 -  Dpto. D	Barrio La Rural	', 4960330, 154730630, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(20, 14176871, 1, '	CHINCHILLA	', '	LAURA ALCIRA	', 27141768714, 0, NULL, NULL, 1, '	Avda. Libertador Nº 3391	Barrio Grand Bourg	', 4360820, 154100943, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(21, 29334051, 1, '	CLAROS	', '	MARIA EUGENIA	', 27293340515, 0, NULL, NULL, 1, '	Pje.Basavilbazo 240		', 4317329, 154205977, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(22, 12712426, 1, '	CONDORI	', '	GABRIELA MAGDALENA	', 23127124264, 0, NULL, NULL, 1, '	Radio E. Santiago del Estero Block J Dpto 4	Barrio Ampliacion Intersindical	', 0, 154040856, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(23, 23902445, 1, '	CONTRERAS	', '	HECTOR MARIO	', 23239024459, 0, NULL, NULL, 2, '	Los Abetos Nº 350	Barrio Tres Cerritos	', 4397528, 154475612, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(24, 21979177, 1, '	CORIMAYO	', '	LUIS HUGO	', 20219791772, 0, NULL, NULL, 1, '	Pje. Cabra Corral 1569	Barrio Soliz Pizarro	', 4341837, 154795445, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(25, 10697056, 1, '	D AGATA	', '	MIRTA SUSANA	', 23106970564, 0, NULL, NULL, 2, '	Urquiza Nº 315		', 4213325, 156835255, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(26, 29499069, 1, '	DIAZ	', '	RAMON SERGIO	', 20294990691, 0, NULL, NULL, 1, '	Pje. Dr. Ortelli Nº 56		', 4316386, 154064490, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(27, 12958109, 1, '	ECHEVERRIA HODI	', '	OSCAR ALBERTO	', 20129581094, 0, NULL, NULL, 2, '	Necochea Nº 752		', 4214605, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(28, 21634948, 1, '	FERNANDEZ	', '	MARCELO ALEJANDRO	', 2147483647, 0, NULL, NULL, 2, ' Dr. F. Ameghino Nº 253 Dpto. B  ', 4225132, 154424664, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(29, 28633527, 1, '	FIGUEROA MOREY	', '	CAROLINA	', 27286335271, 0, NULL, NULL, 2, '	E.1 Mz I C. 20	Barrio Parque Gral. Belgrano	', 4254021, 156125944, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(30, 23316469, 1, '	FRANCH CARABAJAL	', '	CRISTIAN RAUL JESUS	', 20233164691, 0, NULL, NULL, 0, '	Los Avellanos Nº 379  Dpto. 9	Barrio Tres Cerritos	', 4395447, 155339263, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(31, 10582209, 1, '	GALVAN	', '	ALBERTO ARTURO	', 20105822090, 0, NULL, NULL, 2, '	Pje. 14 Casa 612	Barrio Santa Ana I	', 4291719, 154114749, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(32, 25064017, 1, '	GARCIA	', '	JULIANA CAROLINA	', 27250640175, 0, NULL, NULL, 1, '	F. de Gurruchaga Nº 69		', 4310658, 156050207, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(33, 8049170, 1, '	GARNICA	', '	VICTOR HUGO	', 20080491701, 0, NULL, NULL, 0, '	Gpo.234 Block C Dpto. 5 Piso 1	Barrio Castañares	', 4252440, 154072595, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(34, 13346646, 1, '	GAUFFIN	', '	MARCELO ENRIQUE	', 20133466461, 0, NULL, NULL, 0, '	Manz. C Casa 21	Barrio Parque General Belgrano	', 4250319, 156054746, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(35, 22119123, 1, '	GONZALEZ RODRIGUEZ	', '	ALFREDO EDUARDO	', 20221191235, 0, NULL, NULL, 2, '	Pje. 20 Casa 1302	Barrio Santa Ana I	', 0, 155821417, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(36, 30189802, 1, '	GUERRERO	', '	PAOLA SILVANA	', 27301898024, 0, NULL, NULL, 1, '	Emilia Wierna 1211	Barrio El Jardín	', 4280150, 155359725, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(37, 24614814, 1, '	GUTIERREZ 	', '	ARIEL	', 20246148148, 0, NULL, NULL, 1, '	Los Avellanos Nº 227	Barrio Tres Cerritos	', 4011759, 155208518, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(38, 33970074, 1, '	GÜIZZO LOPEZ	', '	MARIA JOSE	', 27339700740, 0, NULL, NULL, 1, '	Block G - Dpto. 48	Barrio Docente	', 4236804, 154743212, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(39, 6074508, 1, '	HERRERA	', '	ALFREDO ENRIQUE	', 27060745086, 0, NULL, NULL, 3, '	Manz. 529 "B" - Casa 19	Barrio El Huayco	', 0, 155025690, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(40, 6074508, 1, '	HERRERA	', '	HAHIDEE FORTUNATA	', 27060745086, 0, NULL, NULL, 2, '	Block. C Dpto. III Sect. 6 "G"	Barrio Castañares	', 4251859, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(41, 8180714, 1, '	HINOJOSA	', '	CESAR JAIME	', 20081807141, 0, NULL, NULL, 1, '	Diario de Cuyo Nº 2132	Barrio El Tribuno	', 4244158, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(42, 13414671, 1, '	ISASMENDI	', '	GRACIELA	', 27134146716, 0, NULL, NULL, 3, '	Los Quimiles Nº 75	Barrio Tres Cerritos	', 4392452, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(43, 11943382, 1, '	JORGE DIAZ	', '	LÍA CRISTINA	', 27119433822, 0, NULL, NULL, 2, '	Los Arces 499	Barrio Tres Cerritos	', 0, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(44, 25885821, 1, '	LASQUERA	', '	JOSE ALEJANDRO	', 20258858213, 0, NULL, NULL, 1, '	Agustin Magaldi 195	Barrio Santa Cecilia	', 4350991, 154250062, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(45, 14488086, 1, '	LEGUIZAMON	', '	ROGER WALTER	', 20144880863, 0, NULL, NULL, 2, '	Hermano Francisco S/Nº	Vaqueros	', 0, 154772537, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(46, 13347694, 1, '	LEONARDI MARTINEZ	', '	ANA EUGENIA	', 27133476945, 0, NULL, NULL, 3, '	Entre Ríos Nº 2027		', 4215936, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(47, 12959139, 1, '	LINARES	', '	SILVANA ANDREA	', 27129591396, 0, NULL, NULL, 2, '	San Luis Nº 1515		', 4315565, 154537001, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(48, 18038152, 1, '	LOPEZ DE LA MERCED	', '	MARCELO DANIEL	', 20180381520, 0, NULL, NULL, 2, '	Las Rosas Nº 230	Barrio Tres Cerritos	', 4395906, 154027179, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(49, 16659166, 1, '	LOPEZ LEONARDI	', '	CYNTHIA MARIA INES	', 27166591665, 0, NULL, NULL, 1, '	Block 13 Piso 1 Dpto. 4	Barrio Don Emilio	', 4271047, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(50, 10878020, 1, '	LOVAGLIO COLOMBRES	', '	ISABEL DEL ROSARIO	', 27108780202, 0, NULL, NULL, 2, '	G. Güemes Nº 2201 Torre C Piso 5 Dpto. B		', 4222932, 154553883, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(51, 33475859, 1, '	MARTINEZ	', '	ANA MARIA	', 27334758597, 0, NULL, NULL, 1, '	Gral. Güemes 1764	Barrio	', 0, 154074928, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(52, 2263748, 1, 'MARTINEZ', 'VICTOR RAMIRO', 202263748, 0, '1972-06-16', 1, 1, 'Manz.530', 0, 154025219, 4316952, NULL, 'vrmartinez.sigep@salta.gov.ar', '	Argentina	', NULL, NULL, NULL, NULL),
-	(53, 11943331, 1, '	MEDINA	', '	ANTONIO	', 20119433313, 0, NULL, NULL, 0, '	Inca Huasi esq. Nevado de Acay	San Luis	', 4262418, 154141720, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(54, 12553901, 1, '	MEDINA	', '	RAUL HUGO	', 20125539018, 0, NULL, NULL, 2, '	Manz. 54 Casa 2	Barrio San Carlos	', 4247275, 154138693, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(55, 16307328, 1, '	MORENO TEN	', '	MARCELO OSCAR	', 20163073286, 0, NULL, NULL, 2, '	Los Júncaros Nº 252	Barrio Tres Cerritos	', 4398614, 154206902, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(56, 31767945, 1, '	MURILLO	', '	DANIEL ALEJANDRO	', 23317679459, 0, NULL, NULL, 1, '	O Higgins 1836	Barrio 20 de Febrero	', 4315745, 155106000, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(57, 14303235, 1, '	NIEVA	', '	DORA ISABEL DEL CARMEN	', 27143032359, 0, NULL, NULL, 1, '	Arenales 2943		', 4361514, 154070004, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(58, 30466740, 1, '	NIKOVITCH	', '	MATIAS FEDERICO	', 20304667401, 0, NULL, NULL, 2, '	España Nº 1081		', 4214111, 154844696, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(59, 13054901, 1, '	ORTIZ	', '	NILDA ALICIA	', 27130549018, 0, NULL, NULL, 2, '	Alberto Mendieta Nº 3977	Barro El Periodista	', 4241229, 155010739, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(60, 20232846, 1, '	PEREZ ALFARO	', '	MARIA ELENA	', 27202328461, 0, NULL, NULL, 2, '	Los Timboes 699	Barrio Tres Cerritos	', 4397664, 154181957, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(61, 12712609, 1, '	PEREZ OSAN	', '	VICENTE FELIX	', 20127126098, 0, NULL, NULL, 2, '	España Nº 2120	Villa San Lorenzo	', 4921992, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(62, 23584977, 1, '	RADICE	', '	MARIA VIRGINIA	', 27235849777, 0, NULL, NULL, 2, '	Los Arces 61	Barrio Tres Cerritos	', 4391776, 155497405, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(63, 32165101, 1, '	RAMADAN	', '	TANIA ESTEFANIA	', 27321651017, 0, NULL, NULL, 1, '	Miguel de Cervantes 851	Barrio Grand Bourg	', 4360705, 155897767, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(64, 32505371, 1, 'RIOS', 'MAXIMILIANO EZEQUIEL', 20325053713, 0, '1987-02-05', 1, 1, 'Mz. R Casa 7 Barrio Santa Ana III', 4290011, 155701465, 0, NULL, 'maximrios@gmail.com', '	Argentina	', NULL, NULL, NULL, NULL),
-	(65, 8177246, 1, '	ROCHA	', '	JORGE MIGUEL	', 20081772461, 0, NULL, NULL, 0, '	Gral. Paz 470		', 0, 154066342, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(66, 13318087, 1, '	ROJAS	', '	ILDA ELIZABETH	', 27133180872, 0, NULL, NULL, 2, '	Reyes Católicos Nº 1617 6to A	Barrio Tres Cerritos	', 4394304, 154027902, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(67, 10993710, 1, '	ROMAGNOLI	', '	PEDRO JOSE VALENTIN	', 20109937100, 0, NULL, NULL, 0, '	Avda. Belgrano Nº 1607		', 4210015, 156839820, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(68, 13977060, 1, 'RUIZ', 'ESTEBAN ROBERTO', 2147483647, 0, '2013-09-20', 1, 1, 'Rafael Obligado Nº 58 Barrio San José', 4340106, 154206602, 0, NULL, 'esteban@hotmail.com', '	Argentina	', NULL, NULL, NULL, NULL),
-	(69, 25800923, 1, '	SAHA	', '	VIRGINIA LORENA	', 27258009237, 0, NULL, NULL, 2, '	Mz. 555 "B" - Casa 12	Barrio Univesidad Católica	', 0, 154674159, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(70, 30344640, 1, '	SALAS	', '	TERESA GABRIELA	', 27303446406, 0, NULL, NULL, 0, '	Los Cardones 50	Tres Cerritos	', 4398318, 155112906, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(71, 22468122, 1, '	SANCHEZ CALVELO	', '	PABLO CRISTIAN	', 20224681225, 0, NULL, NULL, 1, '	Corina Lona Nº 771		', 4318822, 154466881, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(72, 17131367, 1, '	SANCHEZ ALESANCO	', '	GUSTAVO ALFONSO	', 20171313679, 0, NULL, NULL, 0, '	Las Tuscas Nº 1187	Vaqueros	', 0, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(73, 14061950, 1, '	SANCHO	', '	GUSTAVO OSVALDO	', 20140619508, 0, NULL, NULL, 3, '	Juan B. Justo 2201	Barrio Tres Cerritos	', 4218798, 0, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(74, 6673407, 1, '	SANTILLAN	', '	DELIA ROSA	', 27066734078, 0, NULL, NULL, 2, '	Hipólito Yrigoyen Nº 1165		', 4283324, 154400607, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(75, 32510298, 1, '	TEJERINA	', '	ADOLFO JESUS	', 20325102986, 0, NULL, NULL, 0, '	Block B2 2º Piso Dpto. B 	Barrio Bancario	', 4241291, 155007268, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(76, 18019380, 1, '	TORFE	', '	PATRICIA DEL VALLE	', 23180193801, 0, NULL, NULL, 2, '	Los Aguaribayes Nº 353	Barrio Tres Cerritos	', 4395408, 154038634, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(77, 16128298, 1, '	TORRES	', '	MILTON ROLANDO	', 20161282988, 0, NULL, NULL, 1, '	Pje. 20 Casa 1911	Barrio Santa Ana I	', 4290402, 154033770, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(78, 11282200, 1, '	URZAGASTI ARANDA	', '	RICARDO ALBERTO	', 20112822004, 0, NULL, NULL, 2, '	Apolinario Saravia Nº 231 P. Baja Dpto. I		', 4223613, 154659620, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(79, 12553188, 1, '	VELEIZAN	', '	GERARDO CARLOS	', 20125531882, 0, NULL, NULL, 2, '	Ruta 51 Km 3 1/2	Estacion Alvarado	', 0, 154481686, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(80, 0, 1, 'VILLADA', 'ADRIANA ESTELA', 0, 0, '2013-09-24', 2, 1, 'av siempre viva 345', 0, 0, 0, NULL, '', '	Argentina	', NULL, NULL, NULL, NULL),
-	(81, 20210543, 1, '	VILLAFAÑE	', '	SONIA ALEJANDRA	', 27202105438, 0, NULL, NULL, 0, '	Block 35 P. Baja Dpto. 4	Barrio Limache	', 4247278, 155119823, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(82, 12409398, 1, '	VILLAR	', '	GUSTAVO RAMON	', 20124093989, 0, NULL, NULL, 2, '	Avda. Belgrano Nº 2070 - 2do. Grupo - 1ro. A		', 4215745, 154847900, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(83, 17354725, 1, '	YAPURA CALDEZ	', '	DORA FATIMA DEL VALLE	', 27173547256, 0, NULL, NULL, 3, '	Vicente López Nº 1635		', 4393126, 154811423, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(84, 16887676, 1, '	ZARATE	', '	OSCAR ALFREDO	', 23168876769, 0, NULL, NULL, 1, '	Aniceto Latorre Nº 1817		', 4316409, 154794485, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(85, 12959019, 1, '	ZUÑIGA	', '	MARINA PATRICIA	', 27129590195, 0, '2013-09-19', NULL, 3, '	Los Tilos 293 Bº T. Cerritos	Barrio Tres Cerritos	', 4392369, 154060018, NULL, NULL, NULL, '	Argentina	', NULL, NULL, NULL, NULL),
-	(86, 11111111, 1, 'reprueba', 'prueba', 2147483647, 0, '2013-10-22', 1, 1, 'av siempre viva 345', 4290011, 154121077, 4218128, NULL, 'maximrios@gmail.com', NULL, NULL, NULL, NULL, NULL),
-	(88, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(89, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(90, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(91, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(92, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(93, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(94, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(95, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(96, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(97, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(98, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(99, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(100, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(101, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(102, 0, 0, 'CARDOZO', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(103, 22222222, 0, 'CARDOZO', 'CAROLINA', 2147483647, 0, '1975-07-16', 2, 1, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(104, 23232323, 1, 'RAMIREZ', 'MATIAS', 2147483647, 0, '0000-00-00', 2, 1, 'AV SIEMPRE VIVA 123', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(105, 12345678, 0, 'CALABRO', 'MARINA', 2147483647, 0, '1975-07-16', 2, 1, 'AV SIEMPRE VIVA 123', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(106, 0, 0, '', '', 0, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(107, 22222222, 0, 'CARDOZO', 'CAROLINA', 2147483647, 0, '1975-07-16', 1, 1, 'AV SIEMPRE VIVA 123', 4290011, 154121077, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(108, 33333333, 0, 'CESAR', 'JULIO', 2147483647, 0, '1975-07-16', 1, 1, 'AV SIEMPRE VIVA 123', 4290011, 154121077, 213123123, NULL, 'maximrios@gmail.com', NULL, NULL, NULL, NULL, NULL),
-	(109, 12345678, 0, 'CARDOZO', 'CAROLINA', 2147483647, 0, '1975-07-16', 1, 1, 'AV SIEMPRE VIVA 123', 4290011, 154121077, 213123123, NULL, 'maximrios@gmail.com', NULL, NULL, NULL, NULL, NULL),
-	(110, 22222222, 0, 'CARDOZO', 'CAROLINA', 2147483647, 0, '1975-07-16', 1, 1, 'AV SIEMPRE VIVA 123', 4290011, 154121077, 213123123, NULL, 'maximrios@gmail.com', NULL, NULL, NULL, NULL, NULL),
-	(111, 33333333, 0, 'CARDOZO', 'CAROLINA', 2147483647, 0, '1975-07-16', 1, 1, 'AV SIEMPRE VIVA 123', 4290011, 154121077, 0, NULL, 'maximrios@gmail.com', NULL, NULL, NULL, NULL, NULL),
-	(112, 99909990, 1, 'DESIMA', 'FACUNDO JAVIER', 2147483647, 0, '0000-00-00', 1, 1, 'av san martin 564', 4212121, 155165165, 23332333, NULL, 'facundo_desima@hotmail.com', NULL, NULL, NULL, NULL, NULL),
-	(113, 33536661, 1, 'QUIROGA', 'ROMINA', 2033536661, 0, '0000-00-00', 2, 1, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(114, 12121212, 1, 'Reyes', 'Maximiliano', 2147483647, 0, '0000-00-00', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(115, 91919191, 1, 'Llatsen', 'Lina', 20123456782, 0, '0000-00-00', 2, 1, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(116, 10101010, 1, 'Laime', 'Ezequiel', 20101010103, 0, '2013-12-09', 1, 1, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(117, 0, 1, 'Richardson', 'Maximiliano', 0, 0, '2014-01-06', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(118, 0, 1, 'Peterson', 'Maximiliano', 0, 0, '2014-01-06', 0, 0, '', 0, 0, 0, NULL, '', NULL, NULL, NULL, NULL, NULL);
+	(64, 32505371, 1, 'Rios', 'Maximiliano Ezequiel', 20325053713, 0, '1987-02-05', 1, 1, 'Mz. R Casa 7 Barrio Santa Ana III', 4290011, 155701465, 0, NULL, 'maximrios@gmail.com', '	Argentina	', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `hits_personas` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_sessions
+-- Volcando estructura para tabla fid.hits_sessions
 DROP TABLE IF EXISTS `hits_sessions`;
 CREATE TABLE IF NOT EXISTS `hits_sessions` (
-  `session_id` varchar(255) NOT NULL default '',
-  `ip_address` varchar(255) default NULL,
-  `user_agent` varchar(255) default NULL,
-  `last_activity` int(11) default NULL,
+  `session_id` varchar(255) NOT NULL DEFAULT '',
+  `ip_address` varchar(255) DEFAULT NULL,
+  `user_agent` varchar(255) DEFAULT NULL,
+  `last_activity` int(11) DEFAULT NULL,
   `user_data` text,
-  PRIMARY KEY  (`session_id`)
+  PRIMARY KEY (`session_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_sessions: 3 rows
+-- Volcando datos para la tabla fid.hits_sessions: 22 rows
 /*!40000 ALTER TABLE `hits_sessions` DISABLE KEYS */;
 INSERT INTO `hits_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-	('79ff50e492dd245d37d2e329b3ca22aa', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0', 1403207102, 'a:1:{s:12:"antibotLlave";a:1:{i:0;s:32:"frm140320710304frm09a69de15cf89b";}}'),
-	('280cf303695e399d4fa480d5eab5fc9e', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0', 1402886102, 'a:1:{s:12:"antibotLlave";a:5:{i:0;s:32:"frm140288463588frma34bacf839b923";i:1;s:32:"frm140288478417frm5caf41d62364d5";i:2;s:32:"frm140288480153frmf9be311e65d81a";i:3;s:32:"frm140288480711frm17fafe5f6ce2f1";i:4;s:32:"frm140288484684frmb7087c1f4f89e6";}}'),
-	('e639597a59c9795d4dee330452ea0892', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0 FirePHP/0.7.4', 1402892530, 'a:1:{s:12:"antibotLlave";a:7:{i:0;s:32:"frm140289133344frm7d9a22c8598378";i:1;s:32:"frm140289153791frm3c204acfaf3dc4";i:2;s:32:"frm140289175720frmda08809cfb899d";i:3;s:32:"frm140289178438frmb3db622e6ad11d";i:4;s:32:"frm140289253086frm1368ba1ab6ed38";i:5;s:32:"frm140289254027frmd2a27e83d429f0";i:6;s:32:"frm140289256801frmbe6c7b094f8853";}}');
+	('8f40f3c2de851814f26bccb85d1b068b', '202.46.50.199', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:22.0) Gecko/20100101 Firefox/22.0', 1405263411, ''),
+	('82080811db1d486add70e859fbab0fd3', '202.46.50.182', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:22.0) Gecko/20100101 Firefox/22.0', 1405300331, ''),
+	('3b1d6b9c31ee2716f1f6bf026e20ace3', '157.55.39.209', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405332861, ''),
+	('87ef5d29ddd0b1a30a452bec2a3da66b', '157.55.39.209', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405332872, ''),
+	('77f3d18c0f1085e21e75c4efe958556f', '200.58.109.7', '0', 1405333951, ''),
+	('6f7a8190dcfb118c61f4513fa2fc7762', '157.55.39.209', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405340407, ''),
+	('805199acf15058387ecee16b5692211e', '66.249.65.127', 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)', 1405175259, ''),
+	('1536877dca29eaf052f4ce580ac598a2', '66.249.65.101', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; Google Web Preview Analytics) Chrome/27.0.1453 Safari/537.36 (compati', 1405175264, ''),
+	('2f21de4a5ab4c5a7c1cbd3ee785bf569', '207.46.13.28', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179734, ''),
+	('4925b587926a548cf3a8def8a05261a5', '207.46.13.28', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179734, ''),
+	('cbddde89da1348375a16884d3864ace8', '157.55.39.202', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405185719, ''),
+	('735e5cd50da19afc89234ca283d8419d', '157.55.39.202', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405185720, ''),
+	('7b47640e276a515fb2b1899f73d25e3b', '64.246.165.200', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9.0.13) Gecko/2009073022 Firefox/3.5.2 (.NET CLR 3.5.30729) SurveyBot/', 1405227418, ''),
+	('41ce5bb0627d0f3112f08220b8a50cfb', '207.46.13.128', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405248254, ''),
+	('f3adcc977d618b9856b98d2980bb7ae2', '207.46.13.128', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405248409, ''),
+	('b35f910812b65ef12200df7c8f96ab69', '157.55.39.61', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179666, ''),
+	('7e09dea5f6d598600552275c0efed7c3', '207.46.13.28', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179732, ''),
+	('b19f09e279fa2b9cbfc179c02047dd24', '207.46.13.28', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179733, ''),
+	('b7d1f2f186231553bd02c0b30088b260', '157.55.39.61', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179665, ''),
+	('0a86c1085a14ecd0d6d7a3e496b3ba61', '157.55.39.216', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179636, ''),
+	('86d7e287de12b0fdc3cd15c9694aeaa2', '157.55.39.216', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179651, 'a:2:{s:9:"user_data";s:0:"";s:12:"antibotLlave";a:1:{i:0;s:32:"frm140517965194frm3e33b970f21d2f";}}'),
+	('7407bc91806c321dfd24441f6340e7bb', '157.55.39.61', 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)', 1405179636, '');
 /*!40000 ALTER TABLE `hits_sessions` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_slider
+-- Volcando estructura para tabla fid.hits_slider
 DROP TABLE IF EXISTS `hits_slider`;
 CREATE TABLE IF NOT EXISTS `hits_slider` (
-  `idSlider` int(10) NOT NULL auto_increment,
-  `tituloSlider` varchar(50) default NULL,
-  `pathSlider` varchar(255) default NULL,
-  `mimeSlider` varchar(50) default NULL,
-  `linkSlider` varchar(255) default NULL,
-  `targetSlider` varchar(50) default NULL,
-  `vigenciaDesde` date default NULL,
-  `vigenciaHasta` date default NULL,
-  `activoSlider` tinyint(4) default NULL,
-  PRIMARY KEY  (`idSlider`)
+  `idSlider` int(10) NOT NULL AUTO_INCREMENT,
+  `tituloSlider` varchar(50) DEFAULT NULL,
+  `pathSlider` varchar(255) DEFAULT NULL,
+  `mimeSlider` varchar(50) DEFAULT NULL,
+  `linkSlider` varchar(255) DEFAULT NULL,
+  `targetSlider` varchar(50) DEFAULT NULL,
+  `vigenciaDesde` date DEFAULT NULL,
+  `vigenciaHasta` date DEFAULT NULL,
+  `activoSlider` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`idSlider`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_slider: ~3 rows (approximately)
+-- Volcando datos para la tabla fid.hits_slider: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `hits_slider` DISABLE KEYS */;
 INSERT INTO `hits_slider` (`idSlider`, `tituloSlider`, `pathSlider`, `mimeSlider`, `linkSlider`, `targetSlider`, `vigenciaDesde`, `vigenciaHasta`, `activoSlider`) VALUES
 	(1, 'Slider 1 cargado', 'assets/images/slider/city-q-c-922-330-5.jpg', NULL, 'http://www.google.com.ar', '_blank', '2014-03-21', '2014-12-12', 1),
@@ -317,21 +231,21 @@ INSERT INTO `hits_slider` (`idSlider`, `tituloSlider`, `pathSlider`, `mimeSlider
 /*!40000 ALTER TABLE `hits_slider` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_usuarios
+-- Volcando estructura para tabla fid.hits_usuarios
 DROP TABLE IF EXISTS `hits_usuarios`;
 CREATE TABLE IF NOT EXISTS `hits_usuarios` (
-  `idUsuario` int(10) NOT NULL auto_increment,
-  `nombreUsuario` varchar(50) default NULL,
-  `passwordUsuario` varchar(50) default NULL,
-  `idPersona` int(10) default NULL,
-  `idRol` int(10) default NULL,
-  `idEstado` int(10) default NULL,
-  `intentosUsuario` int(10) NOT NULL default '0',
+  `idUsuario` int(10) NOT NULL AUTO_INCREMENT,
+  `nombreUsuario` varchar(50) DEFAULT NULL,
+  `passwordUsuario` varchar(50) DEFAULT NULL,
+  `idPersona` int(10) DEFAULT NULL,
+  `idRol` int(10) DEFAULT NULL,
+  `idEstado` int(10) DEFAULT NULL,
+  `intentosUsuario` int(10) NOT NULL DEFAULT '0',
   `ultimoLoginUsuario` datetime NOT NULL,
-  PRIMARY KEY  (`idUsuario`)
+  PRIMARY KEY (`idUsuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_usuarios: ~4 rows (approximately)
+-- Volcando datos para la tabla fid.hits_usuarios: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `hits_usuarios` DISABLE KEYS */;
 INSERT INTO `hits_usuarios` (`idUsuario`, `nombreUsuario`, `passwordUsuario`, `idPersona`, `idRol`, `idEstado`, `intentosUsuario`, `ultimoLoginUsuario`) VALUES
 	(1, 'maxim', '3124d38d1725b3e54f157d1a3d2c6739', 64, 1, 1, 0, '2014-04-02 17:14:13'),
@@ -341,18 +255,18 @@ INSERT INTO `hits_usuarios` (`idUsuario`, `nombreUsuario`, `passwordUsuario`, `i
 /*!40000 ALTER TABLE `hits_usuarios` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_usuarios_auditar
+-- Volcando estructura para tabla fid.hits_usuarios_auditar
 DROP TABLE IF EXISTS `hits_usuarios_auditar`;
 CREATE TABLE IF NOT EXISTS `hits_usuarios_auditar` (
-  `idAuditar` int(10) NOT NULL auto_increment,
-  `idUsuario` int(10) default NULL,
-  `fechaAuditar` datetime default NULL,
-  `ipAuditar` varchar(50) default NULL,
-  `exitoAuditar` tinyint(4) default NULL,
-  PRIMARY KEY  (`idAuditar`)
+  `idAuditar` int(10) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(10) DEFAULT NULL,
+  `fechaAuditar` datetime DEFAULT NULL,
+  `ipAuditar` varchar(50) DEFAULT NULL,
+  `exitoAuditar` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`idAuditar`)
 ) ENGINE=MyISAM AUTO_INCREMENT=572 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_usuarios_auditar: 571 rows
+-- Volcando datos para la tabla fid.hits_usuarios_auditar: 571 rows
 /*!40000 ALTER TABLE `hits_usuarios_auditar` DISABLE KEYS */;
 INSERT INTO `hits_usuarios_auditar` (`idAuditar`, `idUsuario`, `fechaAuditar`, `ipAuditar`, `exitoAuditar`) VALUES
 	(1, 1, '2013-08-30 13:10:47', '123213123', 0),
@@ -929,15 +843,15 @@ INSERT INTO `hits_usuarios_auditar` (`idAuditar`, `idUsuario`, `fechaAuditar`, `
 /*!40000 ALTER TABLE `hits_usuarios_auditar` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_usuarios_estados
+-- Volcando estructura para tabla fid.hits_usuarios_estados
 DROP TABLE IF EXISTS `hits_usuarios_estados`;
 CREATE TABLE IF NOT EXISTS `hits_usuarios_estados` (
-  `idEstado` int(10) NOT NULL auto_increment,
-  `nombreEstado` varchar(50) default '0',
-  PRIMARY KEY  (`idEstado`)
+  `idEstado` int(10) NOT NULL AUTO_INCREMENT,
+  `nombreEstado` varchar(50) DEFAULT '0',
+  PRIMARY KEY (`idEstado`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_usuarios_estados: 3 rows
+-- Volcando datos para la tabla fid.hits_usuarios_estados: 3 rows
 /*!40000 ALTER TABLE `hits_usuarios_estados` DISABLE KEYS */;
 INSERT INTO `hits_usuarios_estados` (`idEstado`, `nombreEstado`) VALUES
 	(1, 'Habilitado'),
@@ -946,16 +860,16 @@ INSERT INTO `hits_usuarios_estados` (`idEstado`, `nombreEstado`) VALUES
 /*!40000 ALTER TABLE `hits_usuarios_estados` ENABLE KEYS */;
 
 
--- Dumping structure for table fid.hits_usuarios_roles
+-- Volcando estructura para tabla fid.hits_usuarios_roles
 DROP TABLE IF EXISTS `hits_usuarios_roles`;
 CREATE TABLE IF NOT EXISTS `hits_usuarios_roles` (
-  `idRol` int(10) NOT NULL auto_increment,
-  `nombreRol` varchar(50) default '0',
-  `descripcionRol` varchar(255) default '0',
-  PRIMARY KEY  (`idRol`)
+  `idRol` int(10) NOT NULL AUTO_INCREMENT,
+  `nombreRol` varchar(50) DEFAULT '0',
+  `descripcionRol` varchar(255) DEFAULT '0',
+  PRIMARY KEY (`idRol`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table fid.hits_usuarios_roles: 5 rows
+-- Volcando datos para la tabla fid.hits_usuarios_roles: 5 rows
 /*!40000 ALTER TABLE `hits_usuarios_roles` DISABLE KEYS */;
 INSERT INTO `hits_usuarios_roles` (`idRol`, `nombreRol`, `descripcionRol`) VALUES
 	(1, 'Administrador', '0'),
@@ -966,51 +880,34 @@ INSERT INTO `hits_usuarios_roles` (`idRol`, `nombreRol`, `descripcionRol`) VALUE
 /*!40000 ALTER TABLE `hits_usuarios_roles` ENABLE KEYS */;
 
 
--- Dumping structure for view fid.hits_view_galeria
-DROP VIEW IF EXISTS `hits_view_galeria`;
--- Creating temporary table to overcome VIEW dependency errors
-CREATE TABLE `hits_view_galeria` (
-	`idGaleria` INT(10) NOT NULL DEFAULT '0',
-	`nombreGaleria` VARCHAR(255) NULL DEFAULT '0' COLLATE 'utf8_general_ci',
-	`pathGaleria` VARCHAR(255) NULL DEFAULT '0' COLLATE 'utf8_general_ci',
-	`thumbGaleria` VARCHAR(255) NULL DEFAULT '0' COLLATE 'utf8_general_ci',
-	`descripcionGaleria` TEXT NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`publicadoGaleria` VARCHAR(12) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci'
-) ENGINE=MyISAM;
-
-
--- Dumping structure for view fid.hits_view_login
+-- Volcando estructura para vista fid.hits_view_login
 DROP VIEW IF EXISTS `hits_view_login`;
--- Creating temporary table to overcome VIEW dependency errors
+-- Creando tabla temporal para superar errores de dependencia de VIEW
 CREATE TABLE `hits_view_login` (
-	`idUsuario` INT(10) NOT NULL DEFAULT '0',
-	`nombreUsuario` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`passwordUsuario` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`intentosUsuario` INT(10) NOT NULL DEFAULT '0',
+	`idUsuario` INT(10) NOT NULL,
+	`nombreUsuario` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`passwordUsuario` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`intentosUsuario` INT(10) NOT NULL,
 	`ultimoLoginUsuario` DATETIME NOT NULL,
-	`idRol` INT(10) NOT NULL DEFAULT '0',
-	`nombreRol` VARCHAR(50) NULL DEFAULT '0' COLLATE 'utf8_general_ci',
-	`idEstado` INT(10) NOT NULL DEFAULT '0',
-	`nombreEstado` VARCHAR(50) NULL DEFAULT '0' COLLATE 'utf8_general_ci',
-	`idPersona` INT(10) NOT NULL DEFAULT '0',
-	`dniPersona` INT(10) NULL DEFAULT '0',
-	`idTipoDni` INT(10) NULL DEFAULT '0',
-	`apellidoPersona` VARCHAR(255) NULL DEFAULT '0' COLLATE 'utf8_general_ci',
-	`nombrePersona` VARCHAR(255) NULL DEFAULT '0' COLLATE 'utf8_general_ci'
+	`idPersona` INT(10) NOT NULL,
+	`dniPersona` INT(10) NULL,
+	`apellidoPersona` VARCHAR(255) NULL COLLATE 'utf8_general_ci',
+	`nombrePersona` VARCHAR(255) NULL COLLATE 'utf8_general_ci',
+	`idRol` INT(10) NOT NULL,
+	`nombreRol` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
+	`idEstado` INT(10) NOT NULL,
+	`nombreEstado` VARCHAR(50) NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
--- Dumping structure for view fid.hits_view_galeria
-DROP VIEW IF EXISTS `hits_view_galeria`;
--- Removing temporary table and create final VIEW structure
-DROP TABLE IF EXISTS `hits_view_galeria`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `fid`.`hits_view_galeria` AS select `g`.`idGaleria` AS `idGaleria`,`g`.`nombreGaleria` AS `nombreGaleria`,`g`.`pathGaleria` AS `pathGaleria`,`g`.`thumbGaleria` AS `thumbGaleria`,`g`.`descripcionGaleria` AS `descripcionGaleria`,if((`g`.`publicadoGaleria` = 1),_utf8'Publicado',_utf8'Sin publicar') AS `publicadoGaleria` from `rosobe`.`hits_galeria` `g`;
-
-
--- Dumping structure for view fid.hits_view_login
+-- Volcando estructura para vista fid.hits_view_login
 DROP VIEW IF EXISTS `hits_view_login`;
--- Removing temporary table and create final VIEW structure
+-- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `hits_view_login`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `fid`.`hits_view_login` AS select `u`.`idUsuario` AS `idUsuario`,`u`.`nombreUsuario` AS `nombreUsuario`,`u`.`passwordUsuario` AS `passwordUsuario`,`u`.`intentosUsuario` AS `intentosUsuario`,`u`.`ultimoLoginUsuario` AS `ultimoLoginUsuario`,`r`.`idRol` AS `idRol`,`r`.`nombreRol` AS `nombreRol`,`e`.`idEstado` AS `idEstado`,`e`.`nombreEstado` AS `nombreEstado`,`p`.`idPersona` AS `idPersona`,`p`.`dniPersona` AS `dniPersona`,`p`.`idTipoDni` AS `idTipoDni`,`p`.`apellidoPersona` AS `apellidoPersona`,`p`.`nombrePersona` AS `nombrePersona` from (((`rosobe`.`hits_usuarios` `u` join `rosobe`.`hits_usuarios_roles` `r` on((`u`.`idRol` = `r`.`idRol`))) join `rosobe`.`hits_usuarios_estados` `e` on((`u`.`idEstado` = `e`.`idEstado`))) join `rosobe`.`hits_personas` `p` on((`u`.`idPersona` = `p`.`idPersona`)));
-/*!40014 SET FOREIGN_KEY_CHECKS=1 */;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `hits_view_login` AS SELECT u.idUsuario, u.nombreUsuario, u.passwordUsuario, u.intentosUsuario, u.ultimoLoginUsuario, p.idPersona, p.dniPersona, p.apellidoPersona, p.nombrePersona, ur.idRol, ur.nombreRol, ue.idEstado, ue.nombreEstado FROM hits_usuarios u 
+INNER JOIN hits_personas p ON u.idPersona = p.idPersona
+INNER JOIN hits_usuarios_roles ur ON u.idRol = ur.idRol
+INNER JOIN hits_usuarios_estados ue ON u.idEstado = ue.idEstado ;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

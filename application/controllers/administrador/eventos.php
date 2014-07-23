@@ -151,6 +151,12 @@ class Eventos extends Ext_crud_Controller {
                     , url_title(strtolower($this->_reg['nombreEvento']))
                 )
             );
+            if ($this->_aEstadoOper['status'] > 0) {
+                $this->_aEstadoOper['message'] = 'El registro fue guardado correctamente.';
+            } 
+            else {
+                $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
+            }
         }
         else {
         	$this->_aEstadoOper['status'] = 0;

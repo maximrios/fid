@@ -6,72 +6,37 @@ class Galerias extends Ext_crud_Controller {
 		$this->load->model('admin/galerias_model', 'galerias');
 		$this->_aReglas = array(
 			array(
-	            'field'   => 'idEvento',
-	            'label'   => 'Codigo de Evento',
+	            'field'   => 'idGaleria',
+	            'label'   => 'Codigo de Galeria',
 	            'rules'   => 'trim|max_length[80]|xss_clean'
 	        )
 	        ,array(
-	            'field'   => 'nombreEvento',
-	            'label'   => 'Nombre de evento',
+	            'field'   => 'nombreGaleria',
+	            'label'   => 'Nombre de la galeria',
 	            'rules'   => 'trim|xss_clean|required'
 	        )
 	        ,array(
-	            'field'   => 'descripcionEvento',
-	            'label'   => 'Descripcion del evento',
-	            'rules'   => 'trim|xss_clean|required'
-	        )
-	        ,array(
-	            'field'   => 'fechaDesdeEvento',
-	            'label'   => 'Fecha de inicio',
-	            'rules'   => 'trim|xss_clean|required'
-	        )
-	        ,array(
-	            'field'   => 'fechaHastaEvento',
-	            'label'   => 'Fecha de fin',
-	            'rules'   => 'trim|xss_clean|required'
-	        )
-	        ,array(
-	            'field'   => 'domicilioEvento',
-	            'label'   => 'Domicilio de evento',
-	            'rules'   => 'trim|xss_clean'
-	        )
-	        ,array(
-	            'field'   => 'telefonoEvento',
-	            'label'   => 'Telefono de evento',
-	            'rules'   => 'trim|xss_clean'
-	        )
-	        ,array(
-	            'field'   => 'emailEvento',
-	            'label'   => 'Correo electronico de evento',
+	            'field'   => 'uriGaleria',
+	            'label'   => 'Uri galeria',
 	            'rules'   => 'trim|xss_clean'
 	        )
 		);
 	}
 	protected function _inicReg($boIsPostBack=false) {
         $this->_reg = array(
-            'idEvento' => null
-            , 'nombreEvento' => null
-            , 'fechaDesdeEvento' => ''
-            , 'fechaHastaEvento' => ''
-            , 'descripcionEvento' => null
-            , 'domicilioEvento' => ''
-            , 'telefonoEvento' => null
-            , 'emailEvento' => null
+            'idGaleria' => null
+            , 'nombreGaleria' => null
+            , 'uriGaleria' => ''
         );
-        $inId = ($this->input->post('idEvento') !== false) ? $this->input->post('idEvento') : 0;
+        $inId = ($this->input->post('idGaleria') !== false) ? $this->input->post('idGaleria') : 0;
         if ($inId != 0 && !$boIsPostBack) {
             $this->_reg = $this->noticias->obtenerUno($inId);
         } 
         else {
             $this->_reg = array(
-                'idEvento' => $inId
-                , 'nombreEvento' => $this->input->post('nombreEvento')
-                , 'fechaDesdeEvento' => set_value('fechaDesdeEvento')
-                , 'fechaHastaEvento' => set_value('fechaHastaEvento')
-                , 'descripcionEvento' => set_value('descripcionEvento')
-                , 'domicilioEvento' => set_value('domicilioEvento')
-                , 'telefonoEvento' => set_value('telefonoEvento')
-                , 'emailEvento' => set_value('emailEvento')
+                'idGaleria' => $inId
+                , 'nombreGaleria' => $this->input->post('nombreGaleria')
+                , 'uriGaleria' => set_value('uriGaleria')
             );
         }
         return $this->_reg;
@@ -94,16 +59,16 @@ class Galerias extends Ext_crud_Controller {
                     , 'iPerPage' => ($this->input->post('per_page')==FALSE)? 10: $this->input->post('per_page')
                     , 'border' => FALSE
                     , 'sFootProperties' => 'class="paginador"'
-                    , 'titulo' => 'Listado de Mensajes'
+                    , 'titulo' => 'Listado de Galerias'
                     , 'identificador' => 'idGaleria'
                 )
         );
         $this->gridview->addColumn('idGaleria', '#', 'int');
         $this->gridview->addColumn('nombreGaleria', 'Nombre', 'text');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
-        $ver = '<a href="#" ic-post-to="contactos/formulario/{idGaleria}" title="Ver mensaje de {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</a>';
-        $eliminar = '<a href="#" ic-post-to="contactos/eliminar/{idGaleria}" title="Eliminar mensaje de {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
-        $controles = $ver.$eliminar;
+        $ver = '<a href="#" ic-post-to="galerias/ver/{idGaleria}" title="Ver imagenes | videos de {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-picture"></span>&nbsp;</a>';
+        $editar = '<a href="#" ic-post-to="galerias/formulario/{idGaleria}" title="Editar galeria {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
+        $controles = $editar.$ver;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
         $this->_rsRegs = $this->galerias->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
         $this->load->view('admin/galerias/listado'
@@ -114,35 +79,53 @@ class Galerias extends Ext_crud_Controller {
             )
         );
     }
-	function formulario() {
-		$aData['formAction'] = 'eventos/guardar';
+	function formulario($galeria=FALSE) {
+        if($galeria) {
+            $aData['Reg'] = $this->galerias->obtenerUno($galeria);
+        }
+        else {
+            $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));    
+        }
+        $aData['formAction'] = 'galerias/guardar';
         $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
-        $aData['video_icon'] = 'ok';
-        $aData['video_legend'] = 'Check video';
         $this->load->view('admin/galerias/formulario', $aData);
 	}
+    function ver($galeria=FALSE) {
+        $galeria = $this->galerias->obtenerUno($galeria);
+        if($galeria) {
+            $aData['galeria'] = $galeria;
+            $aData['formAction'] = 'galerias/upload';
+            $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
+            $this->load->view('admin/galerias/media', $aData);
+        }
+        else {
+            $this->listado();
+        }
+    }
 	function guardar() {
 		antibotCompararLlave($this->input->post('vcForm'));
         $this->_inicReglas();
         if ($this->_validarReglas()) {
         	$this->_inicReg((bool) $this->input->post('vcForm'));
-            $this->_aEstadoOper['status'] = $this->eventos->guardar(
+            $this->_aEstadoOper['status'] = $this->galerias->guardar(
                 array(
-                    $this->_reg['idEvento']
-                    , $this->_reg['nombreEvento']
-                    , $this->_reg['descripcionEvento']
-                    , GetDateTimeFromFrenchToISO($this->_reg['fechaDesdeEvento'])
-                    , GetDateTimeFromFrenchToISO($this->_reg['fechaHastaEvento'])
-                    , $this->_reg['domicilioEvento']
-                    , $this->_reg['telefonoEvento']
-                    , $this->_reg['emailEvento']
+                    $this->_reg['idGaleria']
+                    , $this->_reg['nombreGaleria']
+                    , url_title(strtolower($this->_reg['uriGaleria']))
                 )
             );
+            if ($this->_aEstadoOper['status'] > 0) {
+                $this->_aEstadoOper['message'] = 'El registro fue guardado correctamente.';
+            } 
+            else {
+                $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
+            }
         }
         else {
         	$this->_aEstadoOper['status'] = 0;
             $this->_aEstadoOper['message'] = validation_errors();
         }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
         if ($this->_aEstadoOper['status'] > 0) {
             $this->listado();
         }

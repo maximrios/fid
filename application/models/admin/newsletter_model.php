@@ -22,31 +22,24 @@ class Newsletter_model extends CI_Model {
     }
     public function guardar($aParms) {
         if($aParms[0] == 'NULL' || $aParms[0] == 0) {
-            $sql = 'INSERT INTO hits_noticias
-                    (tituloNoticia
-                    , epigrafeNoticia
-                    , descripcionNoticia
-                    , fechaDesdeNoticia
-                    , uriNoticia
-                    , estadoNoticia) 
+            $sql = 'INSERT INTO hits_personas
+                    (nombrePersona
+                    , apellidoPersona
+                    , emailPersona
+                    , newsletterPersona) 
                     VALUES
                     ("'.$aParms[1].'"
                     , "'.$aParms[2].'"
                     , "'.$aParms[3].'"
-                    , "'.$aParms[4].'"
-                    , "'.$aParms[5].'"
-                    , '.$aParms[6].');';
+                    , '.$aParms[4].');';
             $type = 1;
         }
         else {
-            $sql = 'UPDATE hits_noticias SET 
-                    tituloNoticia = "'.$aParms[1].'"
-                    , epigrafeNoticia = "'.$aParms[2].'"
-                    , descripcionNoticia = "'.$aParms[3].'"
-                    , fechaDesdeNoticia = "'.$aParms[4].'"
-                    , uriNoticia = "'.$aParms[5].'"
-                    , estadoNoticia = '.$aParms[6].'
-                    WHERE idNoticia = '.$aParms[0].';';
+            $sql = 'UPDATE hits_personas SET 
+                    nombrePersona = "'.$aParms[1].'"
+                    , apellidoPersona = "'.$aParms[2].'"
+                    , emailPersona = "'.$aParms[3].'"
+                    WHERE idPersona = '.$aParms[0].';';
             $type = 2;
         }
         $result = $this->db->query($sql);

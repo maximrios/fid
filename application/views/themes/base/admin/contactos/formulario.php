@@ -8,6 +8,10 @@
             	<input type="text" class="form-control" id="nombreContacto" name="nombreContacto" tabindex="1" placeholder="Nombre de contacto" value="<?=$Reg['nombreContacto']?>" readonly>
         	</div>
             <div class="form-group col-lg-12">
+                <label for="emailContacto">Email</label>
+                <input type="text" class="form-control" id="emailContacto" name="emailContacto" tabindex="2" placeholder="Email de contacto" value="<?=$Reg['emailContacto']?>" readonly>
+            </div>
+            <div class="form-group col-lg-12">
                 <label for="telefonoContacto">Teléfono</label>
                 <input type="text" class="form-control" id="telefonoContacto" name="telefonoContacto" tabindex="2" placeholder="Teléfono de contacto" value="<?=$Reg['telefonoContacto']?>" readonly>
             </div>

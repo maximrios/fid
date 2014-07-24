@@ -34,9 +34,9 @@ class Newsletter extends Ext_crud_Controller {
             , 'nombrePersona' => ''
             , 'emailPersona' => ''
         );
-        $inId = ($this->input->post('idEvento') !== false) ? $this->input->post('idEvento') : 0;
+        $inId = ($this->input->post('idPersona') !== false) ? $this->input->post('idPersona') : 0;
         if ($inId != 0 && !$boIsPostBack) {
-            $this->_reg = $this->noticias->obtenerUno($inId);
+            $this->_reg = $this->newsletters->obtenerUno($inId);
         } 
         else {
             $this->_reg = array(
@@ -87,9 +87,9 @@ class Newsletter extends Ext_crud_Controller {
             )
         );
     }
-	function formulario($evento=FALSE) {
-        if($evento) {
-            $aData['Reg'] = $this->newsletters->obtenerUno($evento);
+	function formulario($suscriptor=FALSE) {
+        if($suscriptor) {
+            $aData['Reg'] = $this->newsletters->obtenerUno($suscriptor);
         }
         else {
             $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));    

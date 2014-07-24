@@ -117,7 +117,9 @@ class Galerias extends Ext_crud_Controller {
             );
             if ($this->_aEstadoOper['status'] > 0) {
                 $this->_aEstadoOper['message'] = 'El registro fue guardado correctamente.';
-                mkdir('assets/images/galerias/'.url_title(strtolower($this->_reg['uriGaleria'])), 0777);
+                if($this->_reg['idGaleria'] == 0) {
+                    mkdir('assets/images/galerias/'.url_title(strtolower($this->_reg['uriGaleria'])), 0777);
+                }
             } 
             else {
                 $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
@@ -135,17 +137,22 @@ class Galerias extends Ext_crud_Controller {
             $this->formulario();
         }
 	}
-	public function eliminar() {
-		antibotCompararLlave($this->input->post('vcForm'));
-    	$this->_aEstadoOper['status'] = $this->contactos->eliminar($this->input->post('idContacto'));
-	   	if($this->_aEstadoOper['status'] > 0) {
-			$this->_aEstadoOper['message'] = 'El registro fue eliminado con exito.';
-	   	} 
-	   	else {
-			$this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
-	   	}
-		$this->_aEstadoOper['message'] = $this->messages->do_message(array('message'=>$this->_aEstadoOper['message'],'type'=> ($this->_aEstadoOper['status'] > 0)?'success':'alert'));		
-       	$this->listado();
+	public function eliminarImagen($imagen) {
+        $media = $this->galerias->obtenerUnoImagen($imagen);
+        if ($media) {
+            $this->_aEstadoOper['status'] = $this->galerias->eliminarImagen($media['idGaleriaMedia']);
+            if($this->_aEstadoOper['status'] > 0) {
+                if(unlink(substr($media['pathGaleriaMedia'], 1))) {
+                    $this->_aEstadoOper['message'] = 'La imagen fue eliminada correctamente.';    
+                }
+            } 
+            else {
+                $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
+            }
+            $this->_aEstadoOper['message'] = $this->messages->do_message(array('message'=>$this->_aEstadoOper['message'],'type'=> ($this->_aEstadoOper['status'] > 0)?'success':'danger'));     
+            $this->listado();
+        }
+    	
 	}
     public function check_youtube() {
         echo "aca estamos";
@@ -164,7 +171,6 @@ class Galerias extends Ext_crud_Controller {
     public function upload() {
         $galeria = $this->galerias->obtenerUno($this->input->post('idGaleria'));
         if($galeria) {
-            echo "si entro che";
             $config = array(
                 'cantidad_imagenes' => 1
                 , 'upload_path' => $galeria['pathGaleria']
@@ -177,7 +183,17 @@ class Galerias extends Ext_crud_Controller {
             );
             $this->load->library('hits/uploads', array(), 'uploads');
             $data = $this->uploads->do_upload($config);
-            print_r($data);
+            if($data) {
+                $this->galerias->guardarImagen(
+                    array(
+                        ''
+                        , '../'.$galeria['pathGaleria'].'/'.$data[0]['file_name']
+                        , '../'.$galeria['pathGaleria'].'/'.$data[0]['file_name']
+                        , 1
+                        , $galeria['idGaleria']
+                    )
+                );
+            }
         }
         else {
             echo "no entro";

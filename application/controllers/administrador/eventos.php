@@ -61,12 +61,12 @@ class Eventos extends Ext_crud_Controller {
         );
         $inId = ($this->input->post('idEvento') !== false) ? $this->input->post('idEvento') : 0;
         if ($inId != 0 && !$boIsPostBack) {
-            $this->_reg = $this->noticias->obtenerUno($inId);
+            $this->_reg = $this->eventos->obtenerUno($inId);
         } 
         else {
             $this->_reg = array(
                 'idEvento' => $inId
-                , 'nombreEvento' => $this->input->post('nombreEvento')
+                , 'nombreEvento' => set_value('nombreEvento')
                 , 'fechaDesdeEvento' => set_value('fechaDesdeEvento')
                 , 'fechaHastaEvento' => set_value('fechaHastaEvento')
                 , 'descripcionEvento' => set_value('descripcionEvento')

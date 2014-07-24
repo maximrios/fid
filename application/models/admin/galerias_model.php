@@ -38,8 +38,6 @@ class Galerias_model extends CI_Model {
         else {
             $sql = 'UPDATE hits_galerias SET 
                     nombreGaleria = "'.$aParms[1].'"
-                    , uriGaleria = "'.$aParms[2].'"
-                    , pathGaleria = "'.$aParms[3].'"
                     WHERE idGaleria = '.$aParms[0].';';
             $type = 2;
         }
@@ -51,11 +49,21 @@ class Galerias_model extends CI_Model {
             return true;
         }
     }
+    public function eliminar($id) {
+        $sql = 'DELETE FROM hits_eventos WHERE idEvento = ?;';
+        $result = $this->db->query($sql, array($id));
+        return TRUE;
+    }
+
     public function obtenerImagenes($idGaleria) {
         $sql = 'SELECT *
             FROM hits_galerias_media
             WHERE idGaleria = ?;';
         return $this->db->query($sql, $idGaleria)->result_array();
+    }
+    public function obtenerUnoImagen($id) {
+        $sql = 'SELECT * FROM hits_galerias_media WHERE idGaleriaMedia = ?;';
+        return array_shift($this->db->query($sql, array($id))->result_array());
     }
     public function guardarImagen($aParms) {
         $sql = 'INSERT INTO hits_galerias_media
@@ -65,26 +73,26 @@ class Galerias_model extends CI_Model {
                 , tipoGaleriaMedia
                 , idGaleria)
                 VALUES 
-                ("'.$aParms[1].'"
+                ("'.$aParms[0].'"
+                , "'.$aParms[1].'"
                 , "'.$aParms[2].'"
                 , "'.$aParms[3].'"
-                , "'.$aParms[4].'"
-                , "'.$aParms[5].'");';
+                , "'.$aParms[4].'");';
         $result = $this->db->query($sql);
         return $this->db->insert_id();
     }
-
+    public function eliminarImagen($id) {
+        $sql = 'DELETE FROM hits_galerias_media WHERE idGaleriaMedia = ?;';
+        $result = $this->db->query($sql, array($id));
+        return TRUE;
+    }
     public function cambiarEstado($aParms) {
         $sql = 'UPDATE hits_noticias SET publicadoNoticia = ? WHERE idNoticia = ?;';
         $result = $this->db->query($sql, $aParms);
         return TRUE;   
     }
 
-    public function eliminar($id) {
-        $sql = 'DELETE FROM hits_eventos WHERE idEvento = ?;';
-        $result = $this->db->query($sql, array($id));
-        return TRUE;
-    }
+    
 
 }
 

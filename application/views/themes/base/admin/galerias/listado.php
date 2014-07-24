@@ -3,7 +3,7 @@
 	<div id="panel-body" class="panel-body">
 		<?= $vcMsjSrv; ?>
 		<div class="row">
-			<a href="#" class="btn btn-primary pull-right" ic-trigger-on="click" ic-verb="POST" ic-src="galerias/formulario" ic-target="#main_content"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Nueva galeria</a>
+			<a href="#" class="btn btn-primary pull-left" ic-trigger-on="click" ic-verb="POST" ic-src="galerias/formulario" ic-target="#main_content"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Nueva galeria</a>
 		</div>
 		<?= $vcGridView; ?>
 	</div>

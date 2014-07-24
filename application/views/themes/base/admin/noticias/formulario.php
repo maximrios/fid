@@ -5,7 +5,7 @@
 		<form ic-post-to="<?=$formAction?>" ic-target="#main_content">
 			<div class="form-group col-lg-12">
             	<label for="tituloNoticia">Titulo</label>
-            	<input type="text" class="form-control" id="tituloNoticia" name="tituloNoticia" tabindex="1" placeholder="Titulo de Noticia" value="<?=$Reg['tituloNoticia']?>">
+            	<input type="text" class="form-control" id="tituloNoticia" name="tituloNoticia" tabindex="1" placeholder="Titulo de Noticia" value="<?=$Reg['tituloNoticia']?>" autofocus>
         	</div>
             <div class="form-group col-lg-12">
                 <label for="epigrafeNoticia">Epígrafe</label>
@@ -13,11 +13,11 @@
             </div>
             <div class="form-group col-lg-12">
                 <label for="descripcionNoticia">Descripción</label>
-                <textarea class="form-control" id="descripcionNoticia" name="descripcionNoticia" placeholder="Noticia completa."><?=$Reg['descripcionNoticia']?></textarea>
+                <textarea class="form-control" id="descripcionNoticia" name="descripcionNoticia" tabindex="3" placeholder="Noticia completa."><?=$Reg['descripcionNoticia']?></textarea>
             </div>
         	<div class="form-group col-lg-2">
             	<label for="fechaDesdeNoticia">Fecha de Publicación</label>
-            	<input type="text" class="form-control fecha" id="fechaDesdeNoticia" name="fechaDesdeNoticia" placeholder="dd/mm/yyyy" value="<?=$Reg['fechaDesdeNoticia']?>">
+            	<input type="text" class="form-control fecha" id="fechaDesdeNoticia" name="fechaDesdeNoticia" tabindex="4" placeholder="dd/mm/yyyy" value="<?=$Reg['fechaDesdeNoticia']?>">
         	</div>
         	<div class="botones col-lg-12">
         		<button type="button" ic-post-to="noticias/listado" ic-target="#main_content" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Cancelar</button>

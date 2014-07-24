@@ -188,7 +188,7 @@ class Noticias extends Ext_crud_controller {
             $this->formulario();
         }
     }
-    public function eliminar($noticia) {
+    public function eliminar($noticia=FALSE) {
         $noticia = $this->noticias->obtenerUno($noticia);
         if($noticia) {
             $this->_aEstadoOper['status'] = $this->noticias->eliminar($noticia['idNoticia']);

@@ -180,19 +180,30 @@ class Layout_model extends CI_Model {
     public function obtenerNoticias($limit = 0, $offset = 9999999) {
         $sql = 'SELECT *
             FROM hits_noticias
-            WHERE publicadoNoticia = 1
-            ORDER BY inicioNoticia DESC  
+            WHERE estadoNoticia = 1
+            ORDER BY fechaDesdeNoticia DESC  
             limit ? offset ? ;';
         return $this->db->query($sql, array((int) $offset, (int) $limit))->result_array();
     }
     public function numRegsNoticias() {
-        $sql = 'SELECT count(idNoticia) AS inCant FROM hits_noticias WHERE publicadoNoticia = 1';
+        $sql = 'SELECT count(idNoticia) AS inCant FROM hits_noticias WHERE estadoNoticia = 1';
         $result = $this->db->query($sql)->result_array();
         return $result[0]['inCant'];
     }
     public function obtenerNoticiaId($idNoticia) {
         $sql = 'SELECT * FROM hits_noticias WHERE idNoticia = ?;';
         return array_shift($this->db->query($sql, array($idNoticia))->result_array());
+    }
+    /**
+     * Galerias
+     */
+    public function obtenerGalerias($limit = 0, $offset = 9999999) {
+        $sql = 'SELECT *
+            FROM hits_galerias g
+            INNER JOIN hits_galerias_media m on g.idGaleria = m.idGaleria
+            ORDER BY nombreGaleria DESC  
+            limit ? offset ? ;';
+        return $this->db->query($sql, array((int) $offset, (int) $limit))->result_array();
     }
     /**
      * Personas

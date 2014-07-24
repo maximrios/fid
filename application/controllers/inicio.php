@@ -31,6 +31,12 @@ Class Inicio extends Ext_Controller {
 		}
 		
 	}
+	public function galerias() {
+		$data = array();
+		$data['galerias'] = $this->layout->obtenerGalerias();	
+		$this->_content = $this->load->view('galerias', $data, true);
+		parent::index();
+	}
 }
 /* End of file inicio.php */
 /* Location: ./application/controllers/inicio.php */

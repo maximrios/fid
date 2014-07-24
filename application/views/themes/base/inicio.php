@@ -10,7 +10,7 @@
     		</div>
     	</div>
 	</div>
-	<div class="col-lg-12 staff">
+	<div class="row staff">
 		<div class="col-lg-4">
 			<span><img src="assets/images/staff/persona1.jpg"></span>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -30,12 +30,14 @@
 	<div class="col-lg-9 ultimas_novedades">
 		<h4 class="titulo_seccion">Ultimas novedades</h4>
 		<hr>
-		<div class="col-lg-4">
-			<figure class="">
-				<figcaption class="titulo">Juntos por Baritú</figcaption>
+		<div class="row">
+			<figure class="col-lg-12">
 				<img src="http://localhost/fid/assets/images/noticias/people-q-c-200-150-3.jpg">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-				<a href="#" class="btn btn-primary pull-right">Leer más</a>
+				<figcaption>
+					Juntos por Baritú
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+					<a href="#" class="btn btn-primary pull-right">Leer más</a>
+				</figcaption>
 			</figure>
 		</div>
 		<div class="col-lg-4">

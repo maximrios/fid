@@ -2,7 +2,7 @@
  * Generales
  */
 body {
-    background: #fc930a;
+    /*background: #fc930a;*/
     font-size: 14px;
     color: #666666;
 }
@@ -98,14 +98,21 @@ footer ul {
 }
 .ultimas_novedades div figure {
     text-align: center;
+    display: inline-block;
 }
 .ultimas_novedades div figure figcaption {
     color: #DB5A3C;
     font-size: 1.2em;
     text-align: left;
+    display: inline-block;
 }
 .ultimas_novedades div figure img {
-    margin: 0.3em 0 0.5em 0;
+    /*margin: 0.3em 0 0.5em 0;*/
+    display: inline-block;
+}
+
+.ultimas_novedades div figure img, .ultimas_novedades div figure figcaption {
+    display: inline-block!important;
 }
 .ultimas_novedades div figure p {
     text-align: justify;

@@ -1,7 +1,7 @@
-<div class="col-lg-8">
+<div class="col-lg-">
 	<div class="col-lg-12 noticia">
 		<h4><?=$noticia['tituloNoticia']?></h4>
-		<span class="col-lg-12 fecha"><?=$noticia['inicioNoticia']?></span>
+		<span class="col-lg-12 fecha"><?=$noticia['fechaDesdeNoticia']?></span>
 		<img src="assets/images/noticias/noticia1.jpg">
 		<p><?=$noticia['epigrafeNoticia']?></p>
 		<p><?=$noticia['descripcionNoticia']?></p>

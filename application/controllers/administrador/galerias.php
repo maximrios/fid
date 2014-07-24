@@ -92,6 +92,7 @@ class Galerias extends Ext_crud_Controller {
     function ver($galeria=FALSE) {
         $galeria = $this->galerias->obtenerUno($galeria);
         if($galeria) {
+            $aData['imagenes'] = $this->galerias->obtenerImagenes($galeria['idGaleria']);
             $aData['galeria'] = $galeria;
             $aData['formAction'] = 'galerias/upload';
             $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
@@ -163,6 +164,7 @@ class Galerias extends Ext_crud_Controller {
     public function upload() {
         $galeria = $this->galerias->obtenerUno($this->input->post('idGaleria'));
         if($galeria) {
+            echo "si entro che";
             $config = array(
                 'cantidad_imagenes' => 1
                 , 'upload_path' => $galeria['pathGaleria']
@@ -174,10 +176,11 @@ class Galerias extends Ext_crud_Controller {
                 )
             );
             $this->load->library('hits/uploads', array(), 'uploads');
-            $data = $this->uploads->do_upload($config);    
+            $data = $this->uploads->do_upload($config);
+            print_r($data);
         }
         else {
-
+            echo "no entro";
         }
         
     }

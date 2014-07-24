@@ -2,7 +2,41 @@
     #myId {
         min-height: 300px;
     }
+    #imagenesGaleria figure {
+        border: 1px solid #CCCCCC;
+        padding: 0.5em;
+        max-width: 175px;
+        text-align: center;
+    }
+    #imagenesGaleria figure img {
+        max-height: 150px;
+    }
+    #imagenesGaleria figure hr {
+        margin: 1em auto;
+    }
+    #imagenesGaleria figure figcaption {
+        margin: 0.3em auto;
+        text-align: center;
+        padding-left: 0;
+    }
 </style>
+<div class="panel panel-default">
+    <div class="panel-heading">Imagenes disponibles en la galería <?=$galeria['nombreGaleria']?></div>
+    <div class="panel-body" id="imagenesGaleria">
+        <?= $vcMsjSrv; ?>
+        <?php foreach ($imagenes as $imagen) { ?>
+            <figure>
+                <img src="<?=$imagen['thumbGaleriaMedia']?>">
+                <hr>
+                <figcaption class="row">
+                    <a href=""><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href=""><span class="glyphicon glyphicon-zoom-in"></span></a>
+                    <a href=""><span class="glyphicon glyphicon-trash"></span></a>
+                </figcaption>
+            </figure>
+        <?php } ?>
+    </div>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading">Agregar Imagenes a la galeria <?=$galeria['nombreGaleria']?></div>
     <div class="panel-body" id="myId">
@@ -10,18 +44,9 @@
         <link href="../assets/themes/base/dropzone/css/dropzone.css" type="text/css" rel="stylesheet" />
 		<script src="../assets/themes/base/dropzone/dropzone.js"></script>
         <input type="hidden" id="idGaleria" name="idGaleria" value="<?=$galeria['idGaleria']?>">    
-		<!--<form ic-post-to="<?=$formAction?>" ic-target="#main_content">
-			<div class="form-group col-lg-8">
-            	<label for="embedLink">Embed a video</label>
-            	<input type="text" class="form-control" id="embedLink" name="embedLink" placeholder="http://www.youtube.com/watch?v=Zx4Hjq6KwO0">
-        	</div>
-        	<div class="botones col-lg-12">
-        		<button type="button" ic-post-to="galerias/listado" ic-target="#main_content" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Cancelar</button>
-        		<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;&nbsp;Guardar</button>
-        	</div>
-            <input type="hidden" id="idGaleria" name="idGaleria" value="<?=$idGaleria?>">
-        	<input type="hidden" id="vcForm" name="vcForm" value="asdasd">
-		</form>-->
+    </div>
+    <div class="botones col-lg-12">
+        <button type="button" ic-post-to="galerias/listado" ic-target="#main_content" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Volver</button>
     </div>
 </div>
 <!--<div class="panel panel-default">

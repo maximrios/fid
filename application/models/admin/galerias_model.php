@@ -51,11 +51,25 @@ class Galerias_model extends CI_Model {
             return true;
         }
     }
+    public function obtenerImagenes($idGaleria) {
+        $sql = 'SELECT *
+            FROM hits_galerias_media
+            WHERE idGaleria = ?;';
+        return $this->db->query($sql, $idGaleria)->result_array();
+    }
     public function guardarImagen($aParms) {
-        $sql = 'UPDATE hits_noticias SET 
-            thumbImagenNoticia = "'.$aParms[1].'"
-            , detailImagenNoticia = "'.$aParms[2].'"
-            WHERE idNoticia = '.$aParms[0].';';
+        $sql = 'INSERT INTO hits_galerias_media
+                (nombreGaleriaMedia
+                , pathGaleriaMedia
+                , thumbGaleriaMedia
+                , tipoGaleriaMedia
+                , idGaleria)
+                VALUES 
+                ("'.$aParms[1].'"
+                , "'.$aParms[2].'"
+                , "'.$aParms[3].'"
+                , "'.$aParms[4].'"
+                , "'.$aParms[5].'");';
         $result = $this->db->query($sql);
         return $this->db->insert_id();
     }

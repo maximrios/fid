@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/nav-wizard.bootstrap.css">
-    <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/jquery.dataTables.css">
     <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/hits.css">
     <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/jquery.js"></script>
     <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/moment.js"></script>
@@ -15,7 +14,6 @@
     <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/intercooler.min.js"></script>
     <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/bootstrap-datetimepicker.es.js"></script>
-    <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/jquery.dataTables.js"></script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

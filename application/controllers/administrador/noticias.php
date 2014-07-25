@@ -4,6 +4,7 @@ class Noticias extends Ext_crud_controller {
         parent::__construct();
         $this->load->library('hits/gridview');
         $this->load->model('admin/noticias_model', 'noticias');
+
         $this->_aReglas = array(
             array(
                 'field' => 'idNoticia',
@@ -98,6 +99,7 @@ class Noticias extends Ext_crud_controller {
         );
     }
     public function formulario($noticia=FALSE) {
+        $this->load->library('hits/ckeditor', array('instanceName' => 'CKEDITOR1','basePath' => base_url()."assets/themes/base/ckeditor/", 'outPut' => true));
         if($noticia) {
             $aData['Reg'] = $this->noticias->obtenerUno($noticia);
             $aData['Reg']['fechaDesdeNoticia'] = GetDateFromISO($aData['Reg']['fechaDesdeNoticia']);

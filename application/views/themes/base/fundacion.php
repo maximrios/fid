@@ -1,3 +1,4 @@
+<section class="wrap-content container col-xs-12 col-lg-9">
 <div class="col-lg-12" style="margin-bottom:2em;">
 	<div class="slider-wrapper col-lg-6">
     	<div id="slider" class="nivoSlider">

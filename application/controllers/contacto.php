@@ -4,8 +4,8 @@ class Contacto extends Ext_controller {
 	function __construct() {
 		parent::__construct();		
         $this->load->model('layout_model', 'layout');
-		/*$this->load->library('Messages');
-        $this->load->helper('utils_helper');*/
+		$this->load->library('hits/messages');
+        //$this->load->helper('utils_helper');*/
         $this->_aReglas = array(
             array(
                 'field'   => 'nombresContacto',
@@ -47,7 +47,7 @@ class Contacto extends Ext_controller {
             $this->_inicReg((bool)$this->input->post('vcForm'));
             $this->load->library('hits/mailer', array(), 'mailer');
             $aData['consulta'] = $this->_reg;
-            if($this->mailer->enviarMail('Sabandijas Rodados - Consulta web', 'consulta', $aData, array(array('email' => $this->config->config['ext_base_smtp_config_editable']['mail'], 'nombre' => $this->config->config['ext_base_smtp_config_editable']['asunto_mail'])))) {
+            if($this->mailer->enviarMail('Fundacion para la Integracion y el Desarrollo de Comunidades - Consulta web', 'consulta', $aData, array(array('email' => $this->config->config['ext_base_smtp_config_editable']['mail'], 'nombre' => $this->config->config['ext_base_smtp_config_editable']['asunto_mail'])))) {
                 $this->layout->guardarContacto(array(
                     0
                     , $this->input->post('nombresContacto')
@@ -72,7 +72,7 @@ class Contacto extends Ext_controller {
             
         }
         if($this->_aEstadoOper['message'] != '') {
-            $this->_aEstadoOper['message'] = $this->messages->do_message(array('message'=>$this->_aEstadoOper['message'],'type'=> ($this->_aEstadoOper['status'] > 0)?'success':'alert'));    
+            $this->_aEstadoOper['message'] = $this->messages->do_message(array('message'=>$this->_aEstadoOper['message'],'type'=> ($this->_aEstadoOper['status'] > 0)?'success':'danger'));    
         }
         $this->formulario();
 	}
@@ -82,7 +82,7 @@ class Contacto extends Ext_controller {
         $config['center'] = '-24.8049673, -65.4138704';
         $config['zoom'] = 14;
         $config['directions'] = TRUE;
-        $config['map_height'] = 230;
+        $config['map_height'] = 330;
         
         //$config['directionsStart'] = '-24.782889,-65.41174';
         //$config['directionsStart'] = '-24.847344,-65.46155';
@@ -102,6 +102,7 @@ class Contacto extends Ext_controller {
         $this->_SiteInfo['title'] .= ' - Contacto';
         $this->_menu = 'contacto';
         $aData['breadcrumb'] = '<a href="#">Home</a> / Contacto';
+        $this->_menu('contacto');
         $this->_content = $this->load->view('contacto', $aData, true);
         parent::index();
     }

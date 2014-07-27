@@ -16,6 +16,8 @@
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/responsive-calendar.js"></script>
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.nivo.slider.js"></script>
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.simplyScroll.js"></script>
+	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.lavalamp.min.js"></script>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -35,22 +37,23 @@
 	</div>
 	<header>
 		<div class="container col-lg-9">
-			<h1><a href="http://fundacionfidsalta.org" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales" title="Fundación para la Integración y el Desarollo de Comunidades Rurales"><img src="./assets/images/logo_header.png" title="Fundación para la Integración y el Desarollo de Comunidades Rurales" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales"></a></h1>	
+			<h1><a href="http://fundacionfidsalta.org" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales" title="Fundación para la Integración y el Desarollo de Comunidades Rurales"><img src="<?=base_url()?>assets/images/logo_header.jpg" title="Fundación para la Integración y el Desarollo de Comunidades Rurales" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales" width="110"></a></h1>	
 			<nav class="nav navbar-nav">
-				<ul class="container col-lg-10 pull-right">
-					<li><a href="inicio" title="">Inicio</a></li>
+				<ul id="navlist" class="container col-lg-10 pull-right">
+					<!--<li class="active"><a href="inicio" title="">Inicio</a></li>
 					<li><a href="fundacion" title="">Quienes Somos</a></li>
 					<li><a href="programas" title="">Programas</a></li>
 					<li><a href="noticias" title="">Noticias</a></li>
 					<li><a href="galeria" title="">Galeria</a></li>
-					<li><a href="contacto" title="">Contacto</a></li>
+					<li><a href="contacto" title="">Contacto</a></li>-->
+					<?=$main_menu?>
 				</ul>
 			</nav>
 		</div>
 
 	</header>
 	
-	<section class="wrap-content container col-xs-12 col-lg-9">
+	
 		<?=$main_content?>
 	</section>
 	
@@ -60,7 +63,7 @@
 				<h5>Menú</h5>
 				<ul>
 					<li><a href="inicio">Inicio</a></li>
-					<li><a href="fundacion">Quienes Somos</a></li>
+					<li><a href="<?=base_url('/fundacion')?>">Quienes Somos</a></li>
 					<li><a href="" title="">Programas</a></li>
 					<li><a href="noticias" title="">Noticias</a></li>
 					<li><a href="" title="">Galeria</a></li>
@@ -72,7 +75,7 @@
 				<ul>
 					<li><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;info@fundacionfidsalta.org</li>
 					<li><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;(0387) 4191919 - 4101010</li>
-					<li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Av. Siempre Viva 74</li>
+					<li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Florida 1550</li>
 					<li><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Salta - Argentina</li>
 				</ul>
 			</div>
@@ -87,11 +90,14 @@
 				</form>
 			</div>
 			<div class="col-lg-3" style="text-align:right;">
-				<img src="assets/images/fiscal.png" width="100">
+				<img src="<?=base_url()?>assets/images/fiscal.png" width="100">
 			</div>
 		</div>
 	</footer>
-
-		
+	<script type="text/javascript">
+	$('#navlist').lavalamp({
+   		easing: 'easeOutBack'
+	});
+	</script>
 </body>
 </html>

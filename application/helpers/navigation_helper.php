@@ -52,6 +52,19 @@ if ( ! function_exists('menu_p'))
     }
 }
 
-
+if ( ! function_exists('menu_template')) {
+    function menu_template($sel = 'inicio') {
+        $CI =& get_instance();
+        $items = $CI->config->item('navigation_template');
+        $menu = '';
+        foreach($items as $item) {
+            $current = (in_array($sel, $item)) ? ' class="active"' : '';
+            $id = (!empty($item['id'])) ? ' id="'.$item['id'].'"' : '';
+            $menu .= '<li '.$current.'><a href="'.site_url($item['link']).'">'.$item['title'];
+            $menu .= '</a></li>'."\n";
+        }
+        return $menu;
+    }
+}
 /* End of file navigation_helper.php */
 /* Location: ./system/helpers/navigation_helper.php */

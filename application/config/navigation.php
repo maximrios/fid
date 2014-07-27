@@ -15,7 +15,7 @@ $config['navigation'] = array(
             'programa' => array(
                 'id'     => 'programa',
                 'title'  => 'Programas',
-                'link'   => 'administrator/programas',
+                'link'   => 'administrador/programas',
                 'icon'   => 'file'
             ),
             'galerias' => array(
@@ -54,6 +54,38 @@ $config['navigation'] = array(
                 'link'   => 'auth/logout',
                 'icon'   => 'off'
             )
+        );
+$config['navigation_template'] = array(
+                'inicio' => array(
+                'id'     => 'inicio',
+                'title'  => 'Inicio',
+                'link'   => 'inicio',
+            ),
+            'eventos' => array(
+                'id'     => 'fudacion',
+                'title'  => 'Quienes Somos',
+                'link'   => 'fundacion',
+            ),
+            'programas' => array(
+                'id'     => 'programas',
+                'title'  => 'Programas',
+                'link'   => 'programas',
+            ),
+            'noticias' => array(
+                'id'     => 'noticias',
+                'title'  => 'Noticias',
+                'link'   => 'noticias',
+            ),
+            'galerias' => array(
+                'id'     => 'galerias',
+                'title'  => 'Galeria',
+                'link'   => 'galerias',
+            ),
+            'contacto' => array(
+                'id'     => 'contacto',
+                'title'  => 'Contacto',
+                'link'   => 'contacto',
+            ),
         );
 /* End of file navigation.php */
 /* Location: ./application/config/navigation.php */

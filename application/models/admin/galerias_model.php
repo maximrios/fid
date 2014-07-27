@@ -86,10 +86,15 @@ class Galerias_model extends CI_Model {
         $result = $this->db->query($sql, array($id));
         return TRUE;
     }
-    public function cambiarEstado($aParms) {
-        $sql = 'UPDATE hits_noticias SET publicadoNoticia = ? WHERE idNoticia = ?;';
+    public function truncateImagen($aParms) {
+        $sql = 'UPDATE hits_galerias_media SET checkGaleriaMedia = 0 WHERE idGaleria = ?;';
+    }
+    public function predeterminarImagen($aParms) {
+        $sql = 'SELECT * FROM hits_galerias_media WHERE idGaleria = ? AND checkGaleriaMedia = 1;';
         $result = $this->db->query($sql, $aParms);
-        return TRUE;   
+        if(!$result) {
+            $sql2 = 'UPDATE hits_galerias_media SET checkGaleriaMedia = 1 WHERE idGaleria = ? AND idGaleriaMedia = ?;'
+        }
     }
 
     

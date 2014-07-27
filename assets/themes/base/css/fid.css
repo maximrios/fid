@@ -8,13 +8,16 @@ body {
 }
 header {
     background: #fc930a;
-    height: 100px!important;
+    /*height: 100px!important;*/
 }
 header h1 {
     position: absolute;
     margin-top: -51px;
     margin-left: 30px;
     z-index: 99999;
+}
+a, a:hover, a.active {
+    outline: none!important;
 }
 .wrap-content {
     background: #FFF;
@@ -25,22 +28,26 @@ header h1 {
     margin: 0 auto!important;
 }
 .navbar-default {
-    background: #454545;
+    background: url(../img/background.png);
     border: none;
     margin-bottom: 0;
     padding-bottom: 0.5em;
     padding-top: 0.5em;
 }
 nav {
-    padding: 1em;
-    padding-top: 2.5em;
+    padding: 1.5em;
+    /*padding-top: 2.5em;*/
     width: 100%;
+}
+.lavalamp-object {
+    border-bottom: 2px solid #FFFFFF;
+    margin-top: 0.5em;
 }
 nav ul {
     text-align: right;
 }
 nav ul li {
-    border-right: 1px solid #d2d2d2;
+    /*border-right: 1px solid #d2d2d2;*/
     display: inline-block;
     padding: 0 1.5em;
 }
@@ -49,7 +56,12 @@ nav ul li:last-child {
 }
 nav ul li a {
     border: none;
+    color: #FFFFFF;
     font-size: 1.1em;
+}
+nav ul li a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
 }
 .titulo_seccion {
     color: #DB5A3C;
@@ -64,7 +76,7 @@ hr {
     margin-bottom: 1em;
 }
 footer {
-    background: #454545;
+    background: url(../img/background.png);
     color: #FFFFFF;
     margin-top: 2em;
     padding-top: 1em;
@@ -77,6 +89,9 @@ footer span {
 footer ul {
     margin-left: 0;
     padding-left: 0;
+}
+.naranja {
+    color: #fc930a;
 }
 .aside {
     padding-left: 0;
@@ -91,32 +106,39 @@ footer ul {
     max-height: 370px!important;
     min-height: 125px!important;
 }
-.ultimas_novedades div:nth-child(even) {
-    /*border-left: 1px solid #d2d2d2;
-    border-right: 1px solid #d2d2d2;
-    border-spacing: 1em;*/
+.ultimas_novedades {
+    margin-bottom: 1em;
 }
 .ultimas_novedades div figure {
+    border-bottom: 1px solid #f2f2f2;
+    padding-top: 1em;
+    padding-bottom: 1em;
     text-align: center;
-    display: inline-block;
 }
-.ultimas_novedades div figure figcaption {
+.ultimas_novedades div figure figcaption a label {
     color: #DB5A3C;
     font-size: 1.2em;
     text-align: left;
-    display: inline-block;
-}
-.ultimas_novedades div figure img {
-    /*margin: 0.3em 0 0.5em 0;*/
-    display: inline-block;
-}
-
-.ultimas_novedades div figure img, .ultimas_novedades div figure figcaption {
-    display: inline-block!important;
+    cursor: pointer;
 }
 .ultimas_novedades div figure p {
+    color: #666666;
     text-align: justify;
 }
+.ultimas_novedades div:last-child figure {
+    border-bottom: none;
+}
+ul.otras_novedades {
+    padding-left: 0;
+}
+ul.otras_novedades li {
+    margin: 0.7em auto;
+    cursor: pointer;
+}
+
+/**
+ * Colaboradores
+ */
 .colaboradores {
     background: red;
 }
@@ -145,11 +167,11 @@ footer ul {
 .noticia h4 {
 
 }
+.noticia p {
+    text-align: justify;
+}
 .fecha {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border: 1px solid #CCC;
-    border-radius: 5px;
+    font-size: 0.9em;
 }
 .staff > div {
     text-align: center;
@@ -165,6 +187,81 @@ footer ul {
  * Fin de noticias
  **/
 
+/**
+ * Galeria
+ **/
+.polaroid {
+    width:100%;
+    overflow:hidden;
+    padding:20px 10px;
+}
+.polaroid figure{
+    float:left;
+    position:relative;
+    width: 216px;
+    margin: 10px 20px;
+    padding: 6px 8px 10px 8px;
+    -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+    -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+    box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+    background: #f2f2f2;
 
+    -webkit-transform:rotate(-1deg);
+    -moz-transform: rotate(-1deg);
+    -o-transform: rotate(-1deg);
+    -ms-transform: rotate(-1deg);
+    transform: rotate(-1deg);
+    -webkit-backface-visibility:hidden; /*prevent rotated text being jagged in Chrome and Safari*/
+}
+.polaroid figure:nth-child(even) {
+    -webkit-transform:rotate(2deg);
+    -moz-transform: rotate(2deg);
+    -o-transform: rotate(2deg);
+    -ms-transform: rotate(2deg);
+    transform: rotate(2deg);
+    -webkit-backface-visibility:hidden; /*prevent rotated text being jagged in Chrome and Safari*/
+    -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+    -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+    box-shadow: -4px 4px 8px -4px rgba(0, 0, 0, .75);
+}
+.polaroid figure:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left:5px;
+    top: -15px;
+    width: 75px;
+    height: 25px;
+    background-color: rgba(222,220,198,0.7);
+    -webkit-transform: rotate(-12deg);
+    -moz-transform: rotate(-12deg);
+    -o-transform: rotate(-12deg);
+    -ms-transform: rotate(-12deg);
+}
+.polaroid figure:nth-child(even):before {
+    left:150px;
+    top: -15px;
+    width: 55px;
+    height: 25px;
+    -webkit-transform: rotate(12deg);
+    -moz-transform: rotate(12deg);
+    -o-transform: rotate(12deg);
+    -ms-transform: rotate(12deg);
+}
+.polaroid figcaption{
+    text-align:center;
+    font-family: 'Reenie Beanie', cursive; /*Reenie Beanie is available through Google Webfonts http://code.google.com/webfonts/specimen/Reenie+Beanie*/
+    font-size:1.3em;
+    color:#454f40;
+    letter-spacing:0.09em;
+}
+/**IE Hacks - see http://css3pie.com/ for more info on how to use CS3Pie and to download the latest version**/
+.polaroid figure{
+-pie-background: linear-gradient(#ede1c9, #fef8e2 20%, #f2ebde 60%);
+    behavior: url(assets/pie/PIE.htc);
+    position:relative; /*required to make PIE work*/
+    padding-top:10px\9;
+    padding-right:10px\9;
+}
 
 

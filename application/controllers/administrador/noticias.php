@@ -19,7 +19,7 @@ class Noticias extends Ext_crud_controller {
             array(
                 'field' => 'epigrafeNoticia',
                 'label' => 'Epígrafe',
-                'rules' => 'trim|required|min_length[5]|max_length[100]|xss_clean'
+                'rules' => 'trim|required|min_length[5]|max_length[255]|xss_clean'
             ),
             array(
                 'field' => 'descripcionNoticia',
@@ -80,7 +80,7 @@ class Noticias extends Ext_crud_controller {
         );
         $this->gridview->addColumn('idNoticia', '#', 'int');
         $this->gridview->addColumn('tituloNoticia', 'Título', 'text');
-        $this->gridview->addColumn('epigrafeNoticia', 'Epígrafe', 'tinyText');
+        //$this->gridview->addColumn('epigrafeNoticia', 'Epígrafe', 'tinyText');
         $this->gridview->addColumn('fechaDesdeNoticia', 'Publicación', 'date');
         $this->gridview->addColumn('estadoNoticia', 'Estado', 'text');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));

@@ -14,7 +14,7 @@
 	<div class="container">
 	<div class="login-container">
             <div id="output"></div>
-            <div class="avatar"><a href="<?=config_item('ext_site_url')?>" target="_blank" alt="Fundacion para la Integración y el desarrollo de comunidades" title="Fundacion para la Integración y el desarrollo de comunidades"><img src="../assets/images/logo_fid.jpg" alt="Fundacion para la Integración y el desarrollo de comunidades" width="100"></a></div>
+            <div class="avatar"><a href="<?=config_item('ext_site_url')?>" target="_blank" alt="Fundacion para la Integración y el desarrollo de comunidades" title="Fundacion para la Integración y el desarrollo de comunidades"><img src="<?=base_url()?>assets/images/logo_fid.jpg" alt="Fundacion para la Integración y el desarrollo de comunidades" width="100"></a></div>
             <div class="form-box">
                 <form ic-post-to="autenticar">
                     <input name="nombreUsuario" type="text" placeholder="Usuario">

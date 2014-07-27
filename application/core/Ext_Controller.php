@@ -23,7 +23,7 @@ Class Ext_Controller extends CI_Controller {
 			, 'includes' => $this->_getCssIncs(). $this->_getJsIncs()
 			//, 'vcHeaderLoginView' => $UsrView
 			//, 'vcMenu' => $this->_obtenerMenu()
-			//, 'vcMenu' => menu_ul($this->_menu)
+			, 'main_menu' => menu_template($this->_menu)
 			, 'main_content' => $this->_content
 		);
 		$this->load->view('template', $data);

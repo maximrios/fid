@@ -20,3 +20,19 @@
 	$config['css_array'] = array(
 	    $config['ext_base_assets_theme'].'css/bootstrap.min.css',
 	);
+
+
+	/**
+	 * Mailing
+	 */
+	$config['ext_base_smtp_config_editable']['smtp_auth'] = TRUE;
+	$config['ext_base_smtp_config_editable']['smtp_host'] = 'smtp.gmail.com';
+	$config['ext_base_smtp_config_editable']['smtp_user'] = 'maximrios@gmail.com';
+	$config['ext_base_smtp_config_editable']['smtp_pass'] = 'ara21605';
+	$config['ext_base_smtp_config_editable']['smtp_port'] = 465;
+	$config['ext_base_smtp_config_editable']['validate'] = '';
+	$config['ext_base_smtp_config_editable']['SMTPSecure'] = 'ssl';
+
+	$config['ext_base_smtp_config_editable']['mail'] = 'maximrios@gmail.com';
+	$config['ext_base_smtp_config_editable']['asunto_mail'] = 'Consulta desde web';
+	$config['ext_base_smtp_config_editable']['cuerpo_mail'] = 'mail_template';

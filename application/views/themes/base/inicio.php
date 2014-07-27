@@ -1,4 +1,4 @@
-	<div class="col-lg-12">
+	<!--<div class="col-lg-12">-->
 		<div class="slider-wrapper theme-default">
     		<div class="ribbon"></div>
     		<div id="slider" class="nivoSlider">
@@ -9,8 +9,16 @@
         		<a href="#" target=""><img src="assets/images/imagen22.jpg" alt=""/></a>
     		</div>
     	</div>
+	<!--</div>-->
+<section class="wrap-content container col-xs-12 col-lg-9">
+	<div class="row">
+		<h3 style="text-align:center;">Bienvenido</h3>
+		<p style="text-align:center;">En nombre de la Fundación FID (Salta) les damos la más cordial bienvenida a nuestra página web.</p>
+		<p style="text-align:center;">El principal objetivo de este canal de comunicación, es dar a conocer sobre nuestros objetivos institucionales y actividades que realizamos en el día a día acompañando a las comunidades que viven en contextos rurales.</p>
+		<p style="text-align:center;">Podrán encontrar aquí de una manera ágil y directa, una amplia descripción de nuestras funciones y acciones en los diversos campos y áreas de trabajo como son la gestión ambiental, el desarrollo económico sustentable, la educación, la promoción de la salud, el fortalecimiento cultural de las comunidades en pos de lograr el Desarrollo Integral de todas las comunidades.</p>	
 	</div>
 	<div class="row staff">
+		<h4 class="titulo_seccion">Conocénos</h4>	
 		<div class="col-lg-4">
 			<span><img src="assets/images/staff/persona1.jpg"></span>
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -30,32 +38,18 @@
 	<div class="col-lg-9 ultimas_novedades">
 		<h4 class="titulo_seccion">Ultimas novedades</h4>
 		<hr>
-		<div class="row">
-			<figure class="col-lg-12">
-				<img src="http://localhost/fid/assets/images/noticias/people-q-c-200-150-3.jpg">
-				<figcaption>
-					Juntos por Baritú
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-					<a href="#" class="btn btn-primary pull-right">Leer más</a>
-				</figcaption>
-			</figure>
-		</div>
-		<div class="col-lg-4">
-			<figure class="">
-				<figcaption class="titulo">Objetivos de Milenio</figcaption>
-				<img src="http://localhost/fid/assets/images/noticias/people-q-c-200-150-4.jpg">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-				<a href="#" class="btn btn-primary pull-right">Leer más</a>
-			</figure>
-		</div>
-		<div class="col-lg-4">
-			<figure class="">
-				<figcaption class="titulo">Titulo de noticia</figcaption>
-				<img src="http://localhost/fid/assets/images/noticias/people-q-c-200-150-3.jpg">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-				<a href="#" class="btn btn-primary pull-right">Leer más</a>
-			</figure>
-		</div>
+		<?php foreach ($noticias as $noticia) { ?>
+			<div class="row">
+				<figure class="col-lg-12">
+					<img src="http://localhost/fid/assets/images/noticias/people-q-c-200-150-3.jpg" class="col-lg-4">
+					<figcaption class="col-lg-8">
+						<a href="noticia/<?=$noticia['idNoticia']?>/<?=$noticia['uriNoticia']?>"><label><?=$noticia['tituloNoticia']?></label></a>
+						<p><?=$noticia['epigrafeNoticia']?></p>
+						<a href="noticia/<?=$noticia['idNoticia']?>/<?=$noticia['uriNoticia']?>" class="pull-right">Leer más</a>
+					</figcaption>
+				</figure>
+			</div>
+		<?php } ?>
 	</div>
 	<div class="col-lg-3">
 		<h4 class="titulo_seccion">Actividades</h4>

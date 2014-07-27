@@ -36,7 +36,18 @@ class Layout_model extends CI_Model {
         $sql = 'SELECT * FROM sabandijas_slider WHERE activoSlider = 1 AND NOW() BETWEEN vigenciaDesde AND vigenciaHasta';
         return $this->db->query($sql)->result_array();
     }
-
+    /**
+     * Programas
+     */
+    public function obtenerProgramas() {
+        $sql = 'SELECT * FROM hits_programas 
+        WHERE estadoPrograma = 1';
+        return $this->db->query($sql)->result_array();
+    }
+    public function obtenerProgramasUno($id) {
+        $sql = 'SELECT * FROM hits_programas WHERE idPrograma = ?;';
+        return array_shift($this->db->query($sql, array($id))->result_array());
+    }
     /**
      * Productos
      */
@@ -201,6 +212,7 @@ class Layout_model extends CI_Model {
         $sql = 'SELECT *
             FROM hits_galerias g
             INNER JOIN hits_galerias_media m on g.idGaleria = m.idGaleria
+            WHERE m.checkGaleriaMedia = 1
             ORDER BY nombreGaleria DESC  
             limit ? offset ? ;';
         return $this->db->query($sql, array((int) $offset, (int) $limit))->result_array();
@@ -244,7 +256,7 @@ class Layout_model extends CI_Model {
 
     public function guardarContacto($aParms) {
         if($aParms[0] == 'NULL' || $aParms[0] == 0) {
-            $sql = 'INSERT INTO sabandijas_contactos
+            $sql = 'INSERT INTO hits_contactos
                     (nombreContacto
                     , telefonoContacto
                     , emailContacto
@@ -279,5 +291,3 @@ class Layout_model extends CI_Model {
         }
     }
 }
-
-// EOF provincias_model.php

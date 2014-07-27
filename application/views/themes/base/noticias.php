@@ -1,13 +1,16 @@
+<section class="wrap-content container col-xs-12 col-lg-9">
 <div class="col-xs-12 col-lg-9">
-	<div class="noticias">
+	<div class="ultimas_novedades">
 	<?php foreach ($noticias as $noticia) { ?>
-		<div class="col-lg-12 noticia">
-			<h4><a href="noticia/<?=$noticia['idNoticia'].'/'.$noticia['uriNoticia']?>"><?=$noticia['tituloNoticia']?></a></h4>
-			<span class="col-lg-12 fecha"><?=$noticia['fechaDesdeNoticia']?></span>
-			<a href="noticia/<?=$noticia['idNoticia'].'/'.$noticia['uriNoticia']?>"><img src="assets/images/noticias/noticia1.jpg"></a>
-			<p><?=$noticia['epigrafeNoticia']?></p>
-			<p><?=word_limiter($noticia['descripcionNoticia'], 80)?></p>
-			<a href="noticia/<?=$noticia['idNoticia'].'/'.$noticia['uriNoticia']?>" class="btn btn-default pull-right">Leer más</a>
+		<div class="row">
+			<figure class="col-lg-12">
+				<img src="http://localhost/fid/assets/images/noticias/people-q-c-200-150-3.jpg" class="col-lg-4">
+				<figcaption class="col-lg-8">
+					<a href="noticia/<?=$noticia['idNoticia']?>/<?=$noticia['uriNoticia']?>"><label><?=$noticia['tituloNoticia']?></label></a>
+					<p><?=$noticia['epigrafeNoticia']?></p>
+					<a href="noticia/<?=$noticia['idNoticia']?>/<?=$noticia['uriNoticia']?>" class="pull-right">Leer más</a>
+				</figcaption>
+			</figure>
 		</div>
 	<?php } ?>
 	</div>

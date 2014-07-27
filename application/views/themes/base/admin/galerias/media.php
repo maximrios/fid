@@ -36,11 +36,11 @@
         <?= $vcMsjSrv; ?>
         <?php foreach ($imagenes as $imagen) { ?>
             <figure>
-                <img src="<?=$imagen['thumbGaleriaMedia']?>">
+                <img src=".<?=$imagen['thumbGaleriaMedia']?>">
                 <hr>
                 <figcaption class="row">
                     <!--<a href=""><span class="glyphicon glyphicon-pencil"></span></a>-->
-                    <a href="<?=$imagen['thumbGaleriaMedia']?>" class="fancybox"><span class="glyphicon glyphicon-zoom-in"></span></a>
+                    <a href=".<?=$imagen['pathGaleriaMedia']?>" class="fancybox"><span class="glyphicon glyphicon-zoom-in"></span></a>
                     <a href="#" ic-post-to="galerias/eliminarImagen/<?=$imagen['idGaleriaMedia']?>" ic-target="#main_content"><span class="glyphicon glyphicon-trash"></span></a>
                 </figcaption>
             </figure>

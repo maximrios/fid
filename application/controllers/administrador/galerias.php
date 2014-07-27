@@ -184,15 +184,17 @@ class Galerias extends Ext_crud_Controller {
             $this->load->library('hits/uploads', array(), 'uploads');
             $data = $this->uploads->do_upload($config);
             if($data) {
+                print_r($data);
                 $this->galerias->guardarImagen(
                     array(
-                        ''
-                        , '../'.$galeria['pathGaleria'].'/'.$data[0]['file_name']
-                        , '../'.$galeria['pathGaleria'].'/'.$data[0]['file_name']
+                        $data[0]['file_name']
+                        , './'.$galeria['pathGaleria'].$data[0]['file_name']
+                        , './'.$data[0]['thumbnails'][0]['pathThumbnail']
                         , 1
                         , $galeria['idGaleria']
                     )
                 );
+                echo $this->db->last_query();
             }
         }
         else {

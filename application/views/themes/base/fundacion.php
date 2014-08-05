@@ -1,4 +1,5 @@
-<section class="wrap-content container col-xs-12 col-lg-9 section">
+<section class="wrap-content container col-xs-12 col-lg-9">
+	<section class="section">
 	<h4 class="titulo_seccion">QUIENES <span class="naranja">SOMOS</span></h4>
 	<hr>
 	<div class="col-lg-12">
@@ -43,6 +44,7 @@
 	</ul>
 	</div>
 </div>
+</section>
 <script type="text/javascript">
 	$('#slider').nivoSlider({
 		directionNav: false,

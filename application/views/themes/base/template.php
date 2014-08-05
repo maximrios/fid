@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="http://localhost/fid/assets/themes/base/css/jquery.simplyScroll.css">
 	<link rel="stylesheet" type="text/css" href="http://localhost/fid/assets/themes/base/css/responsive-calendar.css">
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.js"></script>
+	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/responsive-calendar.js"></script>
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.nivo.slider.js"></script>
 	<script type="text/javascript" src="http://localhost/fid/assets/themes/base/js/jquery.simplyScroll.js"></script>
@@ -28,10 +29,15 @@
   ga('send', 'pageview');
 
 </script>
+<style type="text/css">
+.navbar-default {
+	z-index: 9999!important;
+}
+</style>
 </head>
 <body>
 	<div class="navbar navbar-default nav-top">
-		<div class="container col-lg-9">
+		<div class="main-content container col-lg-9">
 			<ul class="nav navbar-nav pull-right">
 				<li class="facebook"><a href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" title="Encontranos en facebook" target="_blank"></a></li>
 				<li><a href="<?=site_url('contacto')?>"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;DONAR AHORA</a></li>
@@ -40,30 +46,32 @@
 		</div>
 	</div>
 	<header>
-		<div class="container col-lg-9">
+		<div class="main-content container col-lg-9">
 			<h1><a href="http://fundacionfidsalta.org" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales" title="Fundación para la Integración y el Desarollo de Comunidades Rurales"><img src="<?=base_url()?>assets/images/logo_header.jpg" title="Fundación para la Integración y el Desarollo de Comunidades Rurales" alt="Fundación para la Integración y el Desarollo de Comunidades Rurales" width="110"></a></h1>	
-			<nav class="nav navbar-nav">
-				<ul id="navlist" class="container col-lg-10 pull-right">
-					<!--<li class="active"><a href="inicio" title="">Inicio</a></li>
-					<li><a href="fundacion" title="">Quienes Somos</a></li>
-					<li><a href="programas" title="">Programas</a></li>
-					<li><a href="noticias" title="">Noticias</a></li>
-					<li><a href="galeria" title="">Galeria</a></li>
-					<li><a href="contacto" title="">Contacto</a></li>-->
-					<?=$main_menu?>
-				</ul>
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+	      				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-primary">
+        					<span class="sr-only">Toggle navigation</span>
+        					<span class="icon-bar"></span>
+        					<span class="icon-bar"></span>
+        					<span class="icon-bar"></span>
+      					</button>
+   					</div>
+   					<div class="collapse navbar-collapse" id="navbar-collapse-primary">
+						<ul id="navlist" class="container col-lg-10 pull-right nav navbar-nav">
+							<?=$main_menu?>
+						</ul>
+					</div>
+				</div>
 			</nav>
 		</div>
-
 	</header>
-	
-	
 		<?=$main_content?>
 	</section>
-	
 	<footer>
-		<div class="container col-lg-9">
-			<div class="col-lg-2">
+		<div class="main-content container col-lg-9">
+			<!--<div class="col-lg-2">
 				<h5>Menú</h5>
 				<ul>
 					<li><a href="inicio">Inicio</a></li>
@@ -73,7 +81,7 @@
 					<li><a href="" title="">Galeria</a></li>
 					<li><a href="contacto" title="">Contacto</a></li>
 				</ul>
-			</div>
+			</div>-->
 			<div class="col-lg-4">
 				<h5>Contactános</h5>
 				<ul>

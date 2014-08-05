@@ -1,5 +1,6 @@
 <section class="wrap-content container col-xs-12 col-lg-9">
-<div class="col-lg-8">
+	<section>
+<div class="col-lg-8 section">
 	<div class="col-lg-12 noticia">
 		<h4 class="naranja"><?=$noticia['tituloNoticia']?></h4>
 		<div class="col-lg-12">
@@ -10,11 +11,13 @@
 		<p><?=htmlspecialchars_decode($noticia['descripcionNoticia'])?></p>
 	</div>
 </div>
-<div class="col-lg-4">
-	<h4 class="titulo_seccion">Otras Noticias</h4>
+<div class="col-lg-4 section">
+	<h4 class="titulo_seccion">OTRAS <span class="naranja">NOTICIAS</span></h4>
+    		<hr>
 	<ul class="otras_novedades">
 	<?php foreach ($relacionadas as $noticia) { ?>
 		<li><a href="noticia/<?=$noticia['idNoticia']?>/<?=$noticia['uriNoticia']?>"><?=$noticia['tituloNoticia']?></a></li>
 	<?php } ?>
 	</ul>
 </div>
+</section>

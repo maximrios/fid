@@ -7,7 +7,8 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <section class="wrap-content container col-xs-12 col-lg-9">
-<div class="col-xs-12 col-lg-9 section">
+	<section>
+<div class="col-xs-12 col-lg-8 section">
 	<h4 class="titulo_seccion">NOTICIAS <span class="naranja">FID</span></h4>
     		<hr>
 	<div class="ultimas_novedades">
@@ -25,7 +26,7 @@
 	<?php } ?>
 	</div>
 </div>
-<div class="hidden-xs col-lg-3 section">
+<div class="hidden-xs col-lg-4 section">
 	<h4 class="titulo_seccion">OTRAS <span class="naranja">NOTICIAS</span></h4>
     		<hr>
 	<ul class="aside">
@@ -35,3 +36,4 @@
 	</ul>
 	<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="250" data-height="400" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 </div>
+</section>

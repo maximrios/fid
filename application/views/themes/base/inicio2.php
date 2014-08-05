@@ -87,7 +87,7 @@
     		</div>
     	</div>
 	<!--</div>-->
-<section class="wrap-content container col-xs-12 col-lg-10">
+<section class="wrap-content main-content container col-xs-12 col-lg-10">
 	<div class="row">
 		<div class="col-lg-12">
 			<h4 class="titulo_seccion">MENSAJE DE <span class="naranja">BIENVENIDA</span></h4>
@@ -179,8 +179,8 @@
         		<div class="days" data-group="days">
         		</div>
       		</div>
-		</div><br>
-		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="250" data-height="350" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+		</div>
+		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="235" data-height="408" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">

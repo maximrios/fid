@@ -30,9 +30,13 @@
 </script>
 </head>
 <body>
-	<div class="navbar navbar-default">
+	<div class="navbar navbar-default nav-top">
 		<div class="container col-lg-9">
-			<a href="#" class="btn btn-primary pull-right">Donar ahora</a>
+			<ul class="nav navbar-nav pull-right">
+				<li class="facebook"><a href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" title="Encontranos en facebook" target="_blank"></a></li>
+				<li><a href="<?=site_url('contacto')?>"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;DONAR AHORA</a></li>
+			</ul>
+			
 		</div>
 	</div>
 	<header>
@@ -91,6 +95,11 @@
 			</div>
 			<div class="col-lg-3" style="text-align:right;">
 				<img src="<?=base_url()?>assets/images/fiscal.png" width="100">
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container col-lg-9">
+				Fundación para la Integración y el Desarrollo de Comunidades | &copy; 2014 Todos los derechos reservados.
 			</div>
 		</div>
 	</footer>

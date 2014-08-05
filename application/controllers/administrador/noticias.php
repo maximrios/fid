@@ -207,9 +207,34 @@ class Noticias extends Ext_crud_controller {
         $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
         $this->listado();
     }
+    public function upload() {
+        $config = array(
+            'cantidad_imagenes' => 1
+            , 'upload_path' => 'assets/images/noticias'
+            , 'allowed_types' => 'jpg|png'
+            , 'max_size' => 5000
+            , 'create_thumb' => true
+            , 'thumbs' => array(
+                array('thumb_marker' => '_thumb', 'width' => 200)
+            )
+        );
+        $this->load->library('hits/uploads', array(), 'uploads');
+        $data = $this->uploads->do_upload($config);
+        $data[0]['file_path'] = 'assets/images/noticias/'.$data[0]['file_name'];
+        echo json_encode($data);
+        /*if($data) {
+            
+            $this->galerias->guardarImagen(
+                array(
+                    $data[0]['file_name']
+                    , './'.$galeria['pathGaleria'].$data[0]['file_name']
+                    , './'.$data[0]['thumbnails'][0]['pathThumbnail']
+                    , 1
+                    , $galeria['idGaleria']
+                )
+            );
+            echo $this->db->last_query();
+        }*/
+    }
 }
-
-
-    
-
 ?>

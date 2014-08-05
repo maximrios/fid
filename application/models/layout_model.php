@@ -4,6 +4,10 @@ class Layout_model extends CI_Model {
     function __construct() {
         parent::__construct();
     }
+    public function datos() {
+        $sql = 'SELECT * FROM hits_clientes WHERE idCliente = 1;';
+        return array_shift($this->db->query($sql, array($id))->result_array());
+    }
     public function obtener($vcBuscar = '', $limit = 0, $offset = 9999999) {
         $sql = 'SELECT *
             FROM rosobe_view_categorias
@@ -35,6 +39,18 @@ class Layout_model extends CI_Model {
     function obtenerSlider() {
         $sql = 'SELECT * FROM sabandijas_slider WHERE activoSlider = 1 AND NOW() BETWEEN vigenciaDesde AND vigenciaHasta';
         return $this->db->query($sql)->result_array();
+    }
+    /**
+     * Eventos
+     */
+    public function obtenerEventos() {
+        $sql = 'SELECT * FROM hits_eventos
+        ORDER BY fechaDesdeEvento DESC';
+        return $this->db->query($sql)->result_array();
+    }
+    public function obtenerEventosUno($id) {
+        $sql = 'SELECT * FROM hits_eventos WHERE idEvento = ?;';
+        return array_shift($this->db->query($sql, array($id))->result_array());
     }
     /**
      * Programas
@@ -216,6 +232,18 @@ class Layout_model extends CI_Model {
             ORDER BY nombreGaleria DESC  
             limit ? offset ? ;';
         return $this->db->query($sql, array((int) $offset, (int) $limit))->result_array();
+    }
+    public function obtenerGaleriaUno($idGaleria) {
+        $sql = 'SELECT *
+            FROM hits_galerias g
+            WHERE idGaleria = ?;';
+        return array_shift($this->db->query($sql, array($idGaleria))->result_array());
+    }
+    public function obtenerGaleriaMedia($idGaleria) {
+        $sql = 'SELECT *
+            FROM hits_galerias_media m
+            WHERE idGaleria = ?;';
+        return $this->db->query($sql, array($idGaleria))->result_array();
     }
     /**
      * Personas

@@ -6,14 +6,20 @@ $config['navigation'] = array(
                 'link'   => 'admin',
                 'icon'   => 'home'
             ),
+            'datos' => array(
+                'id'     => 'datos',
+                'title'  => 'Datos',
+                'link'   => 'administrador/datos',
+                'icon'   => 'wrench'
+            ),
             'eventos' => array(
                 'id'     => 'eventos',
                 'title'  => 'Eventos',
                 'link'   => 'administrador/eventos',
                 'icon'   => 'calendar'
             ),
-            'programa' => array(
-                'id'     => 'programa',
+            'programas' => array(
+                'id'     => 'programas',
                 'title'  => 'Programas',
                 'link'   => 'administrador/programas',
                 'icon'   => 'file'

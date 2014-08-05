@@ -1,3 +1,72 @@
+<style type="text/css">
+.als-container {
+	position: relative;
+	width: 100%;
+	margin: 0px auto;
+}
+
+.als-viewport {
+	position: relative;
+	overflow: hidden;
+	margin: 0px!important;
+	width: 100%!important;
+	padding: 0!important;
+}
+
+.als-wrapper {
+	position: relative;
+	list-style: none;
+}
+
+.als-item {
+	position: relative;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+}
+
+.als-prev, .als-next {
+	font-size: 2em;
+	position: absolute;
+	cursor: pointer;
+	clear: both;
+}
+.als-prev {
+	float: left;
+}
+#demo2 .als-item {
+	margin: 10px 0px;
+	min-height: 152px;
+	min-width: 128px;
+}
+
+#demo2 .als-item img {
+	position: relative;
+	display: block;
+	vertical-align: middle;
+	margin-bottom: 8px;
+}
+
+#demo2 .als-prev, #demo2 .als-next {
+	width: 22px;
+	height: 15px;
+}
+
+#demo2 .als-prev {
+	left: -50px;
+	top: 90px;
+}
+
+#demo2 .als-next {
+	right: -50px;
+	top: 90px;
+}
+
+#demo2 .als-item {
+	vertical-align: middle;
+}
+</style>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -32,8 +101,13 @@
 	<div class="row section">
 		<h4 class="titulo_seccion">NUESTROS <span class="naranja">PROGRAMAS</span> | <a href="programas">VER TODOS</a></h4>
 		<hr>
+		<div class="als-container" id="demo2">
+  			<span class="als-prev glyphicon glyphicon-circle-arrow-left pull-left hidden-xs"></span>
+			<div class="als-viewport">
+				
+			<div class="als-wrapper row">
 		<?php foreach ($programas as $programa) { ?>
-		<div class="col-lg-3">
+		<div class="als-item col-xs-12 col-lg-3">
 			<a href="programa/<?=$programa['idPrograma']?>/<?=$programa['uriPrograma']?>">
 				<figure class="programas">
 					<img src="./assets/images/programas/programa<?=$programa['idPrograma']?>.jpg">
@@ -45,6 +119,10 @@
 			</a>
 		</div>
 		<?php } ?>
+				</div>
+			</div>
+			<span class="als-next glyphicon glyphicon-circle-arrow-right hidden-xs"></span>
+		</div>
 	</div>
 	<!--<div class="row staff">
 		<h4 class="titulo_seccion">Conocénos</h4>	
@@ -127,6 +205,13 @@
 
 <script type="text/javascript" src="assets/themes/base/js/jquery.als-1.6.min.js"></script>
 <script type="text/javascript">
+	$("#demo2").als({
+		visible_items: 4,
+		scrolling_items: 1,
+		orientation: "horizontal",
+		circular: "yes",
+		autoscroll: "no"
+	});
 	$('#slider').nivoSlider({
 		controlNav: false,
 	});

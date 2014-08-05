@@ -89,13 +89,13 @@ class Galerias_model extends CI_Model {
     public function truncateImagen($aParms) {
         $sql = 'UPDATE hits_galerias_media SET checkGaleriaMedia = 0 WHERE idGaleria = ?;';
     }
-    public function predeterminarImagen($aParms) {
+    /*public function predeterminarImagen($aParms) {
         $sql = 'SELECT * FROM hits_galerias_media WHERE idGaleria = ? AND checkGaleriaMedia = 1;';
         $result = $this->db->query($sql, $aParms);
         if(!$result) {
             $sql2 = 'UPDATE hits_galerias_media SET checkGaleriaMedia = 1 WHERE idGaleria = ? AND idGaleriaMedia = ?;'
         }
-    }
+    }*/
 
     
 

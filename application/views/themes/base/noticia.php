@@ -9,6 +9,8 @@
 		<img src="assets/images/noticias/noticia1.jpg">
 		<p><?=$noticia['epigrafeNoticia']?></p>
 		<p><?=htmlspecialchars_decode($noticia['descripcionNoticia'])?></p>
+		
+		<iframe src="//www.facebook.com/plugins/like.php?href=<?=site_url().'noticia/'.$noticia['idNoticia'].'/'.$noticia['uriNoticia'].'.php'?>&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:80px;" allowTransparency="true"></iframe>
 	</div>
 </div>
 <div class="col-lg-4 section">

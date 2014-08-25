@@ -240,7 +240,6 @@ EOT;
 			$password = $this->_crypt($password);
 		}
 		$rsResult = $this->ci->usuarios->autenticar($login, $password, $this->ci->input->ip_address());
-		echo $this->ci->db->last_query();
 		try {
 			if(!$rsResult) {
 				$this->_vcMensajeError = $this->opciones['error_def_msg'];

@@ -33,7 +33,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->autenticacion->apellidoPersona().', '.$this->autenticacion->nombrePersona();?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="<?=$PanelInfo['web'];?>" target="_blank"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Ver Sitio Web</a></li>
-                        <li><a href="auth/logout"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Cerrar Sesión</a></li>
+                        <li><a href="<?=site_url('administrador/auth/logout')?>"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Cerrar Sesión</a></li>
                     </ul>
                 </li>
             </ul>

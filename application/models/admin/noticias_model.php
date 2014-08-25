@@ -64,34 +64,33 @@ class Noticias_model extends CI_Model {
             return true;
         }
     }
+    public function obtenerImagenes($idNoticia) {
+        $sql = 'SELECT *
+            FROM hits_noticias_imagenes
+            WHERE idNoticia = ?;';
+        return $this->db->query($sql, array((int) $idNoticia))->result_array();
+    }
+    public function obtenerUnoImagen($id) {
+        $sql = 'SELECT * FROM hits_noticias_imagenes WHERE idNoticiaImagen = ?;';
+        return array_shift($this->db->query($sql, array($id))->result_array());
+    }
     public function guardarImagen($aParms) {
-        /*if($aParms[0] == 'NULL' || $aParms[0] == 0) {
-            $sql = 'INSERT INTO sabandijas_productos_imagenes
-                    (idProducto
-                    , pathProductoImagen
-                    , detailProductoImagen
-                    , thumbProductoImagen
-                    , thumbdetailProductoImagen) 
-                    VALUES
-                    ('.$aParms[1].'
-                    , "'.$aParms[2].'"
-                    , "'.$aParms[3].'"
-                    , "'.$aParms[4].'"
-                    , "'.$aParms[5].'");';
-        }
-        else {
-            $sql = 'UPDATE sabandijas_productos_imagenes SET 
-                    checkProductoImagen = '.$aParms[6].'
-                    WHERE idProductoImagen = pidProductoImagen;';
-        }
+        $sql = 'INSERT INTO hits_noticias_imagenes
+            (pathNoticiaImagen
+            , thumbNoticiaImagen
+            , idNoticia) 
+            VALUES
+            ("'.$aParms[0].'"
+            , "'.$aParms[1].'"
+            , "'.$aParms[2].'");';
         $result = $this->db->query($sql, $aParms);
-        return $this->db->insert_id();*/
-        $sql = 'UPDATE hits_noticias SET 
-            thumbImagenNoticia = "'.$aParms[1].'"
-            , detailImagenNoticia = "'.$aParms[2].'"
-            WHERE idNoticia = '.$aParms[0].';';
-        $result = $this->db->query($sql);
         return $this->db->insert_id();
+    }
+    public function eliminarImagen($idNoticiaImagen) {
+        $sql = 'DELETE FROM hits_noticias_imagenes
+            WHERE idNoticiaImagen = ?;';
+        $result = $this->db->query($sql, $idNoticiaImagen);
+        return TRUE;
     }
 
     public function cambiarEstado($aParms) {

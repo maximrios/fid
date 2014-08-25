@@ -29,12 +29,13 @@ class Uploads {
             } 
             else {
                 $data[$i] = $ci->upload->data();
+                $data[$i]['pathCompleto'] = $config_user['upload_path'].$data[$i]['raw_name'].$data[$i]['file_ext'];
                 if($config_user['create_thumb']) {
                     foreach ($config_user['thumbs'] as $thumb) {
                         $configa['create_thumb'] = $config_user['create_thumb'];
                         $configa['maintain_ratio'] = TRUE;
                         $configa['new_image'] = $config_user['upload_path'];
-                        $configa['source_image'] = $config_user['upload_path'].$data[$i]['file_name'];
+                        $configa['source_image'] = $config_user['upload_path'].$data[$i]['raw_name'].$data[$i]['file_ext'];
                         $configa['thumb_marker'] = $thumb['thumb_marker'];
                         $configa['width'] = $thumb['width'];
                         $configa['height'] = 1;

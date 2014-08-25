@@ -86,8 +86,9 @@ class Noticias extends Ext_crud_controller {
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
         $publicar = '<a href="#" name="pedon" value="12" ic-post-to="noticias/publicacion/{idNoticia}" title="Cambiar estado de {tituloNoticia}" ic-target="#main_content" rel="{\'idNoticia\': {idNoticia}}">&nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;</a>';
         $editar = '<a href="#" name="pen" ic-attr-src="rel" ic-post-to="noticias/formulario/{idNoticia}" title="Modificar la noticia {tituloNoticia}"  ic-target="#main_content" rel="main:2">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
+        $imagenes = '<a href="#" name="pen" ic-attr-src="rel" ic-post-to="noticias/imagenes/{idNoticia}" title="Administrar imagenes para la noticia {tituloNoticia}"  ic-target="#main_content" rel="main:2">&nbsp;<span class="glyphicon glyphicon-picture"></span>&nbsp;</a>';
         $eliminar = '<a href="#" ic-post-to="noticias/eliminar/{idNoticia}" title="Eliminar noticia {tituloNoticia}" ic-target="#main_content" rel="{\'idNoticia\': {idNoticia}}">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
-        $controles = $publicar.$editar.$eliminar;
+        $controles = $publicar.$editar.$imagenes.$eliminar;
         $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
         $this->_rsRegs = $this->noticias->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
         $this->load->view('admin/noticias/listado'
@@ -111,15 +112,19 @@ class Noticias extends Ext_crud_controller {
         $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
         $this->load->view('admin/noticias/formulario', $aData);
     }
-    public function consulta() {
-        $this->load->view('lib_autenticacion/frm-faq-borrar'
-                , array(
-            'Reg' => $this->_inicReg($this->input->post('vcForm'))
-            , 'vcFrmAction' => 'autenticacion/faq/eliminar'
-            , 'vcMsjSrv' => $this->_aEstadoOper['message']
-            , 'vcAccion' => ($this->_reg['inIdFaq'] > 0) ? 'Eliminar' : ''
-                )
-        );
+    public function imagenes($noticia=FALSE) {
+        if($noticia) {
+            $aData['Reg'] = $this->noticias->obtenerUno($noticia);
+            $aData['Reg']['fechaDesdeNoticia'] = GetDateFromISO($aData['Reg']['fechaDesdeNoticia']);
+            $aData['imagenes'] = $this->noticias->obtenerImagenes($noticia);
+        }
+        else {
+            $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));
+            $aData['imagenes'] = array();    
+        }
+        $aData['formAction'] = 'noticias/guardar';
+        $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
+        $this->load->view('admin/noticias/imagenes', $aData);
     }
     function ver($noticia) {
         $aData['noticia'] = $this->noticia->obtenerUno($noticia);
@@ -208,33 +213,60 @@ class Noticias extends Ext_crud_controller {
         $this->listado();
     }
     public function upload() {
-        $config = array(
-            'cantidad_imagenes' => 1
-            , 'upload_path' => 'assets/images/noticias'
-            , 'allowed_types' => 'jpg|png'
-            , 'max_size' => 5000
-            , 'create_thumb' => true
-            , 'thumbs' => array(
-                array('thumb_marker' => '_thumb', 'width' => 200)
-            )
-        );
-        $this->load->library('hits/uploads', array(), 'uploads');
-        $data = $this->uploads->do_upload($config);
-        $data[0]['file_path'] = 'assets/images/noticias/'.$data[0]['file_name'];
-        echo json_encode($data);
-        /*if($data) {
-            
-            $this->galerias->guardarImagen(
-                array(
-                    $data[0]['file_name']
-                    , './'.$galeria['pathGaleria'].$data[0]['file_name']
-                    , './'.$data[0]['thumbnails'][0]['pathThumbnail']
-                    , 1
-                    , $galeria['idGaleria']
+        $noticia = $this->noticias->obtenerUno($this->input->post('idNoticia'));
+        if($noticia) {
+            $path = 'assets/images/noticias/';
+            $config = array(
+                'cantidad_imagenes' => 1
+                , 'upload_path' => $path
+                , 'allowed_types' => 'jpg|png'
+                , 'max_size' => 5000
+                , 'create_thumb' => true
+                , 'thumbs' => array(
+                    array('thumb_marker' => '_thumb', 'width' => 200)
                 )
             );
-            echo $this->db->last_query();
-        }*/
+            $this->load->library('hits/uploads', array(), 'uploads');
+            $data = $this->uploads->do_upload($config);
+            if($data) {
+                $this->noticias->guardarImagen(
+                    array(
+                        $data[0]['pathCompleto']
+                        , $data[0]['thumbnails'][0]['pathThumbnail']
+                        , $noticia['idNoticia']
+                    )
+                );
+            }
+        }
+        else {
+            echo "no entro";
+        }
+    }
+    public function eliminarImagen($idNoticiaImagen=FALSE) {
+        $imagen = $this->noticias->obtenerUnoImagen($idNoticiaImagen);
+        if($imagen) {
+            $this->_aEstadoOper['status'] = $this->noticias->eliminarImagen($imagen['idNoticiaImagen']);
+            if ($this->_aEstadoOper['status'] > 0) {
+                $this->load->library('hits/uploads', array(), 'uploads');
+                $this->_aEstadoOper['status'] = $this->uploads->delete_image('./'.$imagen['pathNoticiaImagen']);
+                $this->_aEstadoOper['status'] = $this->uploads->delete_image('./'.$imagen['thumbNoticiaImagen']);
+                if($this->_aEstadoOper['status']) {
+                    $this->_aEstadoOper['message'] = 'Se eliminó la imagen correctamente.';    
+                }
+                else {
+                    $this->_aEstadoOper['message'] = 'Se eliminó la imagen.';        
+                }
+            } 
+            else {
+                $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
+            }
+        }
+        else {
+            $this->_aEstadoOper['message'] = 'Ocurrió un error al eliminar la noticia. Consulte con el administrador del sistema.';
+        }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
+        $this->imagenes($imagen['idNoticia']);
+        //$this->listado();
     }
 }
 ?>

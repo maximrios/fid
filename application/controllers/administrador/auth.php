@@ -200,7 +200,7 @@ class Auth extends Ext_Controller {
 
 	public function logout($redirect='si')
 	{
-		$this->lib_autenticacion->logout();
+		$this->autenticacion->logout();
 		//if ($redirect=='si') redirect(base_url(),'location');
 		if ($redirect=='si') redirect(config_item('lib_autenticacion_login_uri'),'location');
 	}

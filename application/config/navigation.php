@@ -57,7 +57,7 @@ $config['navigation'] = array(
             'logout' => array(
                 'id'     => 'logout',
                 'title'  => 'Cerrar Sesión',
-                'link'   => 'auth/logout',
+                'link'   => 'administrador/auth/logout',
                 'icon'   => 'off'
             )
         );

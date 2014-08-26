@@ -4,16 +4,16 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Panel de Administracion</title>
-    <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/nav-wizard.bootstrap.css">
-    <link rel="stylesheet" href="<?=config_item('ext_theme_folder')?>css/hits.css">
-    <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/jquery.js"></script>
-    <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/moment.js"></script>
-    <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/intercooler.min.js"></script>
-    <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/bootstrap-datetimepicker.js"></script>
-    <script type="text/javascript" src="<?=config_item('ext_theme_folder')?>js/bootstrap-datetimepicker.es.js"></script>
+	<link rel="stylesheet" href="<?=site_url('assets/themes/base/css/bootstrap.min.css')?>">
+    <link rel="stylesheet" href="<?=site_url('assets/themes/base/css/bootstrap-datetimepicker.min.css')?>">
+    <link rel="stylesheet" href="<?=site_url('assets/themes/base/css/nav-wizard.bootstrap.css')?>">
+    <link rel="stylesheet" href="<?=site_url('assets/themes/base/css/hits.css')?>">
+    <script type="text/javascript" src="<?=site_url('assets/themes/base/js/jquery.js')?>"></script>
+    <script type="text/javascript" src="<?=site_url('assets/themes/base/js/moment.js')?>"></script>
+    <script type="text/javascript" src="<?=site_url('assets/themes/base/js/bootstrap.min.js')?>"></script>
+    <script type="text/javascript" src="<?=site_url('assets/themes/base/js/intercooler.min.js')?>"></script>
+    <script type="text/javascript" src="<?=site_url('assets/themes/base/js/bootstrap-datetimepicker.js')?>"></script>
+    <script type="text/javascript" src="<?=site_url('assets/themes/base/js/bootstrap-datetimepicker.es.js')?>"></script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

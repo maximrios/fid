@@ -16,6 +16,7 @@ Class Noticias extends Ext_Controller {
 		$data = array();
 		$data['relacionadas'] = $this->layout->obtenerNoticias();
 		$data['noticia'] = $this->layout->obtenerNoticiaId($noticia);
+		$data['imagenes'] = $this->layout->obtenerImagenesNoticia($noticia);
 		$this->_menu = 'noticias';
 		if($data['noticia']) {
 			$this->_content = $this->load->view('noticia', $data, true);

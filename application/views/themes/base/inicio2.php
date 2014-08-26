@@ -148,7 +148,7 @@
 		<?php foreach ($noticias as $noticia) { ?>
 			<div class="row">
 				<figure class="col-lg-12">
-					<img src="http://localhost/fid/assets/images/noticias/people-q-c-200-150-3.jpg" class="col-lg-4">
+					<img src="<?=$noticia['thumbNoticiaImagen']?>" class="col-lg-4">
 					<figcaption class="col-lg-8">
 						<a href="noticia/<?=$noticia['idNoticia']?>/<?=$noticia['uriNoticia']?>"><label><?=$noticia['tituloNoticia']?></label></a>
 						<p><?=$noticia['epigrafeNoticia']?></p>

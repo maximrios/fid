@@ -242,6 +242,12 @@ class Noticias extends Ext_crud_controller {
             echo "no entro";
         }
     }
+    public function succesUpload($noticia) {
+        $this->_aEstadoOper['status'] = 1;
+        $this->_aEstadoOper['message'] = 'Se subió el archivo correctamente.';
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
+        $this->imagenes($noticia);
+    }
     public function eliminarImagen($idNoticiaImagen=FALSE) {
         $imagen = $this->noticias->obtenerUnoImagen($idNoticiaImagen);
         if($imagen) {

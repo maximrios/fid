@@ -3,6 +3,7 @@
         background: #f9f9f9;
         border: 3px dashed #d0d0d0;
         color: #d2d2d2;
+        min-height: 365px;
         width: 100%;
     }
     .col-lg-6 > div {
@@ -22,6 +23,7 @@
                 <script src="../assets/themes/base/dropzone/dropzone.js"></script>
             </div>
             <input type="hidden" id="idNoticia" name="idNoticia" value="<?=$Reg['idNoticia']?>">
+            <button id="btn_upload" ic-post-to="noticias/succesUpload/<?=$Reg['idNoticia']?>" ic-target="#main_content" class="btn btn-primary col-lg-12">Subir imagenes</button>
         </div>
         <div class="col-lg-6">
             <div class="panel panel-default">
@@ -51,18 +53,31 @@
 
                 </div>
             </div>
+            
         </div>
-	</div>
+	</div>>
 </div>
 <script type="text/javascript">
-    $("div#myId").dropzone({ 
+    var myDropzone = new Dropzone("div#myId", { 
         paramName: 'userfile[]',
         url: "noticias/upload",
         'sending': function(file, xhr, formData) {
             formData.append("idNoticia", $('#idNoticia').val());
         },
-        //previewsContainer: '#preview'
+        autoProcessQueue: false,
     });
+    $('#btn_upload').on('beforeSend.ic', function() {
+        myDropzone.processQueue();
+    });
+    
+    /*$("div#myId").dropzone({ 
+        paramName: 'userfile[]',
+        url: "noticias/upload",
+        'sending': function(file, xhr, formData) {
+            formData.append("idNoticia", $('#idNoticia').val());
+        },
+        autoProcessQueue: false,
+    });*/
     $('figcaption > input').on('click', function() {
         $('figcaption > input[type=checkbox]').prop('checked', '');
         $(this).prop('checked', 'checked');

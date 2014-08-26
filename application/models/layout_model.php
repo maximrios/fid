@@ -205,9 +205,10 @@ class Layout_model extends CI_Model {
      * Noticias
      */
     public function obtenerNoticias($limit = 0, $offset = 9999999) {
-        $sql = 'SELECT *
-            FROM hits_noticias
-            WHERE estadoNoticia = 1
+        $sql = 'SELECT n.*, ni.idNoticiaImagen, ni.pathNoticiaImagen, ni.thumbNoticiaImagen, ni.checkNoticiaImagen
+            FROM hits_noticias n
+            INNER JOIN hits_noticias_imagenes ni ON n.idNoticia = ni.idNoticia
+            WHERE estadoNoticia = 1 AND checkNoticiaImagen = 1
             ORDER BY fechaDesdeNoticia DESC  
             limit ? offset ? ;';
         return $this->db->query($sql, array((int) $offset, (int) $limit))->result_array();
@@ -218,8 +219,17 @@ class Layout_model extends CI_Model {
         return $result[0]['inCant'];
     }
     public function obtenerNoticiaId($idNoticia) {
-        $sql = 'SELECT * FROM hits_noticias WHERE idNoticia = ?;';
+        $sql = 'SELECT * 
+        FROM hits_noticias
+        WHERE idNoticia = ?;';
         return array_shift($this->db->query($sql, array($idNoticia))->result_array());
+    }
+    public function obtenerImagenesNoticia($idNoticia) {
+        $sql = 'SELECT *
+            FROM hits_noticias_imagenes
+            WHERE idNoticia = ?
+            ORDER BY checkNoticiaImagen DESC;';
+        return $this->db->query($sql, array((int) $idNoticia))->result_array();
     }
     /**
      * Galerias

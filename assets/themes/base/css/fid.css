@@ -5,7 +5,7 @@
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-    background: #fc930a;
+    /*background: #fc930a;*/
     color: #666666;
 }
 header {
@@ -21,9 +21,6 @@ header h1 {
 .main-content {
     max-width: 1010px;
 }
-/*.blocke {
-    margin: 2.5em auto!important;
-}*/
 a, a:hover, a.active {
     outline: none!important;
 }
@@ -43,11 +40,33 @@ a, a:hover, a.active {
     padding-bottom: 0.5em;
     padding-top: 0.5em;
 }
+nav {
+    padding: 1em;
+    width: 100%;
+}
+nav.navbar {
+    min-height: 40px;
+}
+.lavalamp-object {
+    border-bottom: 2px solid #FFFFFF;
+    margin-top: -0.5em;
+}
 nav.navbar-default {
     background: none;
     font-size: 0.8em;
     font-weight: bold;
     padding: 0;
+}
+nav ul {
+    text-align: right;
+}
+nav ul li {
+    /*border-right: 1px solid #d2d2d2;*/
+    display: inline-block;
+    padding: 0 1.5em;
+}
+nav ul li:last-child {
+    border: none;
 }
 nav.navbar-default ul li.active a, nav.navbar-default ul li.active a:focus {
     background: none!important;
@@ -55,11 +74,20 @@ nav.navbar-default ul li.active a, nav.navbar-default ul li.active a:focus {
 nav.navbar-default ul li a {
     color: #FFFFFF!important;
 }
+nav ul li a {
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.1em;
+}
+nav ul li a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
 nav.navbar-default ul li.active {
     background: none!important;
 }
 nav.navbar-default ul li a {
-
+    padding: 10px 10px;
 }
 .nav-top {
     margin:  0!important;
@@ -100,41 +128,13 @@ nav.navbar-default ul li a {
 .nav-top li:hover a {
     color: #323336!important;
 }
-nav {
-    padding: 1em;
-    /*padding-top: 2.5em;*/
-    width: 100%;
-}
-.lavalamp-object {
-    border-bottom: 2px solid #FFFFFF;
-    margin-top: -0.5em;
-}
+
 .fb-like-box span {
     margin: 1em auto;
     text-align: center;
     margin-left: 0.7em!important;
 }
-nav ul {
-    text-align: right;
-}
-nav ul li {
-    /*border-right: 1px solid #d2d2d2;*/
-    display: inline-block;
-    padding: 0 1.5em;
-}
-nav ul li:last-child {
-    border: none;
-}
-nav ul li a {
-    border: none;
-    color: #FFFFFF;
-    font-size: 1.1em;
 
-}
-nav ul li a:hover {
-    color: #FFFFFF;
-    text-decoration: none;
-}
 .titulo_seccion {
     font-size: 1.2em;
     margin: 0 auto;
@@ -193,6 +193,15 @@ footer ul {
 /**
  * Fin Generales
  */
+#carousel .bx-wrapper .bx-viewport {
+    box-shadow: none!important;
+}
+#scroller li {
+    width: auto!important;
+}
+#scroller li img {
+    padding: 0 19px;
+}
 #slider img {
     max-height: 370px!important;
     min-height: 125px!important;

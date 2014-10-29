@@ -137,10 +137,9 @@
             "2013-05-03":{"number": 1}, 
             "2013-06-12": {}}
     });
-	
-        $("#scroller").simplyScroll({
-			pauseOnHover: false,
-            speed: 3,
-        });
-    
+    $('.carousel').bxSlider({
+                maxSlides: 1,
+                minSlides: 1,
+                pager: false,
+            });
 </script>

@@ -96,7 +96,6 @@
 		<p style="text-align:center;">El principal objetivo de este canal de comunicación, es dar a conocer sobre nuestros objetivos institucionales y actividades que realizamos en el día a día acompañando a las comunidades que viven en contextos rurales.</p>
 		<p style="text-align:center;">Podrán encontrar aquí de una manera ágil y directa, una amplia descripción de nuestras funciones y acciones en los diversos campos y áreas de trabajo como son la gestión ambiental, el desarrollo económico sustentable, la educación, la promoción de la salud, el fortalecimiento cultural de las comunidades en pos de lograr el Desarrollo Integral de todas las comunidades.</p>		
 		</div>
-		
 	</div>
 	<div class="row section">
 		<h4 class="titulo_seccion">NUESTROS <span class="naranja">PROGRAMAS</span> | <a href="programas">VER TODOS</a></h4>
@@ -104,21 +103,20 @@
 		<div class="als-container" id="demo2">
   			<span class="als-prev glyphicon glyphicon-circle-arrow-left pull-left hidden-xs"></span>
 			<div class="als-viewport">
-				
-			<div class="als-wrapper row">
-		<?php foreach ($programas as $programa) { ?>
-		<div class="als-item col-xs-12 col-lg-3">
-			<a href="programa/<?=$programa['idPrograma']?>/<?=$programa['uriPrograma']?>">
-				<figure class="programas">
-					<img src="./assets/images/programas/programa<?=$programa['idPrograma']?>.jpg">
-					<figcaption class="detalle">
-						<span class="nombre"><?=substr($programa['nombrePrograma'], 12)?></span>
-						<span class="more">Ver detalle</span>
-					</figcaption>
-				</figure>
-			</a>
-		</div>
-		<?php } ?>
+				<div class="als-wrapper row">
+					<?php foreach ($programas as $programa) { ?>
+					<div class="als-item col-xs-12 col-lg-3">
+						<a href="programa/<?=$programa['idPrograma']?>/<?=$programa['uriPrograma']?>">
+							<figure class="programas">
+								<img src="./assets/images/programas/programa<?=$programa['idPrograma']?>.jpg">
+								<figcaption class="detalle">
+									<span class="nombre"><?=substr($programa['nombrePrograma'], 12)?></span>
+									<span class="more">Ver detalle</span>
+								</figcaption>
+							</figure>
+						</a>
+					</div>
+					<?php } ?>
 				</div>
 			</div>
 			<span class="als-next glyphicon glyphicon-circle-arrow-right hidden-xs"></span>
@@ -222,10 +220,11 @@
             "2013-05-03":{"number": 1}, 
             "2013-06-12": {}}
     });
-	
-        $("#scroller").simplyScroll({
-			pauseOnHover: false,
-            speed: 3,
-        });
-    
+	$('#scroller').bxSlider({
+		auto: true,
+		maxSlides: 2,
+		infiniteLoop: true,
+		controls: false,
+        pager: false,
+    });
 </script>

@@ -1,5 +1,6 @@
 <?php
 	$route['fundacion'] = "inicio/fundacion";
+	$route['newsletter'] = "inicio/suscripcion";
 	//$route['noticias'] = "inicio/noticias";
 	$route['programa/(:num)/(:any)'] = 'programas/programa/$1';
 	$route['galerias'] = "inicio/galerias";

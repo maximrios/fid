@@ -5,7 +5,7 @@ class Contactos_model extends CI_Model {
     public function obtener($vcBuscar = '', $limit = 0, $offset = 9999999) {
         $sql = 'SELECT *
             FROM hits_contactos
-            WHERE nombreContacto LIKE ? 
+            WHERE CONCAT(nombreContacto, mensajeContacto) LIKE ? 
             ORDER BY fechaContacto DESC  
             limit ? offset ? ;';
         return $this->db->query($sql, array('%' . strtolower((string) $vcBuscar) . '%', (double) $offset, (double) $limit))->result_array();

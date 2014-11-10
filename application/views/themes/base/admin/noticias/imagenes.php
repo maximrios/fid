@@ -23,39 +23,30 @@
                 <script src="../assets/themes/base/dropzone/dropzone.js"></script>
             </div>
             <input type="hidden" id="idNoticia" name="idNoticia" value="<?=$Reg['idNoticia']?>">
-            <button id="btn_upload" ic-post-to="noticias/succesUpload/<?=$Reg['idNoticia']?>" ic-target="#main_content" class="btn btn-primary col-lg-12">Subir imagenes</button>
+            <button id="btn_upload" ic-post-to="noticias/imagenes/<?=$Reg['idNoticia']?>" ic-trigger-on="click" ic-target="#main_content" class="btn btn-primary col-lg-12">Subir imagenes</button>
         </div>
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">Imagenes cargadas</div>
                 <div id="imagenes-cargadas" class="panel-body">
-                    <?php foreach ($imagenes as $imagen) { ?>
-                        <figure class="imagen-cargada">
-                            <img src="../<?=$imagen['thumbNoticiaImagen']?>">
-                            <span class="glyphicon glyphicon-ok imagen-check"></span>
+                    <?php foreach ($imagenes as $imagen) { 
+                        $active = ($imagen['checkNoticiaImagen'])? 'active':'';?>
+                        <figure class="imagen-cargada <?=$active?>">
+                            <form ic-post-to="noticias/checkImagen" ic-trigger-on="click" ic-target="#main_content" id="form_check_<?=$imagen['idNoticiaImagen']?>" name="form_check_<?=$imagen['idNoticiaImagen']?>">
+                                <img src="../<?=$imagen['thumbNoticiaImagen']?>">
+                                <input type="hidden" id="idNoticiaImg" name="idNoticia" value="<?=$imagen['idNoticia']?>">
+                                <input type="hidden" id="idNoticiaImagen" name="idNoticiaImagen" value="<?=$imagen['idNoticiaImagen']?>">
+                            </form>
                             <figcaption>
-                                <input type="checkbox" name="midocis" class="pull-left">
-                                <a href="#" ic-post-to="noticias/eliminarImagen/<?=$imagen['idNoticiaImagen']?>" ic-target="#main_content"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                                <a href="#" ic-post-to="noticias/eliminarImagen/<?=$imagen['idNoticiaImagen']?>" ic-target="#main_content" title="Eliminar imagen"><span class="glyphicon glyphicon-remove pull-right"></span></a>
                             </figcaption>
                         </figure>
                     <?php } ?>
-                    <!--<div class="dz-preview dz-file-preview">
-                        <div class="dz-details">
-                            <div class="dz-filename"><span data-dz-name></span></div>
-                            <div class="dz-size" data-dz-size></div>
-                            <img data-dz-thumbnail />
-                        </div>
-                        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                        <div class="dz-success-mark"><span>✔</span></div>
-                        <div class="dz-error-mark"><span>✘</span></div>
-                        <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                    </div>-->
-
                 </div>
             </div>
             
         </div>
-	</div>>
+	</div>
 </div>
 <script type="text/javascript">
     var myDropzone = new Dropzone("div#myId", { 
@@ -68,21 +59,10 @@
     });
     $('#btn_upload').on('beforeSend.ic', function() {
         myDropzone.processQueue();
+        alert('subida');
     });
-    
-    /*$("div#myId").dropzone({ 
-        paramName: 'userfile[]',
-        url: "noticias/upload",
-        'sending': function(file, xhr, formData) {
-            formData.append("idNoticia", $('#idNoticia').val());
-        },
-        autoProcessQueue: false,
-    });*/
     $('figcaption > input').on('click', function() {
         $('figcaption > input[type=checkbox]').prop('checked', '');
         $(this).prop('checked', 'checked');
-    });
-    $('.fecha').datetimepicker({
-        pickTime: false
     });
 </script>

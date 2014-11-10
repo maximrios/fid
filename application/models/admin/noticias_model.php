@@ -86,6 +86,13 @@ class Noticias_model extends CI_Model {
         $result = $this->db->query($sql, $aParms);
         return $this->db->insert_id();
     }
+    public function checkImagen($idNoticia, $idNoticiaImagen) {
+        $sql = 'UPDATE hits_noticias_imagenes SET checkNoticiaImagen = 0 WHERE idNoticia = ?;';
+        $result = $this->db->query($sql, (int) $idNoticia);
+        $sql2 = 'UPDATE hits_noticias_imagenes SET checkNoticiaImagen = 1 WHERE idNoticiaImagen = ?;';
+        $result2 = $this->db->query($sql2, (int) $idNoticiaImagen);
+        return TRUE;   
+    }
     public function eliminarImagen($idNoticiaImagen) {
         $sql = 'DELETE FROM hits_noticias_imagenes
             WHERE idNoticiaImagen = ?;';

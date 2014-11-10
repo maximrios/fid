@@ -26,7 +26,20 @@
 	<?php } ?>
 	</div>
 </div>
-<div class="hidden-xs col-lg-4 section">
+
+<div class="hidden-xs col-lg-4">
+	<div class="section">
+    		<h4 class="titulo_seccion">SUSCRIBITE AL <span class="naranja">NEWSLETTER</span></h4>
+    		<hr>
+    		<p>Completá el formulario para suscribirte a nuestro newsletter, enterarte de nuestras acciones y de los encuentros que realizamos para ayudar a las comunidades.</p>
+    		<form action="newsletter" id="formSuscripcion" name="formSuscripcion" class="formSuscripcion" method="post">
+                <input type="text" placeholder="Apellido" class="form-control" id="apellidoNewsletter" name="apellidoNewsletter" required>
+                <input type="text" placeholder="Nombre" class="form-control" id="nombreNewsletter" name="nombreNewsletter" required>
+                <input type="text" placeholder="Email" class="form-control" id="emailNewsletter" name="emailNewsletter" required>
+                <button type="submit" class="btn btn-primary form-control">Suscribirme</button>
+    		</form>
+		</div>
+	<div class="section">
 	<h4 class="titulo_seccion">OTRAS <span class="naranja">NOTICIAS</span></h4>
     		<hr>
 	<ul class="aside">
@@ -34,6 +47,7 @@
 		<li><a><?=$noticia['tituloNoticia']?></a></li>
 	<?php } ?>
 	</ul>
+	</div>
 	<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="250" data-height="400" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 </div>
 </section>

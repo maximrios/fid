@@ -50,7 +50,7 @@ class Programas extends Ext_crud_controller {
         parent::index();
     }
     public function listado() {
-        $vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
+        $vcBuscar = ($this->input->post('buscarGridview') === FALSE) ? '' : $this->input->post('buscarGridview');
         $this->gridview->initialize(
                 array(
                     'sResponseUrl' => 'administrator/programas/listado'
@@ -69,7 +69,7 @@ class Programas extends Ext_crud_controller {
         $publicar = '<a href="#" ic-post-to="programas/publicacion/{idPrograma}" title="Cambiar estado de {nombrePrograma}" ic-target="#main_content" rel="{\'idPrograma\': {idPrograma}}">&nbsp;<span class="glyphicon glyphicon-refresh"></span>&nbsp;</a>';
         $editar = '<a href="#" ic-post-to="programas/formulario/{idPrograma}" title="Modificar el programa {nombrePrograma}"  ic-target="#main_content" rel="main:2">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
         $controles = $publicar.$editar;
-        $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
+        $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones', 'style' => 'width:65px;'));
         $this->_rsRegs = $this->programas->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
         $this->load->view('admin/programas/listado'
             , array(

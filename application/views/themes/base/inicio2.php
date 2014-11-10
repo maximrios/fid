@@ -1,5 +1,5 @@
 <style type="text/css">
-.als-container {
+/*.als-container {
 	position: relative;
 	width: 100%;
 	margin: 0px auto;
@@ -65,7 +65,7 @@
 
 #demo2 .als-item {
 	vertical-align: middle;
-}
+}*/
 </style>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -100,7 +100,7 @@
 	<div class="row section">
 		<h4 class="titulo_seccion">NUESTROS <span class="naranja">PROGRAMAS</span> | <a href="programas">VER TODOS</a></h4>
 		<hr>
-		<div class="als-container" id="demo2">
+		<!--<div class="als-container" id="demo2">
   			<span class="als-prev glyphicon glyphicon-circle-arrow-left pull-left hidden-xs"></span>
 			<div class="als-viewport">
 				<div class="als-wrapper row">
@@ -120,7 +120,24 @@
 				</div>
 			</div>
 			<span class="als-next glyphicon glyphicon-circle-arrow-right hidden-xs"></span>
-		</div>
+		</div>-->
+		<ul class="bx-programas">
+			<?php foreach ($programas as $programa) { ?>
+				<li class="col-xs-12 col-lg-3">
+					<!--<div class="als-item col-xs-12 col-lg-3">-->
+						<a href="programa/<?=$programa['idPrograma']?>/<?=$programa['uriPrograma']?>">
+							<figure class="programas">
+								<img src="./assets/images/programas/programa<?=$programa['idPrograma']?>.jpg">
+								<figcaption class="detalle">
+									<span class="nombre"><?=substr($programa['nombrePrograma'], 12)?></span>
+									<span class="more">Ver detalle</span>
+								</figcaption>
+							</figure>
+						</a>
+					<!--</div>-->
+				</li>
+			<?php } ?>
+		</ul>
 	</div>
 	<!--<div class="row staff">
 		<h4 class="titulo_seccion">Conocénos</h4>	
@@ -178,7 +195,7 @@
         		</div>
       		</div>
 		</div>
-		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="235" data-height="408" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="235" data-height="300" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
@@ -187,15 +204,16 @@
 		<h4 class="titulo_seccion">NUESTROS <span class="naranja">COLABORADORES</span></h4>
 		<hr>
 		<div id="carousel">
-			<ul id="scroller">
+			<ul class="bx-colaboradores">
 				<li><img src="assets/images/colaboradores/red_comunidades_rurales.png"></li>
 				<li><img src="assets/images/colaboradores/imprenta_milenio.png"></li>
+				<li><img src="assets/images/colaboradores/imprenta_maestro.jpg"></li>
 				<li><img src="assets/images/colaboradores/red_comunidades_rurales.png"></li>
 				<li><img src="assets/images/colaboradores/imprenta_milenio.png"></li>
+				<li><img src="assets/images/colaboradores/imprenta_maestro.jpg"></li>
 				<li><img src="assets/images/colaboradores/red_comunidades_rurales.png"></li>
 				<li><img src="assets/images/colaboradores/imprenta_milenio.png"></li>
-				<li><img src="assets/images/colaboradores/red_comunidades_rurales.png"></li>
-				<li><img src="assets/images/colaboradores/imprenta_milenio.png"></li>
+				<li><img src="assets/images/colaboradores/imprenta_maestro.jpg"></li>
 			</ul>
 		</div>
 		</div>
@@ -220,11 +238,20 @@
             "2013-05-03":{"number": 1}, 
             "2013-06-12": {}}
     });
-	$('#scroller').bxSlider({
+	$('.bx-colaboradores').bxSlider({
 		auto: true,
-		maxSlides: 2,
 		infiniteLoop: true,
 		controls: false,
         pager: false,
+        captions: true,
+        moveSlides: 1,
+		slideMargin: 0,
+    });
+    $('.bx-programas').bxSlider({
+		auto: true,
+		infiniteLoop: true,
+		controls: false,
+        pager: false,
+        pause: 10000,
     });
 </script>

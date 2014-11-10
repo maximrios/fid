@@ -87,15 +87,16 @@ class Eventos extends Ext_crud_Controller {
 		parent::index();
 	}
 	public function listado() {
-        $vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
+        $vcBuscar = ($this->input->post('buscarGridview') === FALSE) ? '' : $this->input->post('buscarGridview');
         $this->gridview->initialize(
                 array(
-                    'sResponseUrl' => 'administrator/eventos/listado'
+                    'sResponseUrl' => 'eventos/listado'
                     , 'iTotalRegs' => $this->eventos->numRegs($vcBuscar)
                     , 'iPerPage' => ($this->input->post('per_page')==FALSE)? 10: $this->input->post('per_page')
                     , 'border' => FALSE
                     , 'sFootProperties' => 'class="paginador"'
                     , 'titulo' => 'Listado de Eventos'
+                    , 'buscador' => TRUE
                     , 'identificador' => 'idEvento'
                 )
         );
@@ -109,7 +110,7 @@ class Eventos extends Ext_crud_Controller {
         $editar = '<a href="#" ic-post-to="eventos/formulario/{idEvento}" title="Modificar el evento {nombreEvento}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
         $eliminar = '<a href="#" ic-post-to="eventos/eliminar/{idEvento}" title="Eliminar evento {nombreEvento}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-trash"></span>&nbsp;</a>';
         $controles = $editar.$eliminar;
-        $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
+        $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones', 'style' => 'width:65px;'));
         $this->_rsRegs = $this->eventos->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
         $this->load->view('admin/eventos/listado'
             , array(

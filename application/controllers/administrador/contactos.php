@@ -69,7 +69,7 @@ class Contactos extends Ext_crud_Controller {
 		parent::index();
 	}
 	public function listado() {
-        $vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
+        $vcBuscar = ($this->input->post('buscarGridview') === FALSE) ? '' : $this->input->post('buscarGridview');
         $this->gridview->initialize(
                 array(
                     'sResponseUrl' => 'administrator/contactos/listado'

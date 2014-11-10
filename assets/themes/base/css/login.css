@@ -1,9 +1,4 @@
-body {
-    /*background: #eee url(http://subtlepatterns.com/patterns/sativa.png);*/
-    background: url(../img/background_login.JPG);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+body{background: #eee url(http://subtlepatterns.com/patterns/sativa.png);}
 html,body{
     position: relative;
     height: 100%;
@@ -85,12 +80,12 @@ a:hover, a:focus, a:active {
 
 .form-box input[type="text"]{
     border-radius: 5px 5px 0 0;
-    margin-bottom: 10px;
+    text-transform: lowercase;
 }
 
 .form-box input[type="password"]{
     border-radius: 0 0 5px 5px;
-    
+    border-top: 0;
 }
 
 .form-box button.login{

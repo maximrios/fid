@@ -24,24 +24,24 @@ $config['navigation'] = array(
                 'link'   => 'administrador/programas',
                 'icon'   => 'file'
             ),
-            'galerias' => array(
+            /*'galerias' => array(
                 'id'     => 'galerias',
                 'title'  => 'Galerias',
                 'link'   => 'administrador/galerias',
                 'icon'   => 'picture'
-            ),
+            ),*/
             'noticias' => array(
                 'id'     => 'noticias',
                 'title'  => 'Noticias',
                 'link'   => 'administrador/noticias',
                 'icon'   => 'list-alt'
             ),
-            'staff' => array(
+            /*'staff' => array(
                 'id'     => 'staff',
                 'title'  => 'Staff',
                 'link'   => 'administrador/staff',
                 'icon'   => 'user'
-            ),
+            ),*/
             'contactos' => array(
                 'id'     => 'contactos',
                 'title'  => 'Contactos',

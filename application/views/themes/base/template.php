@@ -87,24 +87,11 @@
 			<div class="col-lg-4">
 				<h5>Contactános</h5>
 				<ul>
-					<li><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;info@fundacionfidsalta.org</li>
-					<li><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;(0387) 4191919 - 4101010</li>
+					<li><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<a href="mailto:info@fundacionfidsalta.org">info@fundacionfidsalta.org</a></li>
+					<li><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;(54 387) 155780060</li>
 					<li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Florida 1550</li>
 					<li><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Salta - Argentina</li>
 				</ul>
-			</div>
-			<div class="col-lg-3">
-				<h5>Suscribite a nuestro Newsletter</h5>
-				<form>
-					<input type="text" id="newsletter" name="newsletter" placeholder="Ingresa tu nombre" class="form-control">
-					<br>
-					<input type="text" id="newsletter" name="newsletter" placeholder="Ingresa tu email" class="form-control">
-					<br>
-					<button class="btn btn-primary pull-right">Enviar</button>
-				</form>
-			</div>
-			<div class="col-lg-3" style="text-align:right;">
-				<img src="<?=base_url()?>assets/images/fiscal.png" width="100">
 			</div>
 		</div>
 		<div class="footer">

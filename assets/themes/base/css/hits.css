@@ -54,6 +54,54 @@ nav {
   width: 100%;
 }
 
+.botones {
+    text-align: right;
+}
+.botones button {
+    margin-left: 10px;
+}
+.panel-heading {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+table.table {
+    font-size: 0.9em;
+}
+.paginador {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+.item-separador {
+    margin: 0 10px;
+}
+
+.search-gridview {
+    font-size: 0.9em;
+    width: 200px!important;
+}
+.per-page-gridview {
+    display: inline-block;
+    width: 200px!important;
+}
+.icono-gridview {
+    display: inline-block!important;
+    margin: 0 5px;    
+}
+.alert-info {
+    margin: 20px 0;
+}
+.informacion-paginador {
+    margin-right: 0;
+    padding-right: 0;
+    text-align: right;
+}
+ul.pagination {
+    margin: 0;
+}
+.mostrar {
+    text-align: center;
+}
+
 #sidebar_menu li a, .sidebar-nav li a {
     color: #999;
     display: block;
@@ -154,33 +202,7 @@ nav {
 .botones {
     text-align: right;
 }
-/**
- * Panel de imagenes cargadas
- */
-.imagenes-cargadas {
 
-}
-.imagen-cargada {
-    border: 1px solid #d2d2d2;
-    border-radius: 5px;
-    display: inline-block;
-    margin: 0 10px 10px 0;
-    padding: 10px;
-    position: relative;
-}
-.imagen-check {
-    bottom: 10px;
-    right: 5px;
-    color: #00D70E;
-    font-size: 2em;
-    position: absolute;
-}
-.imagen-cargada figcaption { 
-    padding-top: 10px;
-}
-.imagen-cargada figcaption input, .imagen-cargada figcaption span { 
-    vertical-align: middle;
-}
 @media (max-width:767px) {
     #wrapper {
     padding-left: 70px;
@@ -200,20 +222,26 @@ nav {
 }
 
 
+
 /**
- * Agregado para DropZone
+ * Imagenes cargadas
  */
-.dropzone {
-    padding-top: 0.5em;
-}
-.dz-preview {
+
+#imagenes-cargadas figure {
     border: 1px solid #d2d2d2;
-    border-radius: 5px;
     display: inline-block;
-    margin-right: 5px;
-    padding: 5px;
-    width: 112px;
+    margin: 0 5px 15px 0;
+    padding: 3px;
+    padding-bottom: 5px;
+    width: 208px;
 }
-.dz-success-mark, .dz-error-mark {
-    display: none;
+#imagenes-cargadas figure.active {
+    border: 1px solid #5986AA;
+}
+#imagenes-cargadas figure img {
+    display: block;
+    margin-bottom: 5px;
+}
+#imagenes-cargadas figure img:hover {
+    cursor: pointer;
 }

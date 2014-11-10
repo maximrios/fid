@@ -66,7 +66,7 @@ class Noticias extends Ext_crud_controller {
         parent::index();
     }
     public function listado() {
-        $vcBuscar = ($this->input->post('vcBuscar') === FALSE) ? '' : $this->input->post('vcBuscar');
+        $vcBuscar = ($this->input->post('buscarGridview') === FALSE) ? '' : $this->input->post('buscarGridview');
         $this->gridview->initialize(
                 array(
                     'sResponseUrl' => 'administrator/noticias/listado'
@@ -236,6 +236,9 @@ class Noticias extends Ext_crud_controller {
                         , $noticia['idNoticia']
                     )
                 );
+                $this->_aEstadoOper['status'] = TRUE;    
+                $this->_aEstadoOper['message'] = 'Se subio la imagen correctamente.';
+                $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
             }
         }
         else {
@@ -248,9 +251,20 @@ class Noticias extends Ext_crud_controller {
         $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
         $this->imagenes($noticia);
     }
+    public function checkImagen() {
+        $this->_aEstadoOper['status'] = $this->noticias->checkImagen($this->input->post('idNoticia'), $this->input->post('idNoticiaImagen'));
+        if ($this->_aEstadoOper['status'] > 0) {
+            $this->_aEstadoOper['message'] = 'Se modificó la imagen de la noticia.';
+        } else {
+            $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
+        }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'alert'));
+
+        $this->imagenes($this->input->post('idNoticia'));
+    }
     public function eliminarImagen($idNoticiaImagen=FALSE) {
         $imagen = $this->noticias->obtenerUnoImagen($idNoticiaImagen);
-        if($imagen) {
+        if($imagen['checkNoticiaImagen'] == 0) {
             $this->_aEstadoOper['status'] = $this->noticias->eliminarImagen($imagen['idNoticiaImagen']);
             if ($this->_aEstadoOper['status'] > 0) {
                 $this->load->library('hits/uploads', array(), 'uploads');
@@ -268,11 +282,13 @@ class Noticias extends Ext_crud_controller {
             }
         }
         else {
-            $this->_aEstadoOper['message'] = 'Ocurrió un error al eliminar la noticia. Consulte con el administrador del sistema.';
+            $this->_aEstadoOper['message'] = 'Ocurrió un error al eliminar la noticia o la imagen esta marcada como principal.';
         }
         $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
         $this->imagenes($imagen['idNoticia']);
-        //$this->listado();
+    }
+    public function testing() {
+        echo "aca llega";
     }
 }
 ?>

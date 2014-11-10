@@ -9,8 +9,11 @@ Class Usuarios_model extends CI_Model {
             , $vcPass
             , $vcIp
         );
-        $query = 'SELECT idUsuario, idPersona, idRol, idEstado, nombreUsuario, passwordUsuario, intentosUsuario, ultimoLoginUsuario, nombreRol, nombreEstado, dniPersona, apellidoPersona, nombrePersona
-            FROM hits_view_login
+        $query = 'SELECT u.idUsuario, p.idPersona, ur.idRol, ue.idEstado, u.nombreUsuario, u.passwordUsuario, u.intentosUsuario, u.ultimoLoginUsuario, ur.nombreRol, ue.nombreEstado, p.dniPersona, p.apellidoPersona, p.nombrePersona
+            FROM hits_usuarios u
+            INNER JOIN hits_personas p ON u.idPersona = p.idPersona
+            INNER JOIN hits_usuarios_roles ur ON u.idRol = ur.idRol
+            INNER JOIN hits_usuarios_estados ue ON u.idEstado = ue.idEstado
             WHERE nombreUsuario = ? AND passwordUsuario = ?;';
         $result = $this->db->query($query, $aParms)->result_array();
         return (sizeof($result) > 0) ? $result[0] : false;
@@ -90,7 +93,6 @@ Class Usuarios_model extends CI_Model {
     public function cambiarPassword($aParms) {
         $sql = 'SELECT hits_sp_usuarios_password(? ,? ,?) as result;';
         $result = $this->db->query($sql, $aParms)->result_array();
-        echo $this->db->last_query();
         return $result[0]['result'];
     }
 

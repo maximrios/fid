@@ -35,6 +35,16 @@ Class Inicio extends Ext_Controller {
 			parent::index();
 		}
 	}
+	public function suscripcion() {
+		$this->layout->suscripcion(
+			array($this->input->post('nombreNewsletter')
+				, $this->input->post('apellidoNewsletter')
+				, $this->input->post('emailNewsletter')
+			)
+		);
+		$this->_content = $this->load->view('newsletter/suscripcion', array(), true);
+		parent::index();
+	}
 }
 /* End of file inicio.php */
 /* Location: ./application/controllers/inicio.php */

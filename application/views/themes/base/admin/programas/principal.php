@@ -1,8 +1,5 @@
 <?php
 	$vcMsjSrv = (!empty($vcMsjSrv))? $vcMsjSrv: ''; 
 ?>
-	<script type="text/javascript">
-		$(document).on('ready', function(){
-            $('#main_content').load('programas/listado');
-        });
-	</script>
+<div ic-trigger-on="load" ic-verb="POST" ic-src="programas/listado" ic-target="#main_content">
+</div>

@@ -89,7 +89,7 @@
 				<ul>
 					<li><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;<a href="mailto:info@fundacionfidsalta.org">info@fundacionfidsalta.org</a></li>
 					<li><span class="glyphicon glyphicon-earphone"></span>&nbsp;&nbsp;(54 387) 155780060</li>
-					<li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Florida 1550</li>
+					<li><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Caseros 1907</li>
 					<li><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Salta - Argentina</li>
 				</ul>
 			</div>

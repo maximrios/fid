@@ -25,7 +25,7 @@
     		<hr>
 	<ul class="otras_novedades">
 	<?php foreach ($relacionadas as $noticia) { ?>
-		<li><a href="noticia/<?=$noticia['idNoticia']?>/<?=$noticia['uriNoticia']?>"><?=$noticia['tituloNoticia']?></a></li>
+		<li><a href="<?=site_url('noticia/'.$noticia['idNoticia'].'/'.$noticia['uriNoticia'])?>"><?=$noticia['tituloNoticia']?></a></li>
 	<?php } ?>
 	</ul>
 </div>

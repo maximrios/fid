@@ -127,8 +127,7 @@
 					<!--<div class="als-item col-xs-12 col-lg-3">-->
 						<a href="programa/<?=$programa['idPrograma']?>/<?=$programa['uriPrograma']?>">
 							<figure class="programas">
-								<!--<img src="./assets/images/programas/programa<?=$programa['idPrograma']?>.jpg">-->
-								<img src="./<?=$programa['thumbPrograma']?>">
+								<img src="./assets/images/programas/programa<?=$programa['idPrograma']?>.jpg">
 								<figcaption class="detalle">
 									<span class="nombre"><?=substr($programa['nombrePrograma'], 12)?></span>
 									<span class="more">Ver detalle</span>
@@ -196,7 +195,7 @@
         		</div>
       		</div>
 		</div>
-		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="235" data-height="300" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+		<div class="fb-like-box" data-href="https://www.facebook.com/pages/Fundacion-Para-La-Integracion-Y-El-Desarrollo-De-Comunidades-Rurales/209294019221667?fref=ts" data-width="235" data-height="408" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">

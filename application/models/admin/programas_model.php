@@ -50,37 +50,17 @@ class Programas_model extends CI_Model {
         }
     }
     public function guardarImagen($aParms) {
-        /*if($aParms[0] == 'NULL' || $aParms[0] == 0) {
-            $sql = 'INSERT INTO sabandijas_productos_imagenes
-                    (idProducto
-                    , pathProductoImagen
-                    , detailProductoImagen
-                    , thumbProductoImagen
-                    , thumbdetailProductoImagen) 
-                    VALUES
-                    ('.$aParms[1].'
-                    , "'.$aParms[2].'"
-                    , "'.$aParms[3].'"
-                    , "'.$aParms[4].'"
-                    , "'.$aParms[5].'");';
-        }
-        else {
-            $sql = 'UPDATE sabandijas_productos_imagenes SET 
-                    checkProductoImagen = '.$aParms[6].'
-                    WHERE idProductoImagen = pidProductoImagen;';
-        }
-        $result = $this->db->query($sql, $aParms);
-        return $this->db->insert_id();*/
-        $sql = 'UPDATE hits_noticias SET 
-            thumbImagenNoticia = "'.$aParms[1].'"
-            , detailImagenNoticia = "'.$aParms[2].'"
-            WHERE idNoticia = '.$aParms[0].';';
+        $sql = 'UPDATE hits_programas SET 
+            imagenPrograma = "'.$aParms[1].'"
+            , thumbPrograma = "'.$aParms[2].'"
+            , detailPrograma = "'.$aParms[3].'"
+            WHERE idPrograma = '.$aParms[0].';';
         $result = $this->db->query($sql);
-        return $this->db->insert_id();
+        return TRUE;
     }
 
     public function cambiarEstado($aParms) {
-        $sql = 'UPDATE hits_noticias SET estadoNoticia = ? WHERE idNoticia = ?;';
+        $sql = 'UPDATE hits_programas SET estadoPrograma = ? WHERE idPrograma = ?;';
         $result = $this->db->query($sql, $aParms);
         return TRUE;   
     }

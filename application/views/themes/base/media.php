@@ -3,7 +3,7 @@
 		<div class="col-lg-8 noticia">
 			<h4>Galería de imágenes <span class="naranja"><?=$galeria['nombreGaleria']?></span></h4>
 			<?php foreach ($medias as $media) { ?>
-				<img src="../.<?=$media['thumbGaleriaMedia']?>">
+				<a class="fancy" href="../.<?=$media['pathGaleriaMedia']?>"><img src="../.<?=$media['thumbGaleriaMedia']?>"></a>
 			<?php } ?>
 		</div>
 		<div class="col-lg-4">
@@ -23,4 +23,8 @@
     		<p>Completá el formulario y nos comunicaremos al instante.</p>-->
     	</div>
 	</section>
-	
+<link rel="stylesheet" type="text/css" href="<?=site_url('assets/themes/base/css/jquery.fancybox.css')?>">
+<script type="text/javascript" src="<?=site_url('assets/themes/base/js/jquery.fancybox.js')?>"></script>
+<script type="text/javascript">
+    $('.fancy').fancybox();
+</script>

@@ -65,10 +65,10 @@ class Galerias extends Ext_crud_Controller {
         $this->gridview->addColumn('idGaleria', '#', 'int');
         $this->gridview->addColumn('nombreGaleria', 'Nombre', 'text');
         $this->gridview->addParm('vcBuscar', $this->input->post('vcBuscar'));
-        $ver = '<a href="#" ic-post-to="galerias/ver/{idGaleria}" title="Ver imagenes | videos de {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-picture"></span>&nbsp;</a>';
+        $imagenes = '<a href="#" ic-post-to="galerias/imagenes/{idGaleria}" title="Ver imagenes | videos de {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-picture"></span>&nbsp;</a>';
         $editar = '<a href="#" ic-post-to="galerias/formulario/{idGaleria}" title="Editar galeria {nombreGaleria}" ic-target="#main_content">&nbsp;<span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>';
-        $controles = $editar.$ver;
-        $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones'));
+        $controles = $editar.$imagenes;
+        $this->gridview->addControl('inIdFaqCtrl', array('face' => $controles, 'class' => 'acciones', 'style' => 'width:65px;'));
         $this->_rsRegs = $this->galerias->obtener($vcBuscar, $this->gridview->getLimit1(), $this->gridview->getLimit2());
         $this->load->view('admin/galerias/listado'
             , array(
@@ -89,8 +89,20 @@ class Galerias extends Ext_crud_Controller {
         $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
         $this->load->view('admin/galerias/formulario', $aData);
 	}
-    function ver($galeria=FALSE) {
-        $galeria = $this->galerias->obtenerUno($galeria);
+    function imagenes($galeria=FALSE) {
+        if($galeria) {
+            $aData['Reg'] = $this->galerias->obtenerUno($galeria);
+            $aData['imagenes'] = $this->galerias->obtenerImagenes($galeria);
+        }
+        else {
+            $aData['Reg'] = $this->_inicReg($this->input->post('vcForm'));
+            $aData['imagenes'] = array();    
+        }
+        $aData['formAction'] = 'galerias/guardar';
+        $aData['vcMsjSrv'] = $this->_aEstadoOper['message'];
+        $this->load->view('admin/galerias/imagenes', $aData);
+
+        /*$galeria = $this->galerias->obtenerUno($galeria);
         if($galeria) {
             $aData['imagenes'] = $this->galerias->obtenerImagenes($galeria['idGaleria']);
             $aData['galeria'] = $galeria;
@@ -100,7 +112,8 @@ class Galerias extends Ext_crud_Controller {
         }
         else {
             $this->listado();
-        }
+            $aData['imagenes'] = array(); 
+        }*/
     }
 	function guardar() {
 		antibotCompararLlave($this->input->post('vcForm'));
@@ -137,7 +150,7 @@ class Galerias extends Ext_crud_Controller {
             $this->formulario();
         }
 	}
-	public function eliminarImagen($imagen) {
+	/*public function eliminarImagen($imagen) {
         $media = $this->galerias->obtenerUnoImagen($imagen);
         if ($media) {
             $this->_aEstadoOper['status'] = $this->galerias->eliminarImagen($media['idGaleriaMedia']);
@@ -153,7 +166,7 @@ class Galerias extends Ext_crud_Controller {
             $this->listado();
         }
     	
-	}
+	}*/
     public function check_youtube() {
         echo "aca estamos";
         die();
@@ -184,7 +197,6 @@ class Galerias extends Ext_crud_Controller {
             $this->load->library('hits/uploads', array(), 'uploads');
             $data = $this->uploads->do_upload($config);
             if($data) {
-                print_r($data);
                 $this->galerias->guardarImagen(
                     array(
                         $data[0]['file_name']
@@ -194,12 +206,55 @@ class Galerias extends Ext_crud_Controller {
                         , $galeria['idGaleria']
                     )
                 );
-                echo $this->db->last_query();
+                $this->_aEstadoOper['status'] = TRUE;    
+                $this->_aEstadoOper['message'] = 'Se subio la imagen correctamente.';
+                $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
             }
         }
         else {
             echo "no entro";
         }
-        
+    }
+    public function succesUpload($noticia) {
+        $this->_aEstadoOper['status'] = 1;
+        $this->_aEstadoOper['message'] = 'Se subió el archivo correctamente.';
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
+        $this->imagenes($noticia);
+    }
+    public function checkImagen() {
+        $this->_aEstadoOper['status'] = $this->galerias->checkImagen($this->input->post('idGaleria'), $this->input->post('idGaleriaMedia'));
+        if ($this->_aEstadoOper['status'] > 0) {
+            $this->_aEstadoOper['message'] = 'Se modificó la imagen de la galeria.';
+        } else {
+            $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
+        }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'alert'));
+
+        $this->imagenes($this->input->post('idGaleria'));
+    }
+    public function eliminarImagen($idGaleriaMedia=FALSE) {
+        $imagen = $this->galerias->obtenerUnoImagen($idGaleriaMedia);
+        if($imagen['checkGaleriaMedia'] == 0) {
+            $this->_aEstadoOper['status'] = $this->galerias->eliminarImagen($imagen['idGaleriaMedia']);
+            if ($this->_aEstadoOper['status'] > 0) {
+                $this->load->library('hits/uploads', array(), 'uploads');
+                $this->_aEstadoOper['status'] = $this->uploads->delete_image('./'.$imagen['pathGaleriaMedia']);
+                $this->_aEstadoOper['status'] = $this->uploads->delete_image('./'.$imagen['thumbGaleriaMedia']);
+                if($this->_aEstadoOper['status']) {
+                    $this->_aEstadoOper['message'] = 'Se eliminó la imagen correctamente.';    
+                }
+                else {
+                    $this->_aEstadoOper['message'] = 'Se eliminó la imagen.';        
+                }
+            } 
+            else {
+                $this->_aEstadoOper['message'] = $this->_obtenerMensajeErrorDB($this->_aEstadoOper['status']);
+            }
+        }
+        else {
+            $this->_aEstadoOper['message'] = 'Ocurrió un error al eliminar la noticia o la imagen esta marcada como principal.';
+        }
+        $this->_aEstadoOper['message'] = $this->messages->do_message(array('message' => $this->_aEstadoOper['message'], 'type' => ($this->_aEstadoOper['status'] > 0) ? 'success' : 'danger'));
+        $this->imagenes($imagen['idGaleria']);
     }
 }

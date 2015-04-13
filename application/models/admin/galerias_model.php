@@ -81,6 +81,13 @@ class Galerias_model extends CI_Model {
         $result = $this->db->query($sql);
         return $this->db->insert_id();
     }
+    public function checkImagen($idGaleria, $idGaleriaMedia) {
+        $sql = 'UPDATE hits_galerias_media SET checkGaleriaMedia = 0 WHERE idGaleria = ?;';
+        $result = $this->db->query($sql, (int) $idGaleria);
+        $sql2 = 'UPDATE hits_galerias_media SET checkGaleriaMedia = 1 WHERE idGaleriaMedia = ?;';
+        $result2 = $this->db->query($sql2, (int) $idGaleriaMedia);
+        return TRUE;   
+    }
     public function eliminarImagen($id) {
         $sql = 'DELETE FROM hits_galerias_media WHERE idGaleriaMedia = ?;';
         $result = $this->db->query($sql, array($id));
